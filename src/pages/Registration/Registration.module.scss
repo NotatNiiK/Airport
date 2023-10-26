@@ -1,0 +1,26 @@
+.registration {
+  @apply min-h-screen flex flex-col items-center justify-center;
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(253, 203, 50) 0%,
+    rgb(244, 56, 98) 100.2%
+  );
+  &__body {
+    @apply self-stretch p-8 bg-white min-w-[500px] text-center m-auto rounded;
+  }
+  &__title {
+    @apply text-center mb-2 text-2xl font-bold;
+  }
+  &__input {
+    &::placeholder {
+      color: #00000092;
+    }
+    @apply w-full py-3 px-4 bg-gray-200 transition-all duration-300 rounded shadow-sm shadow-gray-400 focus:shadow focus:shadow-orange-300;
+  }
+  &__section {
+    @apply mb-3;
+  }
+  button.registration__button {
+    @apply flex items-center text-lg justify-center text-white py-3 px-4 w-full bg-orange-400 rounded transition-all duration-300 hover:bg-orange-500;
+  }
+}
