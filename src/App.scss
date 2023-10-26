@@ -19,3 +19,7 @@ body {
 .main {
   @apply flex-auto;
 }
+
+:focus {
+  @apply outline-none;
+}
