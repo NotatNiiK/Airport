@@ -1,0 +1,21 @@
+.header {
+  @apply absolute left-0 top-0 w-full py-3 bg-white;
+  &__container {
+    @apply flex items-center justify-between;
+  }
+  &__title {
+    @apply text-2xl font-semibold italic;
+  }
+}
+
+.nav {
+  &__list {
+    @apply flex items-center;
+  }
+  &__item {
+    @apply ml-3;
+  }
+  &__link {
+    @apply text-lg transition-all duration-300 hover:underline;
+  }
+}
