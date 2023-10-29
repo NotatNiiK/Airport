@@ -1,5 +1,5 @@
 class RegValidation {
-  public static fullname(value: string): boolean {
+  public static fullName(value: string): boolean {
     return value.length > 1 ? true : false;
   }
   public static email(value: string): boolean {
@@ -15,8 +15,9 @@ class RegValidation {
     return value.length > 1 ? true : false;
   }
   public static myContacts(value: string): boolean {
-    const phoneNumberRegex: RegExp = /^(?:\+?38|38)?\d{12}$/;
-    return phoneNumberRegex.test(value);
+    return value.length > 1 ? true : false;
+    /* const phoneNumberRegex: RegExp = /^(?:\+?38|38)?\d{12}$/;
+    return phoneNumberRegex.test(value); */
   }
 }
 
