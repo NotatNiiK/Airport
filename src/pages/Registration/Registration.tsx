@@ -26,7 +26,7 @@ const Registration: FC = () => {
       console.log(e);
     }
 
-    reset();
+    /*  reset(); */
   };
 
   const errorRegistration: SubmitErrorHandler<RegData> = (data) => {};
