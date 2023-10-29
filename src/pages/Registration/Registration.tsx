@@ -3,13 +3,9 @@ import cl from "./Registration.module.scss";
 import { useForm, SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import RegValidation from "../../validation/RegValidation";
 import { InputMask } from "@react-input/mask";
-interface RegForm {
-  fullname: string;
-  email: string;
-  password: string;
-  passportNumber: string;
-  contactInfo: string;
-}
+import { RegData } from "../../models/auth";
+import AuthServer from "../../services/AuthService";
+import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 
 const Registration: FC = () => {
   const {
@@ -18,14 +14,22 @@ const Registration: FC = () => {
     formState: { errors },
     clearErrors,
     reset,
-  } = useForm<RegForm>();
+  } = useForm<RegData>();
 
-  const performRegistration: SubmitHandler<RegForm> = (data) => {
-    console.log(data);
+  const performRegistration: SubmitHandler<RegData> = async (regData) => {
+    try {
+      regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
+      console.log(regData);
+      const response = await AuthServer.registration(regData);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+
     reset();
   };
 
-  const errorRegistration: SubmitErrorHandler<RegForm> = (data) => {};
+  const errorRegistration: SubmitErrorHandler<RegData> = (data) => {};
 
   return (
     <div className={cl["registration"]}>
@@ -39,12 +43,12 @@ const Registration: FC = () => {
             <input
               type="text"
               className={cl["registration__input"]}
-              {...register("fullname", {
+              {...register("fullName", {
                 required: true,
-                validate: RegValidation.fullname,
+                validate: RegValidation.fullName,
               })}
-              style={{ boxShadow: errors.fullname ? "0px 0px 5px red" : "" }}
-              onBlur={() => clearErrors("fullname")}
+              style={{ boxShadow: errors.fullName ? "0px 0px 5px red" : "" }}
+              onBlur={() => clearErrors("fullName")}
               placeholder="Username"
               tabIndex={1}
             />
