@@ -7,11 +7,12 @@ import { AxiosError } from "axios";
 import { IAlert } from "../../models/alert";
 import cl from "./Registration.module.scss";
 import Alert from "@mui/material/Alert";
-import AuthServer from "../../services/AuthService";
-import RegValidation from "../../validation/RegValidation";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
+import AuthService from "../../services/AuthService";
+import RegValidation from "../../validation/RegValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
+import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 
 const Registration: FC = () => {
   const navigate = useNavigate();
@@ -36,10 +37,6 @@ const Registration: FC = () => {
     });
   }
 
-  function setTokenInLocalStorage(token: string): void {
-    localStorage.setItem("token", JSON.stringify(token));
-  }
-
   const performRegistration: SubmitHandler<IRegData> = async (
     regData
   ): Promise<void> => {
@@ -48,7 +45,7 @@ const Registration: FC = () => {
 
       const {
         data: { access },
-      } = await AuthServer.registration(regData);
+      } = await AuthService.registration(regData);
 
       setTokenInLocalStorage(access);
       reset();
