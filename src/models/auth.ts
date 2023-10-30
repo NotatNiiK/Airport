@@ -1,4 +1,4 @@
-interface RegData {
+interface IRegData {
   fullName: string;
   email: string;
   password: string;
@@ -6,8 +6,8 @@ interface RegData {
   contactInfo: string;
 }
 
-interface AuthResponse {
+interface IAuthResponse {
   access: string;
 }
 
-export type { RegData, AuthResponse };
+export type { IRegData, IAuthResponse };

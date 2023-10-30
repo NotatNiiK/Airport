@@ -1,12 +1,12 @@
 import axios from "axios";
 import type { AxiosResponse } from "axios";
-import { RegData, AuthResponse } from "../models/auth";
+import { IRegData, IAuthResponse } from "../models/auth";
 
 class AuthServer {
   public static registration(
-    registrationData: RegData
-  ): Promise<AxiosResponse<AuthResponse>> {
-    return axios.post<AuthResponse>(
+    registrationData: IRegData
+  ): Promise<AxiosResponse<IAuthResponse>> {
+    return axios.post<IAuthResponse>(
       `${process.env.REACT_APP_SERVER_URL}user/logon`,
       registrationData,
       {
