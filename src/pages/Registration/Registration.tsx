@@ -1,35 +1,61 @@
-import { FC } from "react";
-import cl from "./Registration.module.scss";
-import { useForm, SubmitHandler, SubmitErrorHandler } from "react-hook-form";
-import RegValidation from "../../validation/RegValidation";
+import { FC, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
-import { RegData } from "../../models/auth";
+import { IRegData } from "../../models/auth";
+import { useNavigate } from "react-router-dom";
+import { AxiosError } from "axios";
+import { IAlert } from "../../models/alert";
+import cl from "./Registration.module.scss";
+import Alert from "@mui/material/Alert";
 import AuthServer from "../../services/AuthService";
+import RegValidation from "../../validation/RegValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 
 const Registration: FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
     reset,
-  } = useForm<RegData>();
+  } = useForm<IRegData>();
 
-  const performRegistration: SubmitHandler<RegData> = async (regData) => {
+  const [errorAlert, setErrorAlert] = useState<IAlert>({
+    error: false,
+    message: "",
+  });
+
+  function showAlert(message: string): void {
+    setErrorAlert({
+      error: true,
+      message,
+    });
+  }
+
+  function setTokenInLocalStorage(token: string): void {
+    localStorage.setItem("token", JSON.stringify(token));
+  }
+
+  const performRegistration: SubmitHandler<IRegData> = async (
+    regData
+  ): Promise<void> => {
     try {
       regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
-      console.log(regData);
-      const response = await AuthServer.registration(regData);
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
+
+      const {
+        data: { access },
+      } = await AuthServer.registration(regData);
+
+      setTokenInLocalStorage(access);
+      reset();
+      navigate("/");
+    } catch (e: unknown) {
+      const error = e as AxiosError;
+      showAlert(error.message);
     }
-
-    /*  reset(); */
   };
-
-  const errorRegistration: SubmitErrorHandler<RegData> = (data) => {};
 
   return (
     <div className={cl["registration"]}>
@@ -37,7 +63,7 @@ const Registration: FC = () => {
         <h1 className={cl["registration__title"]}>Registration</h1>
         <form
           className="registration__form"
-          onSubmit={handleSubmit(performRegistration, errorRegistration)}
+          onSubmit={handleSubmit(performRegistration)}
         >
           <fieldset className={cl["registration__section"]}>
             <input
@@ -120,6 +146,9 @@ const Registration: FC = () => {
               Register
             </button>
           </fieldset>
+          {errorAlert.error && (
+            <Alert severity="error">{errorAlert.message}</Alert>
+          )}
         </form>
       </section>
     </div>
