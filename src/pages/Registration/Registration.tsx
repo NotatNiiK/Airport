@@ -10,6 +10,7 @@ import Alert from "@mui/material/Alert";
 import AuthServer from "../../services/AuthService";
 import RegValidation from "../../validation/RegValidation";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
+import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 
 const Registration: FC = () => {
@@ -135,9 +136,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["registration__section"]}>
-            <button type="submit" className={cl["registration__button"]}>
-              Register
-            </button>
+            <AuthButton type="submit">Register</AuthButton>
           </fieldset>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>

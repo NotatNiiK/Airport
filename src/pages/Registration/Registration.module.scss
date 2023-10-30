@@ -26,7 +26,4 @@
   &__section {
     @apply mb-3;
   }
-  button.registration__button {
-    @apply flex items-center text-lg justify-center text-white py-3 px-4 w-full bg-orange-400 rounded transition-all duration-300 focus:bg-orange-500 hover:bg-orange-500;
-  }
 }
