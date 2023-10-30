@@ -9,6 +9,7 @@ import cl from "./Registration.module.scss";
 import Alert from "@mui/material/Alert";
 import AuthServer from "../../services/AuthService";
 import RegValidation from "../../validation/RegValidation";
+import AuthInput from "../../components/UI/AuthInput";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 
 const Registration: FC = () => {
@@ -66,9 +67,7 @@ const Registration: FC = () => {
           onSubmit={handleSubmit(performRegistration)}
         >
           <fieldset className={cl["registration__section"]}>
-            <input
-              type="text"
-              className={cl["registration__input"]}
+            <AuthInput
               {...register("fullName", {
                 required: true,
                 validate: RegValidation.fullName,
@@ -80,9 +79,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["registration__section"]}>
-            <input
-              type="text"
-              className={cl["registration__input"]}
+            <AuthInput
               {...register("email", {
                 required: true,
                 validate: RegValidation.email,
@@ -94,9 +91,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["registration__section"]}>
-            <input
-              type="text"
-              className={cl["registration__input"]}
+            <AuthInput
               {...register("password", {
                 required: true,
                 validate: RegValidation.password,
@@ -108,9 +103,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["registration__section"]}>
-            <input
-              type="text"
-              className={cl["registration__input"]}
+            <AuthInput
               {...register("passportNumber", {
                 required: true,
                 validate: RegValidation.passportNumber,

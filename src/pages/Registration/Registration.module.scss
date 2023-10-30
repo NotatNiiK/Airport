@@ -21,9 +21,6 @@
     @apply text-center mb-2 text-2xl font-bold;
   }
   &__input {
-    &::placeholder {
-      color: #00000092;
-    }
     @apply w-full py-3 px-4 bg-gray-200 transition-all duration-300 rounded shadow-sm shadow-gray-400 focus:shadow focus:shadow-orange-300;
   }
   &__section {
