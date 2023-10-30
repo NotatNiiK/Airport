@@ -1,12 +1,21 @@
 .registration {
-  @apply min-h-screen flex flex-col items-center justify-center;
+  @apply min-h-screen flex flex-col items-center justify-center py-20;
   background: radial-gradient(
     circle at 10% 20%,
     rgb(253, 203, 50) 0%,
     rgb(244, 56, 98) 100.2%
   );
+  @media all and (max-width: 430px) {
+    @apply min-w-[300px] py-20 pb-5;
+  }
   &__body {
     @apply self-stretch p-8 bg-white min-w-[500px] text-center m-auto rounded;
+    @media all and (max-width: 530px) {
+      @apply min-w-[400px] p-6;
+    }
+    @media all and (max-width: 430px) {
+      @apply min-w-[300px] p-4;
+    }
   }
   &__title {
     @apply text-center mb-2 text-2xl font-bold;
