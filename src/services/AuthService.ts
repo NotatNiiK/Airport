@@ -2,7 +2,7 @@ import axios from "axios";
 import type { AxiosResponse } from "axios";
 import { IRegData, IAuthResponse } from "../models/auth";
 
-class AuthServer {
+class AuthService {
   public static registration(
     registrationData: IRegData
   ): Promise<AxiosResponse<IAuthResponse>> {
@@ -20,4 +20,4 @@ class AuthServer {
   }
 }
 
-export default AuthServer;
+export default AuthService;
