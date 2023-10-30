@@ -9,7 +9,7 @@ import cl from "./Registration.module.scss";
 import Alert from "@mui/material/Alert";
 import AuthServer from "../../services/AuthService";
 import RegValidation from "../../validation/RegValidation";
-import AuthInput from "../../components/UI/AuthInput";
+import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 
 const Registration: FC = () => {
