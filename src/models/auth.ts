@@ -6,8 +6,9 @@ interface IRegData {
   contactInfo: string;
 }
 
+type IAuthData = Omit<IRegData, "fullName" | "passportNumber" | "contactInfo">;
 interface IAuthResponse {
   access: string;
 }
 
-export type { IRegData, IAuthResponse };
+export type { IRegData, IAuthResponse, IAuthData };
