@@ -9,14 +9,18 @@
 }
 
 .nav {
+  @apply flex items-center;
   &__list {
-    @apply flex items-center;
+    @apply flex items-center mr-10;
   }
   &__item {
     @apply ml-3;
   }
   &__link {
     @apply text-lg transition-all duration-300 hover:underline;
+  }
+  &__logout {
+    @apply cursor-pointer  transition-all duration-300 hover:text-orange-300;
   }
 }
 
