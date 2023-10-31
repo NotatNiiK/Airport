@@ -5,6 +5,7 @@ import routes from "../../router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../services/AuthService";
 import Modal from "../UI/Modal/Modal";
+import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -28,7 +29,9 @@ const Header: FC = () => {
   return (
     <header className={cl["header"]}>
       <div className={cl["header__container"]}>
-        <h2 className={cl["header__title"]}>Airport</h2>
+        <h2 className={cl["header__title"]}>
+          Airport <LocalAirportIcon />
+        </h2>
         <nav className={cl["nav"]}>
           <ul className={cl["nav__list"]}>
             {routes.map((route) => (

@@ -4,7 +4,10 @@
     @apply flex items-center justify-between;
   }
   &__title {
-    @apply text-2xl font-semibold italic;
+    @apply text-2xl font-semibold flex items-center;
+    svg {
+      @apply ml-2;
+    }
   }
 }
 
