@@ -1,5 +1,6 @@
 .auth {
-  @apply min-h-screen flex flex-col items-center justify-center py-20 bg-violet-600;
+  @apply min-h-screen flex flex-col items-center justify-center py-20;
+  background: linear-gradient(-225deg, #ac32e4 0%, #7918f2 48%, #4801ff 100%);
   @media all and (max-width: 430px) {
     @apply min-w-[300px] py-20 pb-5;
   }
