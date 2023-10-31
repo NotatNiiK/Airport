@@ -13,6 +13,7 @@ import AuthService from "../../services/AuthService";
 import AuthValidation from "../../validation/AuthValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
+import { createPortal } from "react-dom";
 
 const Registration: FC = () => {
   const navigate = useNavigate();
@@ -35,6 +36,12 @@ const Registration: FC = () => {
       error: true,
       message,
     });
+    setTimeout(() => {
+      setErrorAlert({
+        error: false,
+        message: "",
+      });
+    }, 3000);
   }
 
   const performRegistration: SubmitHandler<IRegData> = async (
@@ -140,9 +147,13 @@ const Registration: FC = () => {
           <p className={cl["auth__link"]}>
             Do you have an account? <Link to="/login">Login</Link>
           </p>
-          {errorAlert.error && (
-            <Alert severity="error">{errorAlert.message}</Alert>
-          )}
+          {errorAlert.error &&
+            createPortal(
+              <Alert severity="error" className={cl["alert"]}>
+                {errorAlert.message}
+              </Alert>,
+              document.body
+            )}
         </form>
       </section>
     </div>

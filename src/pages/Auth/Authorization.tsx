@@ -11,6 +11,7 @@ import { AxiosError } from "axios";
 import AuthService from "../../services/AuthService";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { useNavigate, Link } from "react-router-dom";
+import { createPortal } from "react-dom";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
@@ -33,6 +34,12 @@ const Authorization: FC = () => {
       error: true,
       message,
     });
+    setTimeout(() => {
+      setErrorAlert({
+        error: false,
+        message: "",
+      });
+    }, 3000);
   }
 
   const performAuthorization: SubmitHandler<IAuthData> = async (
@@ -91,9 +98,13 @@ const Authorization: FC = () => {
           <p className={cl["auth__link"]}>
             Don't have an account? <Link to="/signin">Sign in</Link>
           </p>
-          {errorAlert.error && (
-            <Alert severity="error">{errorAlert.message}</Alert>
-          )}
+          {errorAlert.error &&
+            createPortal(
+              <Alert severity="error" className={cl["alert"]}>
+                {errorAlert.message}
+              </Alert>,
+              document.body
+            )}
         </form>
       </section>
     </div>
