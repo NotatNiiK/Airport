@@ -11,6 +11,9 @@ class AuthValidation {
       /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,50}/;
     return passwordRegex.test(value);
   }
+  public static authPassword(value: string): boolean {
+    return value.length > 6 ? true : false;
+  }
   public static passportNumber(value: string): boolean {
     return value.length > 1 ? true : false;
   }

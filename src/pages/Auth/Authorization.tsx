@@ -82,7 +82,7 @@ const Authorization: FC = () => {
             <AuthInput
               {...register("password", {
                 required: true,
-                validate: AuthValidation.password,
+                validate: AuthValidation.authPassword,
               })}
               style={{ boxShadow: errors.password ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("password")}
