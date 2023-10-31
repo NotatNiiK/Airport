@@ -15,7 +15,7 @@ class AuthValidation {
     return value.length > 1 ? true : false;
   }
   public static myContacts(value: string): boolean {
-    const phoneNumberRegex: RegExp = /^(?:\+?38|38)?\d{12}$/;
+    const phoneNumberRegex: RegExp = /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
     return phoneNumberRegex.test(value);
   }
 }
