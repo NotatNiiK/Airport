@@ -6,7 +6,7 @@ import Alert from "@mui/material/Alert";
 import { IAlert } from "../../models/alert";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthData } from "../../models/auth";
-import RegValidation from "../../validation/RegValidation";
+import AuthValidation from "../../validation/AuthValidation";
 
 const Authorization: FC = () => {
   const {
@@ -47,7 +47,7 @@ const Authorization: FC = () => {
             <AuthInput
               {...register("email", {
                 required: true,
-                validate: RegValidation.fullName,
+                validate: AuthValidation.fullName,
               })}
               style={{ boxShadow: errors.email ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("email")}
@@ -59,7 +59,7 @@ const Authorization: FC = () => {
             <AuthInput
               {...register("password", {
                 required: true,
-                validate: RegValidation.password,
+                validate: AuthValidation.password,
               })}
               style={{ boxShadow: errors.password ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("password")}

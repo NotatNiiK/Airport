@@ -10,7 +10,7 @@ import Alert from "@mui/material/Alert";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthService from "../../services/AuthService";
-import RegValidation from "../../validation/RegValidation";
+import AuthValidation from "../../validation/AuthValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 
@@ -68,7 +68,7 @@ const Registration: FC = () => {
             <AuthInput
               {...register("fullName", {
                 required: true,
-                validate: RegValidation.fullName,
+                validate: AuthValidation.fullName,
               })}
               style={{ boxShadow: errors.fullName ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("fullName")}
@@ -80,7 +80,7 @@ const Registration: FC = () => {
             <AuthInput
               {...register("email", {
                 required: true,
-                validate: RegValidation.email,
+                validate: AuthValidation.email,
               })}
               style={{ boxShadow: errors.email ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("email")}
@@ -92,7 +92,7 @@ const Registration: FC = () => {
             <AuthInput
               {...register("password", {
                 required: true,
-                validate: RegValidation.password,
+                validate: AuthValidation.password,
               })}
               style={{ boxShadow: errors.password ? "0px 0px 5px red" : "" }}
               onBlur={() => clearErrors("password")}
@@ -104,7 +104,7 @@ const Registration: FC = () => {
             <AuthInput
               {...register("passportNumber", {
                 required: true,
-                validate: RegValidation.passportNumber,
+                validate: AuthValidation.passportNumber,
               })}
               style={{
                 boxShadow: errors.passportNumber ? "0px 0px 5px red" : "",
@@ -122,7 +122,7 @@ const Registration: FC = () => {
               replacement={{ _: /\d/ }}
               {...register("contactInfo", {
                 required: true,
-                validate: RegValidation.myContacts,
+                validate: AuthValidation.myContacts,
               })}
               style={{
                 boxShadow: errors.contactInfo ? "0px 0px 5px red" : "",

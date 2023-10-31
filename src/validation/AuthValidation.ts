@@ -1,4 +1,4 @@
-class RegValidation {
+class AuthValidation {
   public static fullName(value: string): boolean {
     return value.length > 1 ? true : false;
   }
@@ -15,10 +15,9 @@ class RegValidation {
     return value.length > 1 ? true : false;
   }
   public static myContacts(value: string): boolean {
-    return value.length > 1 ? true : false;
-    /* const phoneNumberRegex: RegExp = /^(?:\+?38|38)?\d{12}$/;
-    return phoneNumberRegex.test(value); */
+    const phoneNumberRegex: RegExp = /^(?:\+?38|38)?\d{12}$/;
+    return phoneNumberRegex.test(value);
   }
 }
 
-export default RegValidation;
+export default AuthValidation;
