@@ -77,7 +77,7 @@ const Registration: FC = () => {
                 required: true,
                 validate: AuthValidation.fullName,
               })}
-              style={{ boxShadow: errors.fullName ? "0px 0px 5px red" : "" }}
+              style={{ boxShadow: errors.fullName ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("fullName")}
               placeholder="Username"
               tabIndex={1}
@@ -89,7 +89,7 @@ const Registration: FC = () => {
                 required: true,
                 validate: AuthValidation.email,
               })}
-              style={{ boxShadow: errors.email ? "0px 0px 5px red" : "" }}
+              style={{ boxShadow: errors.email ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("email")}
               placeholder="Email"
               tabIndex={2}
@@ -101,7 +101,7 @@ const Registration: FC = () => {
                 required: true,
                 validate: AuthValidation.password,
               })}
-              style={{ boxShadow: errors.password ? "0px 0px 5px red" : "" }}
+              style={{ boxShadow: errors.password ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("password")}
               placeholder="Password"
               tabIndex={3}
@@ -114,7 +114,7 @@ const Registration: FC = () => {
                 validate: AuthValidation.passportNumber,
               })}
               style={{
-                boxShadow: errors.passportNumber ? "0px 0px 5px red" : "",
+                boxShadow: errors.passportNumber ? "0px 0px 7px red" : "",
               }}
               onBlur={() => clearErrors("passportNumber")}
               placeholder="Passport number"
@@ -132,7 +132,7 @@ const Registration: FC = () => {
                 validate: AuthValidation.myContacts,
               })}
               style={{
-                boxShadow: errors.contactInfo ? "0px 0px 5px red" : "",
+                boxShadow: errors.contactInfo ? "0px 0px 7px red" : "",
               }}
               onBlur={() => clearErrors("contactInfo")}
               placeholder="Tel"

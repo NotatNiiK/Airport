@@ -72,7 +72,7 @@ const Authorization: FC = () => {
                 required: true,
                 validate: AuthValidation.fullName,
               })}
-              style={{ boxShadow: errors.email ? "0px 0px 5px red" : "" }}
+              style={{ boxShadow: errors.email ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("email")}
               placeholder="Email"
               tabIndex={1}
@@ -84,7 +84,7 @@ const Authorization: FC = () => {
                 required: true,
                 validate: AuthValidation.authPassword,
               })}
-              style={{ boxShadow: errors.password ? "0px 0px 5px red" : "" }}
+              style={{ boxShadow: errors.password ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("password")}
               placeholder="Password"
               tabIndex={2}
