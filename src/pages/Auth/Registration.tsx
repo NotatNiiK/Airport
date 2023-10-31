@@ -5,7 +5,7 @@ import { IRegData } from "../../models/auth";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { IAlert } from "../../models/alert";
-import cl from "./Registration.module.scss";
+import cl from "./Auth.module.scss";
 import Alert from "@mui/material/Alert";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
@@ -38,7 +38,7 @@ const Registration: FC = () => {
   }
 
   const performRegistration: SubmitHandler<IRegData> = async (
-    regData
+    regData: IRegData
   ): Promise<void> => {
     try {
       regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
@@ -57,14 +57,14 @@ const Registration: FC = () => {
   };
 
   return (
-    <div className={cl["registration"]}>
-      <section className={cl["registration__body"]}>
-        <h1 className={cl["registration__title"]}>Registration</h1>
+    <div className={cl["auth"]}>
+      <section className={cl["auth__body"]}>
+        <h1 className={cl["auth__title"]}>Registration</h1>
         <form
-          className="registration__form"
+          className="auth__form"
           onSubmit={handleSubmit(performRegistration)}
         >
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <AuthInput
               {...register("fullName", {
                 required: true,
@@ -76,7 +76,7 @@ const Registration: FC = () => {
               tabIndex={1}
             />
           </fieldset>
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <AuthInput
               {...register("email", {
                 required: true,
@@ -88,7 +88,7 @@ const Registration: FC = () => {
               tabIndex={2}
             />
           </fieldset>
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <AuthInput
               {...register("password", {
                 required: true,
@@ -100,7 +100,7 @@ const Registration: FC = () => {
               tabIndex={3}
             />
           </fieldset>
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <AuthInput
               {...register("passportNumber", {
                 required: true,
@@ -114,10 +114,10 @@ const Registration: FC = () => {
               tabIndex={4}
             />
           </fieldset>
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <InputMask
               type="text"
-              className={cl["registration__input"]}
+              className={cl["auth__input"]}
               mask="+38 (___) ___-__-__"
               replacement={{ _: /\d/ }}
               {...register("contactInfo", {
@@ -132,7 +132,7 @@ const Registration: FC = () => {
               tabIndex={5}
             />
           </fieldset>
-          <fieldset className={cl["registration__section"]}>
+          <fieldset className={cl["auth__section"]}>
             <AuthButton type="submit">Register</AuthButton>
           </fieldset>
           {errorAlert.error && (
