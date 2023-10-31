@@ -10,7 +10,7 @@
     @apply min-w-[300px];
   }
   &__body {
-    @apply self-stretch min-w-[500px] text-center m-auto;
+    @apply self-stretch min-w-[500px] text-center m-auto relative z-20;
     @media all and (max-width: 530px) {
       @apply min-w-[400px] p-6;
     }
@@ -26,5 +26,11 @@
   }
   &__section {
     @apply mb-5 last:mb-0;
+  }
+  &__link {
+    @apply text-white text-center;
+    a {
+      @apply underline hover:no-underline;
+    }
   }
 }

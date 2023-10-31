@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
 import { IRegData } from "../../models/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AxiosError } from "axios";
 import { IAlert } from "../../models/alert";
 import cl from "./Auth.module.scss";
@@ -137,6 +137,9 @@ const Registration: FC = () => {
               Sign in
             </AuthButton>
           </fieldset>
+          <p className={cl["auth__link"]}>
+            Do you have an account? <Link to="/login">Login</Link>
+          </p>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>
           )}

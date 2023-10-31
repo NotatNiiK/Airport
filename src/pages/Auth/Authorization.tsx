@@ -10,7 +10,7 @@ import AuthValidation from "../../validation/AuthValidation";
 import { AxiosError } from "axios";
 import AuthService from "../../services/AuthService";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
@@ -88,6 +88,9 @@ const Authorization: FC = () => {
               Login
             </AuthButton>
           </fieldset>
+          <p className={cl["auth__link"]}>
+            Don't have an account? <Link to="/signin">Sign in</Link>
+          </p>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>
           )}
