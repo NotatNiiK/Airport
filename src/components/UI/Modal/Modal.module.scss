@@ -1,0 +1,16 @@
+.modal {
+  @apply grid items-center justify-items-center fixed z-50 left-0 top-0 w-full
+   h-full bg-black/40 overflow-x-hidden overflow-y-auto opacity-0 pointer-events-none transition-all duration-300;
+  &.active {
+    @apply opacity-100 pointer-events-auto;
+  }
+  &__wrapper {
+    @apply relative z-10 justify-self-stretch px-5 py-10;
+  }
+  &__body {
+    @apply rounded-md relative z-10 p-5 my-0 mx-auto max-w-[28rem] min-w-[11.75rem] min-h-[9.375rem] transition-all duration-300 bg-white scale-50;
+    &.active {
+      @apply scale-100;
+    }
+  }
+}
