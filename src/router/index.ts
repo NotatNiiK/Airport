@@ -1,6 +1,6 @@
 import Home from "../pages/Home/Home";
-import Registration from "../pages/Registration/Registration";
-import Authorization from "../pages/Authorization/Authorization";
+import Registration from "../pages/Auth/Registration";
+import Authorization from "../pages/Auth/Authorization";
 import type { Routes } from "../models/routes";
 
 const routes: Routes = [
