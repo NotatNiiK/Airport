@@ -133,7 +133,9 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit">Sign in</AuthButton>
+            <AuthButton type="submit" tabIndex={6}>
+              Sign in
+            </AuthButton>
           </fieldset>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>

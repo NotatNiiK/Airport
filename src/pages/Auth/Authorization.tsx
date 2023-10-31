@@ -84,7 +84,9 @@ const Authorization: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit">Login</AuthButton>
+            <AuthButton type="submit" tabIndex={3}>
+              Login
+            </AuthButton>
           </fieldset>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>
