@@ -20,10 +20,10 @@
     @apply text-lg transition-all duration-300 hover:underline;
   }
   &__logout {
-    @apply cursor-pointer  transition-all duration-300 hover:text-orange-300;
+    @apply cursor-pointer transition-all duration-300 hover:text-violet-600;
   }
 }
 
 .active-link {
-  @apply text-orange-400;
+  @apply text-violet-600;
 }

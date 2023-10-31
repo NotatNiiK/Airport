@@ -7,8 +7,14 @@ import { IAlert } from "../../models/alert";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthData } from "../../models/auth";
 import AuthValidation from "../../validation/AuthValidation";
+import { AxiosError } from "axios";
+import AuthService from "../../services/AuthService";
+import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 const Authorization: FC = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -32,7 +38,17 @@ const Authorization: FC = () => {
   const performAuthorization: SubmitHandler<IAuthData> = async (
     authData: IAuthData
   ): Promise<void> => {
-    console.log(authData);
+    try {
+      const {
+        data: { access },
+      } = await AuthService.authorization(authData);
+      setTokenInLocalStorage(access);
+      reset();
+      navigate("/");
+    } catch (e) {
+      const error = e as AxiosError;
+      showAlert(error.message);
+    }
   };
 
   return (
