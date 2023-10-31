@@ -19,3 +19,7 @@
     @apply text-lg transition-all duration-300 hover:underline;
   }
 }
+
+.active-link {
+  @apply text-orange-400;
+}

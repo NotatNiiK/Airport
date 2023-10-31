@@ -12,7 +12,14 @@ const Header: FC = () => {
           <ul className={cl["nav__list"]}>
             {routes.map((route) => (
               <li className={cl["nav__item"]} key={route.id}>
-                <NavLink to={route.path} className={cl["nav__link"]}>
+                <NavLink
+                  to={route.path}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${cl["nav__link"]} ${cl["active-link"]}`
+                      : cl["nav__link"]
+                  }
+                >
                   {route.text}
                 </NavLink>
               </li>
