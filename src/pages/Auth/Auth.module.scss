@@ -24,6 +24,6 @@
     @apply w-full py-3 px-4 bg-gray-200 transition-all duration-300 rounded shadow-sm shadow-gray-400 focus:shadow focus:shadow-orange-300;
   }
   &__section {
-    @apply mb-3;
+    @apply mb-3 last:mb-0;
   }
 }
