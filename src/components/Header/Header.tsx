@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import cl from "./Header.module.scss";
 import routes from "../../router";
 
+const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
+  return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
+};
+
 const Header: FC = () => {
   return (
     <header className={cl["header"]}>
@@ -12,14 +16,7 @@ const Header: FC = () => {
           <ul className={cl["nav__list"]}>
             {routes.map((route) => (
               <li className={cl["nav__item"]} key={route.id}>
-                <NavLink
-                  to={route.path}
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${cl["nav__link"]} ${cl["active-link"]}`
-                      : cl["nav__link"]
-                  }
-                >
+                <NavLink to={route.path} className={setActiveLink}>
                   {route.text}
                 </NavLink>
               </li>
