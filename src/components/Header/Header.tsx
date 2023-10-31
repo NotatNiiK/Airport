@@ -1,9 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cl from "./Header.module.scss";
 import routes from "../../router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../services/AuthService";
+import Modal from "../UI/Modal/Modal";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -12,8 +13,15 @@ const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
 const Header: FC = () => {
   const navigate = useNavigate();
 
+  const [isLogoutModal, setIsLogoutModal] = useState(false);
+
+  function toggleModalActive() {
+    setIsLogoutModal(!isLogoutModal);
+  }
+
   function performLogout(): void {
     AuthService.logout();
+    setIsLogoutModal(false);
     navigate("/authorization");
   }
 
@@ -31,7 +39,33 @@ const Header: FC = () => {
               </li>
             ))}
           </ul>
-          <LogoutIcon onClick={performLogout} className={cl["nav__logout"]} />
+          <LogoutIcon
+            onClick={toggleModalActive}
+            className={cl["nav__logout"]}
+          />
+          <Modal visible={isLogoutModal} toggleModalActive={toggleModalActive}>
+            <div className={cl["logout"]}>
+              <h2 className={cl["logout__title"]}>
+                Do you really want to log out?
+              </h2>
+              <div className={cl["logout__buttons"]}>
+                <button
+                  type="button"
+                  className={cl["logout__button"]}
+                  onClick={performLogout}
+                >
+                  Yes
+                </button>
+                <button
+                  type="button"
+                  onClick={toggleModalActive}
+                  className={cl["logout__button"]}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </Modal>
         </nav>
       </div>
     </header>
