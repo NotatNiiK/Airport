@@ -1,6 +1,6 @@
 .modal {
   @apply grid items-center justify-items-center fixed z-50 left-0 top-0 w-full
-   h-full bg-black/40 overflow-x-hidden overflow-y-auto opacity-0 pointer-events-none transition-all duration-300;
+   h-full bg-black/60 overflow-x-hidden overflow-y-auto opacity-0 pointer-events-none transition-all duration-300;
   &.active {
     @apply opacity-100 pointer-events-auto;
   }
