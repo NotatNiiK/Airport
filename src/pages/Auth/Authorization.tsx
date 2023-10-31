@@ -52,9 +52,9 @@ const Authorization: FC = () => {
       setTokenInLocalStorage(access);
       reset();
       navigate("/");
-    } catch (e) {
-      const error = e as AxiosError;
-      showAlert(error.message);
+    } catch (e: any) {
+      console.log(e);
+      showAlert(e?.response?.data?.message || "Unexpected error");
     }
   };
 
