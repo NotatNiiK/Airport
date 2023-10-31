@@ -1,3 +1,5 @@
 button.auth-button {
-  @apply flex items-center text-lg justify-center text-white py-3 px-4 w-full bg-violet-600 rounded transition-all duration-300 focus:bg-violet-700 hover:bg-violet-700;
+  @apply flex items-center text-lg justify-center rounded-lg text-white py-3
+   px-4 w-full bg-auth-btn-color shadow-auth-btn border-2 border-solid border-auth-btn
+    transition-all duration-300 hover:bg-auth-btn-color/60 focus:bg-auth-btn-color/60;
 }

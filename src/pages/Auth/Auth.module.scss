@@ -1,11 +1,17 @@
 .auth {
-  @apply min-h-screen flex flex-col items-center justify-center py-20;
-  background: linear-gradient(-225deg, #ac32e4 0%, #7918f2 48%, #4801ff 100%);
+  position: relative;
+  font-family: "Lexend Deca";
+  @apply min-h-screen flex flex-col items-center justify-center py-20 bg-auth-bg-color;
+  &::before {
+    content: "";
+    background: url(../../assets/Pages/Auth/wave.svg) center / cover no-repeat;
+    @apply absolute left-0 bottom-0 w-full h-36;
+  }
   @media all and (max-width: 430px) {
     @apply min-w-[300px] py-20 pb-5;
   }
   &__body {
-    @apply self-stretch p-8 min-w-[500px] text-center m-auto rounded bg-white;
+    @apply self-stretch min-w-[500px] text-center m-auto;
     @media all and (max-width: 530px) {
       @apply min-w-[400px] p-6;
     }
@@ -14,14 +20,12 @@
     }
   }
   &__title {
-    @apply text-center mb-2 text-2xl font-bold text-violet-600;
+    @apply text-center font-bold text-white text-6xl mb-10;
   }
   &__input {
-    @apply w-full py-3 px-4 transition-all duration-300 
-    rounded shadow-sm shadow-gray-500 focus:shadow 
-    focus:shadow-violet-600;
+    @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg text-white focus:shadow-auth-input;
   }
   &__section {
-    @apply mb-3 last:mb-0;
+    @apply mb-5 last:mb-0;
   }
 }
