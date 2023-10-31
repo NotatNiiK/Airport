@@ -59,7 +59,7 @@ const Registration: FC = () => {
   return (
     <div className={cl["auth"]}>
       <section className={cl["auth__body"]}>
-        <h1 className={cl["auth__title"]}>Registration</h1>
+        <h1 className={cl["auth__title"]}>Sign in</h1>
         <form
           className="auth__form"
           onSubmit={handleSubmit(performRegistration)}
@@ -133,7 +133,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit">Register</AuthButton>
+            <AuthButton type="submit">Sign in</AuthButton>
           </fieldset>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>

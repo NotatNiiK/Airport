@@ -7,14 +7,14 @@ const routes: Routes = [
   { id: 0, path: "/", text: "Home", component: Home },
   {
     id: 1,
-    path: "/authorization",
-    text: "Authorization",
+    path: "/login",
+    text: "Login",
     component: Authorization,
   },
   {
     id: 2,
-    path: "/registration",
-    text: "Registration",
+    path: "/signin",
+    text: "Sign in",
     component: Registration,
   },
 ];

@@ -54,7 +54,7 @@ const Authorization: FC = () => {
   return (
     <div className={cl["auth"]}>
       <section className={cl["auth__body"]}>
-        <h1 className={cl["auth__title"]}>Authorization</h1>
+        <h1 className={cl["auth__title"]}>Login</h1>
         <form
           className="auth__form"
           onSubmit={handleSubmit(performAuthorization)}
@@ -84,7 +84,7 @@ const Authorization: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit">Authorization</AuthButton>
+            <AuthButton type="submit">Login</AuthButton>
           </fieldset>
           {errorAlert.error && (
             <Alert severity="error">{errorAlert.message}</Alert>
