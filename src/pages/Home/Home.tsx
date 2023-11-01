@@ -25,7 +25,7 @@ const Home: FC = () => {
               </p>
             </div>
             <div className={cl["home__image"]}>
-              <img src={PlainImage} alt="Plain" />
+              <img src={PlainImage} alt="Plain" draggable={false} />
             </div>
           </div>
         </section>
