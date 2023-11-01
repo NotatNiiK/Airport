@@ -31,6 +31,7 @@ const Registration: FC = () => {
     error: false,
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   function showAlert(message: string): void {
     setErrorAlert({
@@ -48,15 +49,20 @@ const Registration: FC = () => {
   const performRegistration: SubmitHandler<IRegData> = async (
     regData: IRegData
   ): Promise<void> => {
-    regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
-    const authReponse = await AuthStore.registration(regData);
-    if (authReponse.hasError) {
-      showAlert(authReponse.response);
-      return;
+    try {
+      setIsLoading(true);
+      regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
+      const authReponse = await AuthStore.registration(regData);
+      if (authReponse.hasError) {
+        showAlert(authReponse.response);
+        return;
+      }
+      setTokenInLocalStorage(authReponse.response);
+      reset();
+      navigate("/");
+    } finally {
+      setIsLoading(false);
     }
-    setTokenInLocalStorage(authReponse.response);
-    reset();
-    navigate("/");
   };
 
   return (
@@ -136,7 +142,7 @@ const Registration: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit" tabIndex={6}>
+            <AuthButton type="submit" tabIndex={6} loading={isLoading}>
               Sign in
             </AuthButton>
           </fieldset>

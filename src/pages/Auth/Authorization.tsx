@@ -27,6 +27,7 @@ const Authorization: FC = () => {
     error: false,
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   function showAlert(message: string): void {
     setErrorAlert({
@@ -44,14 +45,19 @@ const Authorization: FC = () => {
   const performAuthorization: SubmitHandler<IAuthData> = async (
     authData: IAuthData
   ): Promise<void> => {
-    const authReponse = await AuthStore.authorization(authData);
-    if (authReponse.hasError) {
-      showAlert(authReponse.response);
-      return;
+    try {
+      setIsLoading(true);
+      const authReponse = await AuthStore.authorization(authData);
+      if (authReponse.hasError) {
+        showAlert(authReponse.response);
+        return;
+      }
+      setTokenInLocalStorage(authReponse.response);
+      reset();
+      navigate("/");
+    } finally {
+      setIsLoading(false);
     }
-    setTokenInLocalStorage(authReponse.response);
-    reset();
-    navigate("/");
   };
 
   return (
@@ -87,7 +93,7 @@ const Authorization: FC = () => {
             />
           </fieldset>
           <fieldset className={cl["auth__section"]}>
-            <AuthButton type="submit" tabIndex={3}>
+            <AuthButton type="submit" tabIndex={3} loading={isLoading}>
               Login
             </AuthButton>
           </fieldset>
