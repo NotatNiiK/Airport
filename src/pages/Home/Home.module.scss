@@ -1,4 +1,4 @@
-.home {
+.introduction {
   @apply min-h-screen bg-auth-bg-color relative flex flex-col py-20 items-center justify-center;
   &::before {
     @apply absolute bottom-0 left-0 w-full h-36;
@@ -29,6 +29,33 @@
     @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px];
     img {
       @apply absolute left-0 top-0 w-full h-full object-cover;
+    }
+  }
+}
+
+.flights {
+  @apply bg-white;
+  font-family: "Lexend Deca";
+  &__container {
+    @apply py-10;
+  }
+  &__title {
+    @apply text-3xl font-bold text-custom-green leading-tight mb-5;
+  }
+  &__list {
+    display: grid;
+    grid-template: 140px / repeat(auto-fit, minmax(200px, 320px));
+    grid-auto-rows: 140px;
+    gap: 20px;
+  }
+}
+
+.flights-item {
+  @apply flex bg-auth-input-color text-white rounded overflow-hidden p-4;
+  &__image {
+    @apply rounded h-full relative basis-2/5 shrink grow-0;
+    img {
+      @apply max-w-full;
     }
   }
 }

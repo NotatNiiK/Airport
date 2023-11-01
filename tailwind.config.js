@@ -17,6 +17,7 @@ export default {
       },
       colors: {
         "nav-link": "#20df7f",
+        "custom-green": "#093545",
       },
     },
   },
