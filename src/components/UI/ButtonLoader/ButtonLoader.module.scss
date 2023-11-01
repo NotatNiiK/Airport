@@ -1,0 +1,13 @@
+.loader {
+  @apply w-6 h-6 border-4 border-solid border-white border-b-transparent rounded-full inline-block box-border;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
