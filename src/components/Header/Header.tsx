@@ -31,6 +31,7 @@ const Header: FC = () => {
 
   function toggleModalActive() {
     setIsLogoutModal(!isLogoutModal);
+    setIsBurgerMenuOpen(false);
   }
 
   function performLogout(): void {
