@@ -11,6 +11,9 @@
   }
   &__body {
     @apply relative z-10 flex items-center text-white;
+    @media all and (max-width: 950px) {
+      @apply flex-col pt-5;
+    }
   }
   &__text {
     @apply grow-0 shrink basis-3/5;
@@ -18,12 +21,21 @@
   &__title {
     font-family: "Lexend Deca";
     @apply text-5xl font-bold leading-tight mb-5;
+    @media all and (max-width: 950px) {
+      @apply text-4xl;
+    }
   }
   &__sub-title {
     @apply font-semibold text-3xl opacity-95 leading-tight mb-3;
+    @media all and (max-width: 950px) {
+      @apply text-2xl;
+    }
   }
   &__description {
     @apply text-lg leading-tight opacity-90;
+    @media all and (max-width: 950px) {
+      @apply text-base;
+    }
   }
   &__image {
     @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px];
