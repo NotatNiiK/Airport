@@ -19,6 +19,9 @@ export default {
         "nav-link": "#20df7f",
         "custom-green": "#093545",
       },
+      inset: {
+        hidden: "100%",
+      },
     },
   },
   plugins: [],
