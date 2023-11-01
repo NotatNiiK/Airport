@@ -14,6 +14,7 @@ import AuthValidation from "../../validation/AuthValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { createPortal } from "react-dom";
+import AuthStore from "../../store/AuthStore";
 
 const Registration: FC = () => {
   const navigate = useNavigate();
@@ -47,20 +48,15 @@ const Registration: FC = () => {
   const performRegistration: SubmitHandler<IRegData> = async (
     regData: IRegData
   ): Promise<void> => {
-    try {
-      regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
-
-      const {
-        data: { access },
-      } = await AuthService.registration(regData);
-
-      setTokenInLocalStorage(access);
-      reset();
-      navigate("/");
-    } catch (e: any) {
-      console.log(e);
-      showAlert(e?.response?.data?.message || "Unexpected error");
+    regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
+    const authReponse = await AuthStore.registration(regData);
+    if (authReponse.hasError) {
+      showAlert(authReponse.response);
+      return;
     }
+    setTokenInLocalStorage(authReponse.response);
+    reset();
+    navigate("/");
   };
 
   return (
