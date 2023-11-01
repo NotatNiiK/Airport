@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cl from "./Header.module.scss";
 import routes from "../../router";
@@ -14,7 +14,13 @@ const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
 const Header: FC = () => {
   const navigate = useNavigate();
 
+  const [hasHeaderBg, setHasHeaderBg] = useState(false);
   const [isLogoutModal, setIsLogoutModal] = useState(false);
+
+  const headerClasses: string[] = [
+    cl["header"],
+    hasHeaderBg ? "bg-teal-600" : "",
+  ];
 
   function toggleModalActive() {
     setIsLogoutModal(!isLogoutModal);
@@ -26,8 +32,21 @@ const Header: FC = () => {
     navigate("/authorization");
   }
 
+  useEffect(() => {
+    const handleScroll = (): void => {
+      if (window.scrollY > 40) setHasHeaderBg(true);
+      else setHasHeaderBg(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={cl["header"]}>
+    <header className={headerClasses.join(" ")}>
       <div className={cl["header__container"]}>
         <h2 className={cl["header__title"]}>
           Airport <LocalAirportIcon />
