@@ -1,7 +1,7 @@
 import { FC } from "react";
 import cl from "./Home.module.scss";
 import Header from "../../components/Header/Header";
-import PlainImage from "../../assets/Pages/Home/Plain.png";
+import Introduction from "../../layouts/Home/Inroduction/Introduction";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 
 const Home: FC = () => {
@@ -9,30 +9,8 @@ const Home: FC = () => {
     <>
       <Header />
       <main className="main">
+        <Introduction />
         <section className={cl["home"]}>
-          <div className={["home__introduction", cl["introduction"]].join(" ")}>
-            <div className={cl["introduction__container"]}>
-              <div className={cl["introduction__body"]}>
-                <div className={cl["introduction__text"]}>
-                  <h1 className={cl["introduction__title"]}>
-                    Welcome to Utravel: Your Gateway to the Skies!
-                  </h1>
-                  <h2 className={cl["introduction__sub-title"]}>
-                    Discover the Convenience and Comfort
-                  </h2>
-                  <p className={cl["introduction__description"]}>
-                    Welcome to Utravel, your main entry point to the world of
-                    air travel! We are proud to be able to serve and accommodate
-                    passengers from all over the world, providing the highest
-                    level of service and comfort.
-                  </p>
-                </div>
-                <div className={cl["home__image"]}>
-                  <img src={PlainImage} alt="Plain" draggable={false} />
-                </div>
-              </div>
-            </div>
-          </div>
           <div className={["home__flights", cl["flights"]].join(" ")}>
             <div className={cl["flights__container"]}>
               <div className={cl["flights__panel"]}>

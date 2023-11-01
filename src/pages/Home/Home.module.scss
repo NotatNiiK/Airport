@@ -1,64 +1,17 @@
-.introduction {
-  @apply min-h-screen bg-auth-bg-color relative flex flex-col py-20 items-center justify-center;
-  &::before {
-    @apply absolute bottom-0 left-0 w-full h-36;
-    content: "";
-    background: url(../../assets/Pages/Home/wave-home.svg) center / cover
-      no-repeat;
-  }
-  &__container {
-    @apply pt-2;
-  }
-  &__body {
-    @apply relative z-10 flex items-center text-white;
-    @media all and (max-width: 950px) {
-      @apply flex-col pt-5;
-    }
-  }
-  &__text {
-    @apply grow-0 shrink basis-3/5;
-  }
-  &__title {
-    font-family: "Lexend Deca";
-    @apply text-5xl font-bold leading-tight mb-5;
-    @media all and (max-width: 950px) {
-      @apply text-4xl;
-    }
-  }
-  &__sub-title {
-    @apply font-semibold text-3xl opacity-95 leading-tight mb-3;
-    @media all and (max-width: 950px) {
-      @apply text-2xl;
-    }
-  }
-  &__description {
-    @apply text-lg leading-tight opacity-90;
-    @media all and (max-width: 950px) {
-      @apply text-base;
-    }
-  }
-  &__image {
-    @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px];
-    img {
-      @apply absolute left-0 top-0 w-full h-full object-cover;
-    }
-  }
-}
-
 .flights {
   @apply bg-white;
   &__container {
     @apply py-10;
   }
   &__panel {
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between mb-5;
   }
   &__create-btn {
     @apply w-10 h-10 rounded-full  bg-auth-bg-color text-white cursor-pointer transition-all duration-300 hover:bg-auth-bg-color/90;
   }
   &__title {
     font-family: "Lexend Deca";
-    @apply text-3xl font-bold text-custom-green leading-tight mb-5;
+    @apply text-3xl font-bold text-custom-green leading-tight;
   }
   &__list {
     display: grid;
