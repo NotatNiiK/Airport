@@ -20,7 +20,7 @@
     @apply ml-3;
   }
   &__link {
-    @apply text-lg transition-all duration-300 hover:underline;
+    @apply text-lg transition-all duration-300 hover:text-white/80;
   }
   &__logout {
     @apply cursor-pointer transition-all duration-300 hover:text-nav-link;
@@ -28,7 +28,7 @@
 }
 
 .active-link {
-  @apply text-nav-link;
+  @apply underline;
 }
 
 .logout {
