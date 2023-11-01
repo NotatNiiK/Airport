@@ -7,11 +7,10 @@ import { IAlert } from "../../models/alert";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthData } from "../../models/auth";
 import AuthValidation from "../../validation/AuthValidation";
-import { AxiosError } from "axios";
-import AuthService from "../../services/AuthService";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { useNavigate, Link } from "react-router-dom";
 import { createPortal } from "react-dom";
+import AuthStore from "../../store/AuthStore";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
@@ -45,17 +44,14 @@ const Authorization: FC = () => {
   const performAuthorization: SubmitHandler<IAuthData> = async (
     authData: IAuthData
   ): Promise<void> => {
-    try {
-      const {
-        data: { access },
-      } = await AuthService.authorization(authData);
-      setTokenInLocalStorage(access);
-      reset();
-      navigate("/");
-    } catch (e: any) {
-      console.log(e);
-      showAlert(e?.response?.data?.message || "Unexpected error");
+    const authReponse = await AuthStore.authorization(authData);
+    if (authReponse.hasError) {
+      showAlert(authReponse.response);
+      return;
     }
+    setTokenInLocalStorage(authReponse.response);
+    reset();
+    navigate("/");
   };
 
   return (
