@@ -1,5 +1,5 @@
 .header {
-  @apply absolute left-0 top-0 w-full py-3 text-white;
+  @apply absolute left-0 top-0 z-50 w-full py-3 text-white;
   &__container {
     @apply flex items-center justify-between;
   }
