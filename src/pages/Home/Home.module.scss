@@ -1,5 +1,5 @@
 .home {
-  @apply min-h-screen bg-auth-bg-color relative;
+  @apply min-h-screen bg-auth-bg-color relative pt-24 pb-4;
   &::before {
     @apply absolute bottom-0 left-0 w-full h-36;
     content: "";
