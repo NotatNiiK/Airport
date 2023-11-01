@@ -15,6 +15,9 @@ export default {
       borderColor: {
         "auth-btn": "#20df7f",
       },
+      colors: {
+        "nav-link": "#20df7f",
+      },
     },
   },
   plugins: [],

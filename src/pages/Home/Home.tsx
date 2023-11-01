@@ -3,14 +3,10 @@ import cl from "./Home.module.scss";
 import Header from "../../components/Header/Header";
 const Home: FC = () => {
   return (
-    <>
+    <div className={cl["home"]}>
       <Header />
-      <main className="main">
-        <div className={cl["home"]}>
-          <h1>Title</h1>
-        </div>
-      </main>
-    </>
+      <main className="main"></main>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 .header {
-  @apply absolute left-0 top-0 w-full py-3 bg-white;
+  @apply absolute left-0 top-0 w-full py-3 text-white;
   &__container {
     @apply flex items-center justify-between;
   }
@@ -23,16 +23,16 @@
     @apply text-lg transition-all duration-300 hover:underline;
   }
   &__logout {
-    @apply cursor-pointer transition-all duration-300 hover:text-violet-600;
+    @apply cursor-pointer transition-all duration-300 hover:text-nav-link;
   }
 }
 
 .active-link {
-  @apply text-violet-600;
+  @apply text-nav-link;
 }
 
 .logout {
-  @apply py-1 h-full flex flex-col items-center;
+  @apply py-1 h-full flex flex-col items-center text-black;
   &__title {
     @apply text-center text-2xl;
   }
