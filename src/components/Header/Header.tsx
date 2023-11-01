@@ -19,7 +19,7 @@ const Header: FC = () => {
 
   const headerClasses: string[] = [
     cl["header"],
-    hasHeaderBg ? "bg-teal-600" : "",
+    hasHeaderBg ? "bg-indigo-600" : "",
   ];
 
   function toggleModalActive() {

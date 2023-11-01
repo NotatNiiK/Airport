@@ -23,7 +23,7 @@
     @apply text-lg transition-all duration-300 hover:text-white/80;
   }
   &__logout {
-    @apply cursor-pointer transition-all duration-300 hover:text-nav-link;
+    @apply cursor-pointer transition-all duration-300 hover:text-white/80;
   }
 }
 
