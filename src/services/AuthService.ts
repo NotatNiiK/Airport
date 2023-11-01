@@ -33,9 +33,6 @@ class AuthService {
       }
     );
   }
-  public static logout(): void {
-    localStorage.removeItem("token");
-  }
 }
 
 export default AuthService;

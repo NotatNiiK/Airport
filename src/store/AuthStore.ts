@@ -44,6 +44,9 @@ class AuthStore {
       };
     }
   }
+  logout(): void {
+    localStorage.removeItem("token");
+  }
 }
 
 export default new AuthStore();
