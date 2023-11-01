@@ -38,6 +38,12 @@
   &__container {
     @apply py-10;
   }
+  &__panel {
+    @apply flex items-center justify-between;
+  }
+  &__create-btn {
+    @apply w-10 h-10 rounded-full  bg-auth-bg-color text-white cursor-pointer transition-all duration-300 hover:bg-auth-bg-color/90;
+  }
   &__title {
     font-family: "Lexend Deca";
     @apply text-3xl font-bold text-custom-green leading-tight mb-5;

@@ -35,7 +35,15 @@ const Home: FC = () => {
           </div>
           <div className={["home__flights", cl["flights"]].join(" ")}>
             <div className={cl["flights__container"]}>
-              <h2 className={cl["flights__title"]}>Available flights:</h2>
+              <div className={cl["flights__panel"]}>
+                <h2 className={cl["flights__title"]}>Available flights:</h2>
+                <button
+                  className={cl["flights__create-btn"]}
+                  title="Create flight"
+                >
+                  +
+                </button>
+              </div>
               <ul className={cl["flights__list"]}>
                 <li
                   className={[cl["flights__item"], cl["flights-item"]].join(
