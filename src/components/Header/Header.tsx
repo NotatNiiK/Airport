@@ -49,7 +49,7 @@ const Header: FC = () => {
     <header className={headerClasses.join(" ")}>
       <div className={cl["header__container"]}>
         <h2 className={cl["header__title"]}>
-          Airport <LocalAirportIcon />
+          Utravel <LocalAirportIcon />
         </h2>
         <nav className={cl["nav"]}>
           <ul className={cl["nav__list"]}>
