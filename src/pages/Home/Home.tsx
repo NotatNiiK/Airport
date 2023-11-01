@@ -2,6 +2,7 @@ import { FC } from "react";
 import cl from "./Home.module.scss";
 import Header from "../../components/Header/Header";
 import PlainImage from "../../assets/Pages/Home/Plain.png";
+import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 
 const Home: FC = () => {
   return (
@@ -41,6 +42,9 @@ const Home: FC = () => {
                     " "
                   )}
                 >
+                  <div className={cl["flights-item__image"]}>
+                    <FlightTakeoffTwoToneIcon />
+                  </div>
                   <div className={cl["flights-item__content"]}>
                     <h3 className={cl["flights-item__departure-location"]}>
                       London
