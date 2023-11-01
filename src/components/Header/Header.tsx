@@ -34,6 +34,11 @@ const Header: FC = () => {
     setIsBurgerMenuOpen(false);
   }
 
+  function toggleBurgerMenu() {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+    document.body.classList.toggle("lock");
+  }
+
   function performLogout(): void {
     AuthStore.logout();
     setIsLogoutModal(false);
@@ -74,10 +79,7 @@ const Header: FC = () => {
             className={cl["nav__logout"]}
           />
         </nav>
-        <MenuIcon
-          className={cl["header__burger"]}
-          onClick={() => setIsBurgerMenuOpen(!isBurgerMenuOpen)}
-        />
+        <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
       <Modal visible={isLogoutModal} toggleModalActive={toggleModalActive}>
         <div className={cl["logout"]}>

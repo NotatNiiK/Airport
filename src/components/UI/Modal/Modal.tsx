@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import cl from "./Modal.module.scss";
 import { createPortal } from "react-dom";
 
@@ -16,6 +16,14 @@ const Modal: FC<ModalProps> = ({ visible, toggleModalActive, children }) => {
     rootClass.push(cl["active"]);
     modalClass.push(cl["active"]);
   }
+
+  useEffect(() => {
+    document.body.classList.toggle("lock");
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("lock");
+  }, [visible]);
 
   return (
     <>
