@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import cl from "./Header.module.scss";
 import routes from "../../router";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AuthService from "../../services/AuthService";
+import AuthStore from "../../store/AuthStore";
 import Modal from "../UI/Modal/Modal";
 import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 
@@ -27,9 +27,9 @@ const Header: FC = () => {
   }
 
   function performLogout(): void {
-    AuthService.logout();
+    AuthStore.logout();
     setIsLogoutModal(false);
-    navigate("/authorization");
+    navigate("/login");
   }
 
   useEffect(() => {
