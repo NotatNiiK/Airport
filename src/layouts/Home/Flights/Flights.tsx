@@ -1,14 +1,29 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import cl from "./Flights.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
+import Modal from "../../../components/UI/Modal/Modal";
 
 const Flights: FC = () => {
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+
+  function toggleModal(): void {
+    setIsCreateModalOpen(!isCreateModalOpen);
+  }
+
+  function openModal(): void {
+    setIsCreateModalOpen(true);
+  }
+
   return (
     <div className={cl["flights"]}>
       <div className={cl["flights__container"]}>
         <div className={cl["flights__panel"]}>
           <h2 className={cl["flights__title"]}>Available flights:</h2>
-          <button className={cl["flights__create-btn"]} title="Create flight">
+          <button
+            className={cl["flights__create-btn"]}
+            title="Create flight"
+            onClick={openModal}
+          >
             +
           </button>
         </div>
@@ -27,6 +42,9 @@ const Flights: FC = () => {
             </div>
           </li>
         </ul>
+        <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
+          asd
+        </Modal>
       </div>
     </div>
   );
