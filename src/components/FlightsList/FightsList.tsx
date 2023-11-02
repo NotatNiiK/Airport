@@ -10,18 +10,18 @@ interface FlightsListProps {
 }
 
 const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
-  useEffect(() => {
-    console.log("+");
-  }, [isLoading]);
+  if (isLoading) {
+    return <Loader />;
+  }
 
-  return !isLoading ? (
+  return flights.length > 0 ? (
     <ul className={cl["flights-list"]}>
       {flights.map((flight: IFlight) => (
         <FlightItem flight={flight} key={flight.id} />
       ))}
     </ul>
   ) : (
-    <Loader />
+    <h2 className={cl["not-found"]}>There are no flights </h2>
   );
 };
 
