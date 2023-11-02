@@ -3,15 +3,17 @@ import cl from "./Loader.module.scss";
 
 const Loader: FC = () => {
   return (
-    <div className={cl["lds-roller"]}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div className={cl["lds"]}>
+      <div className={cl["lds-roller"]}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 };
