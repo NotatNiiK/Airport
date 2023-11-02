@@ -1,13 +1,31 @@
 import { makeAutoObservable } from "mobx";
 import FlightsService from "../services/FlightsService";
-import { ICreateData } from "../models/flights";
+import { IFlight } from "../models/flights";
 
 class AuthStore {
   constructor() {
     makeAutoObservable(this);
   }
+
+  async getFlights() {
+    try {
+      const data = await FlightsService.getFlights();
+      console.log(data);
+      return {
+        hasError: false,
+        response: data.data,
+      };
+    } catch (e: any) {
+      console.log(e);
+      return {
+        hasError: true,
+        response: e?.response?.data?.message || "Unexpected error",
+      };
+    }
+  }
+
   async createFlight(
-    flight: ICreateData
+    flight: IFlight
   ): Promise<{ hasError: boolean; response: string }> {
     try {
       const {

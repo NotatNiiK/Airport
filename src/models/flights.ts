@@ -1,7 +1,8 @@
-interface IFlightsResponse {
+interface IFlightResponse {
   success: string;
 }
-interface ICreateData {
+interface IFlight {
+  id?: number;
   flightNumber: string;
   departureLocation: string;
   destination: string;
@@ -10,4 +11,4 @@ interface ICreateData {
   flightStatus: string;
 }
 
-export type { IFlightsResponse, ICreateData };
+export type { IFlightResponse, IFlight };

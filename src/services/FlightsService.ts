@@ -1,16 +1,16 @@
 import $axios from "../http";
 import { AxiosResponse } from "axios";
-import { IFlightsResponse } from "../models/flights";
-import { ICreateData } from "../models/flights";
+import { IFlightResponse, IFlight } from "../models/flights";
 
 class FlightsService {
-  public static async createFlight(
-    flight: ICreateData
-  ): Promise<AxiosResponse<IFlightsResponse>> {
-    return $axios.post(`flight/create`, flight);
+  public static async getFlights(): Promise<AxiosResponse<IFlight[]>> {
+    return $axios.get<IFlight[]>(`flight/get/all`);
   }
-  public static async getFlights(): Promise<AxiosResponse<any>> {
-    return $axios.get(`flight/get/all`);
+
+  public static async createFlight(
+    flight: IFlight
+  ): Promise<AxiosResponse<IFlightResponse>> {
+    return $axios.post<IFlightResponse>(`flight/create`, flight);
   }
 }
 
