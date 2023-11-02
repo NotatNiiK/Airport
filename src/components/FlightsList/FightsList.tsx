@@ -21,7 +21,7 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
       ))}
     </ul>
   ) : (
-    <h2 className={cl["not-found"]}>There are no flights </h2>
+    <h2 className={cl["not-found"]}>There are no flights!</h2>
   );
 };
 
