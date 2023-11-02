@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useFetching = (callback: (...props: any) => any): any => {
+export const useFetching = (callback: (...props: any) => Promise<any>): any => {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetching = async (data: any) => {

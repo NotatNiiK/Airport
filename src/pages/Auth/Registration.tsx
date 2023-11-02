@@ -3,18 +3,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
 import { IRegData } from "../../models/auth";
 import { useNavigate, Link } from "react-router-dom";
-import { AxiosError } from "axios";
 import { IAlert } from "../../models/alert";
 import cl from "./Auth.module.scss";
 import Alert from "@mui/material/Alert";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
-import AuthService from "../../services/AuthService";
 import AuthValidation from "../../validation/AuthValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
 import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { createPortal } from "react-dom";
 import AuthStore from "../../store/AuthStore";
+import { useFetching } from "../../hooks/useFetching";
 
 const Registration: FC = () => {
   const navigate = useNavigate();
@@ -31,7 +30,20 @@ const Registration: FC = () => {
     error: false,
     message: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [performRegistration, isLoading] = useFetching(
+    async (regData: IRegData): Promise<void> => {
+      regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
+      const authReponse = await AuthStore.registration(regData);
+      if (authReponse.hasError) {
+        showAlert(authReponse.response);
+        return;
+      }
+      setTokenInLocalStorage(authReponse.response);
+      reset();
+      navigate("/");
+    }
+  );
 
   function showAlert(message: string): void {
     setErrorAlert({
@@ -45,25 +57,6 @@ const Registration: FC = () => {
       });
     }, 3000);
   }
-
-  const performRegistration: SubmitHandler<IRegData> = async (
-    regData: IRegData
-  ): Promise<void> => {
-    try {
-      setIsLoading(true);
-      regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
-      const authReponse = await AuthStore.registration(regData);
-      if (authReponse.hasError) {
-        showAlert(authReponse.response);
-        return;
-      }
-      setTokenInLocalStorage(authReponse.response);
-      reset();
-      navigate("/");
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className={cl["auth"]}>
