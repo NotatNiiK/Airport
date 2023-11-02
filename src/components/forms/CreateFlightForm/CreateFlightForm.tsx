@@ -31,6 +31,8 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
 
   const [createFlight, isLoading] = useFetching(
     async (flight: IFlight): Promise<void> => {
+      flight.departureTime = flight.departureTime.split("T").join(" ");
+      flight.arrivalTime = flight.departureTime.split("T").join(" ");
       const response = await FlightsStore.createFlight(flight);
       if (response.hasError) {
         setErrorAlert({ error: true, message: response.response });
