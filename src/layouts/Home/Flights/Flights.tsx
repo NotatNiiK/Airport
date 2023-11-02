@@ -9,11 +9,8 @@ import FlightsStore from "../../../store/FlightsStore";
 const Flights: FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
-  const [flights, setFlights] = useState([]);
-
   const [getFlights, isLoading] = useFetching(async () => {
-    const response = await FlightsStore.getFlights();
-    setFlights(response.response);
+    await FlightsStore.getFlights();
   });
 
   useEffect(() => {
@@ -41,7 +38,7 @@ const Flights: FC = () => {
             +
           </button>
         </div>
-        <FlightsList flights={flights} isLoading={isLoading} />
+        <FlightsList flights={FlightsStore.flightsList} isLoading={isLoading} />
         <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
           <CreateFlightForm closeModal={toggleModal} />
         </Modal>
