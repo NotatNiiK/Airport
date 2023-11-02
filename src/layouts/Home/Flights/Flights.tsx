@@ -44,7 +44,7 @@ const Flights: FC = () => {
           </li>
         </ul>
         <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
-          <CreateFlightForm />
+          <CreateFlightForm closeModal={toggleModal} />
         </Modal>
       </div>
     </div>

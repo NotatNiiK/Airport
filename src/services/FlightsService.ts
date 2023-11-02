@@ -8,7 +8,7 @@ class FlightsService {
     flight: ICreateData
   ): Promise<AxiosResponse<IFlightsResponse>> {
     return axios.post(
-      `${process.env.REACT_APP_SERVER_URL}flight/create`,
+      `${process.env.REACT_APP_SERVER_URL}flight/creates`,
       flight,
       {
         headers: {
