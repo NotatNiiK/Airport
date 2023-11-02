@@ -1,11 +1,22 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import cl from "./Flights.module.scss";
-import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import Modal from "../../../components/UI/Modal/Modal";
 import CreateFlightForm from "../../../components/forms/CreateFlightForm/CreateFlightForm";
+import FlightsList from "../../../components/FlightsList/FightsList";
+import { useFetching } from "../../../hooks/useFetching";
+import FlightsStore from "../../../store/FlightsStore";
 
 const Flights: FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+
+  const [flights, setFlights] = useState([]);
+
+  const [getFlights, isLoading] = useFetching(async () => {
+    const response = await FlightsStore.getFlights();
+    setFlights(response.response);
+  });
+
+  useEffect(getFlights, []);
 
   function toggleModal(): void {
     setIsCreateModalOpen(!isCreateModalOpen);
@@ -28,21 +39,7 @@ const Flights: FC = () => {
             +
           </button>
         </div>
-        <ul className={cl["flights__list"]}>
-          <li className={[cl["flights__item"], cl["flights-item"]].join(" ")}>
-            <div className={cl["flights-item__image"]}>
-              <FlightTakeoffTwoToneIcon />
-            </div>
-            <div className={cl["flights-item__content"]}>
-              <h3 className={cl["flights-item__departure-location"]}>London</h3>
-              <h3 className={cl["flights-item__destination"]}>from Kyiv</h3>
-              <p className={cl["flights-item__time"]}>
-                30.11.2023 14:00 - 30.11.2023 19:00
-              </p>
-              <p className={cl["flights-item__number"]}>123Ure3</p>
-            </div>
-          </li>
-        </ul>
+        <FlightsList flights={flights} isLoading={isLoading} />
         <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
           <CreateFlightForm closeModal={toggleModal} />
         </Modal>

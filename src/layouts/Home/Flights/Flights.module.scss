@@ -13,26 +13,4 @@
     font-family: "Lexend Deca";
     @apply text-3xl font-bold text-custom-green leading-tight;
   }
-  &__list {
-    display: grid;
-    grid-template: 140px / repeat(auto-fit, minmax(250px, 370px));
-    grid-auto-rows: 140px;
-    gap: 20px;
-  }
-}
-
-.flights-item {
-  @apply flex items-center  text-white rounded overflow-hidden p-4 cursor-pointer;
-  border: 2px solid #093545;
-  color: #093545;
-  box-shadow: 0px 0px 5px #09354526;
-  &__image {
-    @apply mr-4;
-    svg {
-      @apply text-6xl;
-    }
-  }
-  &__departure-location {
-    @apply text-2xl font-bold leading-tight;
-  }
 }
