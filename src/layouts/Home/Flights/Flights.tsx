@@ -5,8 +5,9 @@ import CreateFlightForm from "../../../components/forms/CreateFlightForm/CreateF
 import FlightsList from "../../../components/FlightsList/FightsList";
 import { useFetching } from "../../../hooks/useFetching";
 import FlightsStore from "../../../store/FlightsStore";
+import { observer } from "mobx-react-lite";
 
-const Flights: FC = () => {
+const Flights: FC = observer(() => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
   const [getFlights, isLoading] = useFetching(async () => {
@@ -45,6 +46,6 @@ const Flights: FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Flights;

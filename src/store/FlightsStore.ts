@@ -13,6 +13,7 @@ class AuthStore {
     try {
       const data = await FlightsService.getFlights();
       this.flightsList = data.data;
+      console.log(this.flightsList);
       return {
         hasError: false,
         response: data.data,
