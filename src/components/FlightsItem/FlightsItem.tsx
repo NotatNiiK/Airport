@@ -2,12 +2,20 @@ import { FC } from "react";
 import cl from "./FlightsItem.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import { IFlight } from "../../models/flights";
+import { useFetching } from "../../hooks/useFetching";
+import FlightsStore from "../../store/FlightsStore";
 
 interface FlightItemProps {
   flight: IFlight;
 }
 
 const FlightItem: FC<FlightItemProps> = ({ flight }) => {
+  const [deleteFlight] = useFetching(async (id: number) => {
+    const r = await FlightsStore.deleteFlight(id);
+    console.log(r.response);
+    await FlightsStore.getFlights();
+  });
+
   return (
     <li className={cl["flights-item"]}>
       <div className={cl["flights-item__image"]}>
@@ -26,6 +34,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__number"]}>
           Flight number: {flight.flightNumber}
         </p>
+        <button onClick={() => deleteFlight(flight.id)}>Delete</button>
       </div>
     </li>
   );

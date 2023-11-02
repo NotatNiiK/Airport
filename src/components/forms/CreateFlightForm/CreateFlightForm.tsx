@@ -36,6 +36,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
         setErrorAlert({ error: true, message: response.response });
         return;
       }
+      await FlightsStore.getFlights();
       reset();
       closeModal();
     }
