@@ -4,7 +4,7 @@ import FormInput from "../../UI/FormInput/FormInput";
 import FormButton from "../../UI/FormButton/FormButton";
 import Checkbox from "@mui/material/Checkbox";
 import { useFetching } from "../../../hooks/useFetching";
-import { ICreateData } from "../../../models/flights";
+import { IFlight } from "../../../models/flights";
 import { useForm } from "react-hook-form";
 import FlightsStore from "../../../store/FlightsStore";
 import FlightValidation from "../../../validation/FlightValidation";
@@ -22,7 +22,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
     formState: { errors },
     clearErrors,
     reset,
-  } = useForm<ICreateData>();
+  } = useForm<IFlight>();
 
   const [errorAlert, setErrorAlert] = useState<IAlert>({
     error: false,
@@ -30,7 +30,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
   });
 
   const [createFlight, isLoading] = useFetching(
-    async (flight: ICreateData): Promise<void> => {
+    async (flight: IFlight): Promise<void> => {
       const response = await FlightsStore.createFlight(flight);
       if (response.hasError) {
         setErrorAlert({ error: true, message: response.response });
