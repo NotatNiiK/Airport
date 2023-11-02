@@ -13,6 +13,9 @@ class FlightValidation {
       new Date(value) > FlightValidation.departureTimeValue
     );
   }
+  public static isActive(value: string): string {
+    return value;
+  }
 }
 
 export default FlightValidation;
