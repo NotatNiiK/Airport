@@ -7,10 +7,12 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
+  flightsList: IFlight[] = [];
+
   async getFlights() {
     try {
       const data = await FlightsService.getFlights();
-      console.log(data);
+      this.flightsList = data.data;
       return {
         hasError: false,
         response: data.data,
