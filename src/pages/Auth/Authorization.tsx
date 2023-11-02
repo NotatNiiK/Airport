@@ -11,6 +11,7 @@ import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { useNavigate, Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import AuthStore from "../../store/AuthStore";
+import { useFetching } from "../../hooks/useFetching";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ const Authorization: FC = () => {
     error: false,
     message: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   function showAlert(message: string): void {
     setErrorAlert({
@@ -42,11 +42,8 @@ const Authorization: FC = () => {
     }, 3000);
   }
 
-  const performAuthorization: SubmitHandler<IAuthData> = async (
-    authData: IAuthData
-  ): Promise<void> => {
-    try {
-      setIsLoading(true);
+  const [performAuthorization, isLoading] = useFetching(
+    async (authData: IAuthData): Promise<void> => {
       const authReponse = await AuthStore.authorization(authData);
       if (authReponse.hasError) {
         showAlert(authReponse.response);
@@ -55,10 +52,8 @@ const Authorization: FC = () => {
       setTokenInLocalStorage(authReponse.response);
       reset();
       navigate("/");
-    } finally {
-      setIsLoading(false);
     }
-  };
+  );
 
   return (
     <div className={cl["auth"]}>
