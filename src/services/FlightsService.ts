@@ -16,7 +16,7 @@ class FlightsService {
   public static async deleteFlight(
     id: number
   ): Promise<AxiosResponse<IFlightResponse>> {
-    return $axios.delete("flight/delete", { data: id });
+    return $axios.delete("flight/delete", { params: { id } });
   }
 }
 

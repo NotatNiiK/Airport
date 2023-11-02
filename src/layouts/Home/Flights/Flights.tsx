@@ -16,7 +16,9 @@ const Flights: FC = () => {
     setFlights(response.response);
   });
 
-  useEffect(getFlights, []);
+  useEffect(() => {
+    getFlights();
+  }, []);
 
   function toggleModal(): void {
     setIsCreateModalOpen(!isCreateModalOpen);
