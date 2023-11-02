@@ -1,0 +1,5 @@
+button.form-button {
+  @apply flex items-center text-lg justify-center rounded-lg text-white py-3
+     px-4 w-full bg-indigo-600
+      transition-all duration-300 hover:bg-indigo-600/80;
+}
