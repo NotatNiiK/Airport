@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import cl from "./Flights.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import Modal from "../../../components/UI/Modal/Modal";
+import CreateFlightForm from "../../../components/forms/CreateFlightForm/CreateFlightForm";
 
 const Flights: FC = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
@@ -43,7 +44,7 @@ const Flights: FC = () => {
           </li>
         </ul>
         <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
-          asd
+          <CreateFlightForm />
         </Modal>
       </div>
     </div>
