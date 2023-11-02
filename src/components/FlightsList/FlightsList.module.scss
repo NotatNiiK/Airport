@@ -1,0 +1,6 @@
+.flights-list {
+  display: grid;
+  grid-template: 140px / repeat(auto-fit, minmax(250px, 362px));
+  grid-auto-rows: 140px;
+  gap: 20px;
+}

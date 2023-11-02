@@ -1,0 +1,21 @@
+.flights-item {
+  @apply flex items-center  text-white rounded overflow-hidden p-4 cursor-pointer;
+  border: 2px solid #093545;
+  color: #093545;
+  box-shadow: 0px 0px 5px #09354526;
+  &__image {
+    @apply mr-5;
+    svg {
+      @apply text-6xl;
+    }
+  }
+  &__departure-location {
+    @apply text-2xl font-bold leading-tight;
+  }
+  &__destination {
+    @apply text-xl underline leading-tight mb-1;
+  }
+  &__time {
+    @apply text-sm;
+  }
+}
