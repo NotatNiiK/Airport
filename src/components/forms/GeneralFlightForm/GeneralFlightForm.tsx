@@ -1,27 +1,35 @@
-import { FC, useState } from "react";
-import cl from "./CreateFlightForm.module.scss";
-import FormInput from "../../UI/FormInput/FormInput";
-import FormButton from "../../UI/FormButton/FormButton";
-import Checkbox from "@mui/material/Checkbox";
+import { FC, useState, useEffect } from "react";
 import { useFetching } from "../../../hooks/useFetching";
 import { IFlight } from "../../../models/flights";
 import { useForm } from "react-hook-form";
-import FlightsStore from "../../../store/FlightsStore";
-import FlightValidation from "../../../validation/FlightValidation";
 import { Alert } from "@mui/material";
 import { IAlert } from "../../../models/alert";
+import cl from "./GeneralFlightForm.module.scss";
+import FormInput from "../../UI/FormInput/FormInput";
+import FormButton from "../../UI/FormButton/FormButton";
+import Checkbox from "@mui/material/Checkbox";
+import FlightsStore from "../../../store/FlightsStore";
+import FlightValidation from "../../../validation/FlightValidation";
+import formatFlightDate from "../../../utils/formatFlightDate";
 
-interface CreateFlightFormProps {
+interface GeneralFlightFormProps {
+  isEdit: boolean;
+  flight?: IFlight;
   closeModal: () => void;
 }
 
-const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
+const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
+  isEdit,
+  flight,
+  closeModal,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
     reset,
+    setValue,
   } = useForm<IFlight>();
 
   const [errorAlert, setErrorAlert] = useState<IAlert>({
@@ -29,11 +37,33 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
     message: "",
   });
 
-  const [createFlight, isLoading] = useFetching(
-    async (flight: IFlight): Promise<void> => {
-      flight.departureTime = flight.departureTime.split("T").join(" ");
-      flight.arrivalTime = flight.departureTime.split("T").join(" ");
-      const response = await FlightsStore.createFlight(flight);
+  useEffect(() => {
+    if (isEdit) setEditFormValue();
+  }, [flight]);
+
+  function setEditFormValue(): void {
+    if (flight) {
+      Object.keys(flight).forEach((key) => {
+        const flightKey = key as keyof IFlight;
+        console.log(flightKey, flight[flightKey]);
+        setValue(flightKey, flight[flightKey]);
+      });
+    }
+  }
+
+  const [handleForm, isLoading] = useFetching(
+    async (flightData: IFlight): Promise<void> => {
+      flightData.departureTime = formatFlightDate(flightData.departureTime);
+      flightData.arrivalTime = formatFlightDate(flightData.arrivalTime);
+
+      if (isEdit) {
+        await FlightsStore.updateFlight(flightData);
+        await FlightsStore.getFlights();
+        closeModal();
+        return;
+      }
+
+      const response = await FlightsStore.createFlight(flightData);
       if (response.hasError) {
         setErrorAlert({ error: true, message: response.response });
         return;
@@ -45,9 +75,9 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
   );
 
   return (
-    <form className={cl["create-form"]} onSubmit={handleSubmit(createFlight)}>
-      <h2 className={cl["create-form__title"]}>Create Flight</h2>
-      <section className={cl["create-form__section"]}>
+    <form className={cl["general-form"]} onSubmit={handleSubmit(handleForm)}>
+      <h2 className={cl["general-form__title"]}>Create Flight</h2>
+      <section className={cl["general-form__section"]}>
         <FormInput
           {...register("flightNumber", {
             required: true,
@@ -59,7 +89,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
           tabIndex={1}
         />
       </section>
-      <section className={cl["create-form__section"]}>
+      <section className={cl["general-form__section"]}>
         <FormInput
           {...register("departureLocation", {
             required: true,
@@ -73,7 +103,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
           tabIndex={2}
         />
       </section>
-      <section className={cl["create-form__section"]}>
+      <section className={cl["general-form__section"]}>
         <FormInput
           {...register("destination", {
             required: true,
@@ -87,7 +117,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
           tabIndex={3}
         />
       </section>
-      <section className={cl["create-form__section"]}>
+      <section className={cl["general-form__section"]}>
         <FormInput
           {...register("departureTime", {
             required: true,
@@ -104,8 +134,8 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
       </section>
       <section
         className={[
-          cl["create-form__section"],
-          cl["create-form__section_not-mb"],
+          cl["general-form__section"],
+          cl["general-form__section_not-mb"],
         ].join(" ")}
       >
         <FormInput
@@ -124,12 +154,12 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
       </section>
       <section
         className={[
-          cl["create-form__section"],
-          cl["create-form__section_checkbox"],
+          cl["general-form__section"],
+          cl["general-form__section_checkbox"],
         ].join(" ")}
       >
         <span
-          className={cl["create-form__label"]}
+          className={cl["general-form__label"]}
           style={{
             color: errors.flightStatus ? "red" : "",
           }}
@@ -145,7 +175,7 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
           size="small"
         />
       </section>
-      <section className={cl["create-form__section"]}>
+      <section className={cl["general-form__section"]}>
         <FormButton loading={isLoading} tabIndex={7}>
           Create
         </FormButton>
@@ -155,4 +185,4 @@ const CreateFlightForm: FC<CreateFlightFormProps> = ({ closeModal }) => {
   );
 };
 
-export default CreateFlightForm;
+export default GeneralFlightForm;

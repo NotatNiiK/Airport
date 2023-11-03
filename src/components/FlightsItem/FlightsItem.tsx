@@ -1,17 +1,26 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import cl from "./FlightsItem.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import { IFlight } from "../../models/flights";
 import { useFetching } from "../../hooks/useFetching";
 import FlightsStore from "../../store/FlightsStore";
+import AuthStore from "../../store/AuthStore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import Modal from "../UI/Modal/Modal";
+import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
 
 interface FlightItemProps {
   flight: IFlight;
 }
 
 const FlightItem: FC<FlightItemProps> = ({ flight }) => {
+  const [isEditModalOpen, setIsEditModal] = useState(false);
+
+  function toggleEditModal(): void {
+    setIsEditModal(!isEditModalOpen);
+  }
+
   const [deleteFlight] = useFetching(async (id: number) => {
     const r = await FlightsStore.deleteFlight(id);
     console.log(r.response);
@@ -36,22 +45,34 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__number"]}>
           Flight number: {flight.flightNumber}
         </p>
-        <div className={[cl["flights-item__buttons"]].join(" ")}>
-          <DeleteIcon
-            onClick={() => deleteFlight(flight.id)}
-            className={[
-              cl["flights-item__button"],
-              cl["flights-item__button_delete"],
-            ].join(" ")}
-          />
-          <EditIcon
-            className={[
-              cl["flights-item__button"],
-              cl["flights-item__button_edit"],
-            ].join(" ")}
-          />
-        </div>
+        {AuthStore.isAdmin && (
+          <div className={[cl["flights-item__buttons"]].join(" ")}>
+            <DeleteIcon
+              onClick={() => deleteFlight(flight.id)}
+              className={[
+                cl["flights-item__button"],
+                cl["flights-item__button_delete"],
+              ].join(" ")}
+            />
+            <EditIcon
+              onClick={() => {
+                setIsEditModal(true);
+              }}
+              className={[
+                cl["flights-item__button"],
+                cl["flights-item__button_edit"],
+              ].join(" ")}
+            />
+          </div>
+        )}
       </div>
+      <Modal visible={isEditModalOpen} toggleModalActive={toggleEditModal}>
+        <GeneralFlightForm
+          isEdit={true}
+          flight={flight}
+          closeModal={toggleEditModal}
+        />
+      </Modal>
     </li>
   );
 };
