@@ -4,6 +4,8 @@ import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import { IFlight } from "../../models/flights";
 import { useFetching } from "../../hooks/useFetching";
 import FlightsStore from "../../store/FlightsStore";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface FlightItemProps {
   flight: IFlight;
@@ -34,7 +36,21 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__number"]}>
           Flight number: {flight.flightNumber}
         </p>
-        <button onClick={() => deleteFlight(flight.id)}>Delete</button>
+        <div className={[cl["flights-item__buttons"]].join(" ")}>
+          <DeleteIcon
+            onClick={() => deleteFlight(flight.id)}
+            className={[
+              cl["flights-item__button"],
+              cl["flights-item__button_delete"],
+            ].join(" ")}
+          />
+          <EditIcon
+            className={[
+              cl["flights-item__button"],
+              cl["flights-item__button_edit"],
+            ].join(" ")}
+          />
+        </div>
       </div>
     </li>
   );
