@@ -1,7 +1,13 @@
 .footer {
-  @apply py-3 bg-indigo-600 text-white;
+  @apply py-2 bg-indigo-600 text-white;
   &__container {
     @apply flex items-center justify-between;
+    @media all and (max-width: 478px) {
+      @apply flex-col;
+    }
+    > * {
+      @apply py-1;
+    }
   }
   &__list {
     @apply flex items-center;
