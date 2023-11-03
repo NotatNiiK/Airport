@@ -7,10 +7,17 @@
     @apply flex items-center justify-between mb-5;
   }
   &__create-btn {
-    @apply w-10 h-10 rounded-full  bg-auth-bg-color text-white cursor-pointer transition-all duration-300 hover:bg-auth-bg-color/90;
+    @apply w-10 h-10 rounded-full bg-custom-green text-white
+     flex items-center justify-center transition-all duration-300 hover:bg-custom-green/90;
+    @media all and (max-width: 370px) {
+      @apply w-8 h-8;
+    }
   }
   &__title {
     font-family: "Lexend Deca";
     @apply text-3xl font-bold text-custom-green leading-tight;
+    @media all and (max-width: 370px) {
+      @apply text-2xl;
+    }
   }
 }
