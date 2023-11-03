@@ -25,13 +25,16 @@
     @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg text-white focus:shadow-auth-input;
   }
   &__section {
-    @apply mb-5 last:mb-0;
+    @apply relative mb-5 last:mb-0;
   }
   &__link {
     @apply text-white text-center;
     a {
       @apply underline hover:no-underline;
     }
+  }
+  &__toggle-password {
+    @apply absolute right-3 top-1/2 text-white translate-y-reverse-half;
   }
 }
 

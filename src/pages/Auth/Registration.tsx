@@ -14,6 +14,9 @@ import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
 import { createPortal } from "react-dom";
 import AuthStore from "../../store/AuthStore";
 import { useFetching } from "../../hooks/useFetching";
+import { usePasswordMask } from "../../hooks/usePasswordMask";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Registration: FC = () => {
   const navigate = useNavigate();
@@ -30,6 +33,8 @@ const Registration: FC = () => {
     error: false,
     message: "",
   });
+
+  const [isPasswordMask, passwordType, togglePasswordMask] = usePasswordMask();
 
   const [performRegistration, isLoading] = useFetching(
     async (regData: IRegData): Promise<void> => {
@@ -92,6 +97,7 @@ const Registration: FC = () => {
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
+              type={passwordType}
               {...register("password", {
                 required: true,
                 validate: AuthValidation.password,
@@ -101,6 +107,13 @@ const Registration: FC = () => {
               placeholder="Password"
               tabIndex={3}
             />
+            <div className={cl["auth__toggle-password"]}>
+              {isPasswordMask ? (
+                <VisibilityOffIcon onClick={togglePasswordMask} />
+              ) : (
+                <VisibilityIcon onClick={togglePasswordMask} />
+              )}
+            </div>
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
