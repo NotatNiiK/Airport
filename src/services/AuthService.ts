@@ -3,21 +3,23 @@ import type { AxiosResponse } from "axios";
 import { IRegData, IAuthResponse, IAuthData } from "../models/auth";
 
 class AuthService {
-  public static registration(
+  private static async authRequest<T>(
+    url: string,
+    data: IRegData | IAuthData
+  ): Promise<AxiosResponse<T>> {
+    return axios.post<T>(`${process.env.REACT_APP_SERVER_URL}${url}`, data);
+  }
+
+  public static async registration(
     regData: IRegData
   ): Promise<AxiosResponse<IAuthResponse>> {
-    return axios.post<IAuthResponse>(
-      `${process.env.REACT_APP_SERVER_URL}user/logon`,
-      regData
-    );
+    return this.authRequest<IAuthResponse>("user/logon", regData);
   }
-  public static authorization(
+
+  public static async authorization(
     authData: IAuthData
   ): Promise<AxiosResponse<IAuthResponse>> {
-    return axios.post<IAuthResponse>(
-      `${process.env.REACT_APP_SERVER_URL}user/login`,
-      authData
-    );
+    return this.authRequest<IAuthResponse>("user/login", authData);
   }
 }
 
