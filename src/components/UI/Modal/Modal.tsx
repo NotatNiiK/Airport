@@ -18,11 +18,11 @@ const Modal: FC<ModalProps> = ({ visible, toggleModalActive, children }) => {
   }
 
   useEffect(() => {
-    document.body.classList.toggle("lock");
+    document.body.classList.toggle("overflow-hidden");
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("lock");
+    document.body.classList.toggle("overflow-hidden");
   }, [visible]);
 
   return (
