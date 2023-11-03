@@ -1,12 +1,12 @@
 import { FC, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cl from "./Header.module.scss";
-import routes from "../../router";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthStore from "../../store/AuthStore";
 import Modal from "../UI/Modal/Modal";
 import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import MenuIcon from "@mui/icons-material/Menu";
+import navLinks from "../../data/navlinks";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -66,10 +66,10 @@ const Header: FC = () => {
         </h2>
         <nav className={navClasses.join(" ")}>
           <ul className={cl["nav__list"]}>
-            {routes.map((route) => (
-              <li className={cl["nav__item"]} key={route.id}>
-                <NavLink to={route.path} className={setActiveLink}>
-                  {route.text}
+            {navLinks.map((navLink) => (
+              <li className={cl["nav__item"]} key={navLink.id}>
+                <NavLink to={navLink.path} className={setActiveLink}>
+                  {navLink.text}
                 </NavLink>
               </li>
             ))}

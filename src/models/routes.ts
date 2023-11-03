@@ -1,12 +1,14 @@
 import { FC } from "react";
 
-interface Route {
+interface IRoute {
   id: number;
   path: string;
-  text: string;
   component: FC;
 }
 
-type Routes = Route[];
+type INavLink = Omit<IRoute, "component"> & { text: string };
 
-export type { Routes };
+type IRoutes = IRoute[];
+type INavLinks = INavLink[];
+
+export type { IRoutes, INavLinks };
