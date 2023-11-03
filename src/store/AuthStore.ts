@@ -3,6 +3,7 @@ import AuthService from "../services/AuthService";
 import { IAuthData, IRegData, IAuthCallback } from "../models/auth";
 import { jwtDecode } from "jwt-decode";
 import { ServerResponse } from "../models/server.response";
+import { IToken } from "../models/token";
 
 class AuthStore {
   constructor() {
@@ -12,7 +13,7 @@ class AuthStore {
   isAdmin: boolean = true;
 
   decodeToken(token: string) {
-    const access: any = jwtDecode(token);
+    const access: IToken = jwtDecode<IToken>(token);
     console.log(access);
   }
 
