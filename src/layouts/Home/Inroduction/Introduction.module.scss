@@ -1,5 +1,9 @@
 .introduction {
   @apply min-h-screen bg-auth-bg-color relative flex flex-col py-20 items-center justify-center;
+
+  @media all and (max-width: 950px) {
+    @apply pt-20 pb-5;
+  }
   &::before {
     @apply absolute bottom-0 left-0 w-full h-36;
     content: "";
