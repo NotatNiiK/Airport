@@ -18,6 +18,12 @@ class FlightsService {
   ): Promise<AxiosResponse<IFlightResponse>> {
     return $axios.delete("flight/delete", { data: { id } });
   }
+
+  public static async updateFlight(
+    flight: IFlight
+  ): Promise<AxiosResponse<IFlightResponse>> {
+    return $axios.put("flight/update", flight);
+  }
 }
 
 export default FlightsService;
