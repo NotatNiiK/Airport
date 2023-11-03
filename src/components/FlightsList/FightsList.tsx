@@ -5,6 +5,7 @@ import { IFlight } from "../../models/flights";
 import { Link } from "react-router-dom";
 import Loader from "../UI/Loader/Loader";
 import AuthStore from "../../store/AuthStore";
+import BlockIcon from "@mui/icons-material/Block";
 
 interface FlightsListProps {
   flights: IFlight[];
@@ -25,7 +26,10 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
       ))}
     </ul>
   ) : (
-    <h2 className={cl["not-found"]}>There are no flights!</h2>
+    <div className={cl["not-found"]}>
+      <BlockIcon className={cl["not-found__icon"]} />
+      <h2 className={cl["not-found__title"]}>There are no flights!</h2>
+    </div>
   );
 };
 
