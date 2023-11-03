@@ -4,12 +4,6 @@
   &__container {
     @apply flex items-center justify-between;
   }
-  &__title {
-    @apply text-2xl font-semibold flex items-center;
-    svg {
-      @apply ml-2;
-    }
-  }
   &__burger {
     display: none !important;
     @apply cursor-pointer relative z-40 text-3xl;

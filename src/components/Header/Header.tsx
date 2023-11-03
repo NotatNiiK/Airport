@@ -7,6 +7,7 @@ import Modal from "../UI/Modal/Modal";
 import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import MenuIcon from "@mui/icons-material/Menu";
 import navLinks from "../../data/navlinks";
+import Logo from "../UI/Logo/Logo";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -61,9 +62,7 @@ const Header: FC = () => {
   return (
     <header className={headerClasses.join(" ")}>
       <div className={cl["header__container"]}>
-        <h2 className={cl["header__title"]}>
-          Utravel <LocalAirportIcon />
-        </h2>
+        <Logo />
         <nav className={navClasses.join(" ")}>
           <ul className={cl["nav__list"]}>
             {navLinks.map((navLink) => (
