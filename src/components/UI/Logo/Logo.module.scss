@@ -1,0 +1,6 @@
+.logo {
+  @apply text-2xl font-semibold flex items-center;
+  svg {
+    @apply ml-2;
+  }
+}
