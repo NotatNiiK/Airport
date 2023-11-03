@@ -12,9 +12,11 @@ class AuthStore {
 
   isAdmin: boolean = true;
 
+  tokenInfo: Partial<IToken> = {};
+
   decodeToken(token: string) {
-    const access: IToken = jwtDecode<IToken>(token);
-    console.log(access);
+    const decodedToken: IToken = jwtDecode<IToken>(token);
+    this.tokenInfo = decodedToken;
   }
 
   async getAuthRequest(
