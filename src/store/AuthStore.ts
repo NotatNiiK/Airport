@@ -1,11 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/AuthService";
-import {
-  IAuthData,
-  IAuthResponse,
-  IRegData,
-  IAuthCallback,
-} from "../models/auth";
+import { IAuthData, IRegData, IAuthCallback } from "../models/auth";
 import { jwtDecode } from "jwt-decode";
 import { ServerResponse } from "../models/server.response";
 
