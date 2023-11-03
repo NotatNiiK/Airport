@@ -1,7 +1,9 @@
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/AuthService";
-import { IAuthData, IRegData } from "../models/auth";
+import { IAuthData, IAuthResponse, IRegData } from "../models/auth";
 import { jwtDecode } from "jwt-decode";
+import { ServerResponse } from "../models/server.response";
+import { AxiosResponse } from "axios";
 
 class AuthStore {
   constructor() {
@@ -15,13 +17,16 @@ class AuthStore {
     console.log(access);
   }
 
-  async authorization(
-    authData: IAuthData
-  ): Promise<{ hasError: boolean; response: string }> {
+  async getAuthRequest(
+    data: IAuthData | IRegData,
+    callback: (
+      authData: IAuthData | IRegData
+    ) => Promise<AxiosResponse<IAuthResponse>>
+  ): Promise<ServerResponse> {
     try {
       const {
         data: { access },
-      } = await AuthService.authorization(authData);
+      } = await callback(data);
       this.decodeToken(access);
       return {
         hasError: false,
@@ -35,26 +40,15 @@ class AuthStore {
       };
     }
   }
-  async registration(
-    regData: IRegData
-  ): Promise<{ hasError: boolean; response: string }> {
-    try {
-      const {
-        data: { access },
-      } = await AuthService.registration(regData);
-      this.decodeToken(access);
-      return {
-        hasError: false,
-        response: access,
-      };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
-    }
+
+  async authorization(authData: IAuthData): Promise<ServerResponse> {
+    return this.getAuthRequest(authData, AuthService.authorization);
   }
+
+  async registration(regData: IRegData): Promise<ServerResponse> {
+    return this.getAuthRequest(regData, AuthService.registration);
+  }
+
   logout(): void {
     localStorage.removeItem("token");
   }

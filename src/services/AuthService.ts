@@ -11,15 +11,15 @@ class AuthService {
   }
 
   public static async registration(
-    regData: IRegData
+    regData: IRegData | IAuthData // !fix
   ): Promise<AxiosResponse<IAuthResponse>> {
-    return this.authRequest<IAuthResponse>("user/logon", regData);
+    return AuthService.authRequest<IAuthResponse>("user/logon", regData);
   }
 
   public static async authorization(
     authData: IAuthData
   ): Promise<AxiosResponse<IAuthResponse>> {
-    return this.authRequest<IAuthResponse>("user/login", authData);
+    return AuthService.authRequest<IAuthResponse>("user/login", authData);
   }
 }
 
