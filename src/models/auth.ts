@@ -1,3 +1,6 @@
+import { AxiosResponse } from "axios";
+import { ServerResponse } from "./server.response";
+
 interface IRegData {
   fullName: string;
   email: string;
@@ -11,4 +14,8 @@ interface IAuthResponse {
   access: string;
 }
 
-export type { IRegData, IAuthResponse, IAuthData };
+type IAuthCallback = (
+  authData: IAuthData | IRegData
+) => Promise<AxiosResponse<IAuthResponse>>;
+
+export type { IRegData, IAuthResponse, IAuthData, IAuthCallback };

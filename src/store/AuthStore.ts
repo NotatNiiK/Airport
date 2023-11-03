@@ -1,9 +1,13 @@
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/AuthService";
-import { IAuthData, IAuthResponse, IRegData } from "../models/auth";
+import {
+  IAuthData,
+  IAuthResponse,
+  IRegData,
+  IAuthCallback,
+} from "../models/auth";
 import { jwtDecode } from "jwt-decode";
 import { ServerResponse } from "../models/server.response";
-import { AxiosResponse } from "axios";
 
 class AuthStore {
   constructor() {
@@ -19,9 +23,7 @@ class AuthStore {
 
   async getAuthRequest(
     data: IAuthData | IRegData,
-    callback: (
-      authData: IAuthData | IRegData
-    ) => Promise<AxiosResponse<IAuthResponse>>
+    callback: IAuthCallback
   ): Promise<ServerResponse> {
     try {
       const {
