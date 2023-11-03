@@ -18,7 +18,7 @@ const routes: IRoutes = [
   },
   {
     id: 3,
-    path: "/tickets/:flightId",
+    path: "/tickets/:flightId/:userId",
     component: Tickets,
   },
 ];
