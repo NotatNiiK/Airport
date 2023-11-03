@@ -9,6 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Modal from "../UI/Modal/Modal";
 import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
+import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
 
 interface FlightItemProps {
   flight: IFlight;
@@ -16,6 +17,7 @@ interface FlightItemProps {
 
 const FlightItem: FC<FlightItemProps> = ({ flight }) => {
   const [isEditModalOpen, setIsEditModal] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModal] = useState(false);
 
   function toggleEditModal(): void {
     setIsEditModal(!isEditModalOpen);
@@ -26,6 +28,10 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
     console.log(r.response);
     await FlightsStore.getFlights();
   });
+
+  function toggleDeleteModal(): void {
+    setIsDeleteModal(!isDeleteModalOpen);
+  }
 
   return (
     <li className={cl["flights-item"]}>
@@ -48,9 +54,8 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         {AuthStore.isAdmin && (
           <div className={[cl["flights-item__buttons"]].join(" ")}>
             <DeleteIcon
-              onClick={(e) => {
-                e.stopPropagation();
-                deleteFlight(flight.id);
+              onClick={() => {
+                setIsDeleteModal(true);
               }}
               className={[
                 cl["flights-item__button"],
@@ -58,8 +63,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
               ].join(" ")}
             />
             <EditIcon
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 setIsEditModal(true);
               }}
               className={[
@@ -75,6 +79,13 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
           isEdit={true}
           flight={flight}
           closeModal={toggleEditModal}
+        />
+      </Modal>
+      <Modal visible={isDeleteModalOpen} toggleModalActive={toggleDeleteModal}>
+        <ConfirmForm
+          closeModal={toggleDeleteModal}
+          performAction={() => deleteFlight(flight.id)}
+          title="Do you really want to delete this flight?"
         />
       </Modal>
     </li>

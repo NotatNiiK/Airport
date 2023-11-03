@@ -4,10 +4,10 @@ import cl from "./Header.module.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthStore from "../../store/AuthStore";
 import Modal from "../UI/Modal/Modal";
-import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import MenuIcon from "@mui/icons-material/Menu";
 import navLinks from "../../data/navlinks";
 import Logo from "../UI/Logo/Logo";
+import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -82,27 +82,11 @@ const Header: FC = () => {
         <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
       <Modal visible={isLogoutModal} toggleModalActive={toggleModalActive}>
-        <div className={cl["logout"]}>
-          <h2 className={cl["logout__title"]}>
-            Do you really want to log out?
-          </h2>
-          <div className={cl["logout__buttons"]}>
-            <button
-              type="button"
-              className={cl["logout__button"]}
-              onClick={performLogout}
-            >
-              Yes
-            </button>
-            <button
-              type="button"
-              onClick={toggleModalActive}
-              className={cl["logout__button"]}
-            >
-              No
-            </button>
-          </div>
-        </div>
+        <ConfirmForm
+          closeModal={toggleModalActive}
+          performAction={performLogout}
+          title="Do you really want to log out?"
+        />
       </Modal>
     </header>
   );
