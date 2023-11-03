@@ -1,0 +1,15 @@
+.footer {
+  @apply py-3 bg-indigo-600 text-white;
+  &__container {
+    @apply flex items-center justify-between;
+  }
+  &__list {
+    @apply flex items-center;
+  }
+  &__item {
+    @apply ml-3;
+  }
+  &__link {
+    @apply hover:underline;
+  }
+}
