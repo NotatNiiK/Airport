@@ -37,12 +37,13 @@ const Header: FC = () => {
 
   function toggleBurgerMenu() {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
-    document.body.classList.toggle("lock");
+    document.body.classList.toggle("overflow-hidden");
   }
 
   function performLogout(): void {
     AuthStore.logout();
     setIsLogoutModal(false);
+    document.body.classList.toggle("overflow-hidden");
     navigate("/login");
   }
 
