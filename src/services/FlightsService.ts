@@ -22,7 +22,6 @@ class FlightsService {
   public static async updateFlight(
     flight: IFlight
   ): Promise<AxiosResponse<IFlightResponse>> {
-    console.log("FLIGHT", flight);
     return $axios.put("flight/update", flight);
   }
 }
