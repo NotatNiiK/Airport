@@ -1,5 +1,5 @@
-function setTokenInLocalStorage(token: string): void {
-  localStorage.setItem("token", JSON.stringify(token));
-}
+const setTokenInLocalStorage = (token: string): void => {
+  localStorage.setItem("token", token);
+};
 
 export default setTokenInLocalStorage;
