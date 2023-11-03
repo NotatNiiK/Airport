@@ -4,6 +4,7 @@ import FlightItem from "../FlightsItem/FlightsItem";
 import { IFlight } from "../../models/flights";
 import { Link } from "react-router-dom";
 import Loader from "../UI/Loader/Loader";
+import AuthStore from "../../store/AuthStore";
 
 interface FlightsListProps {
   flights: IFlight[];
@@ -18,7 +19,7 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
   return flights.length > 0 ? (
     <ul className={cl["flights-list"]}>
       {flights.map((flight: IFlight) => (
-        <Link to={`/tickets/${flight.id}`}>
+        <Link to={`/tickets/${flight.id}/${AuthStore.tokenInfo.id}`}>
           <FlightItem flight={flight} key={flight.id} />
         </Link>
       ))}
