@@ -48,14 +48,18 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         {AuthStore.isAdmin && (
           <div className={[cl["flights-item__buttons"]].join(" ")}>
             <DeleteIcon
-              onClick={() => deleteFlight(flight.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteFlight(flight.id);
+              }}
               className={[
                 cl["flights-item__button"],
                 cl["flights-item__button_delete"],
               ].join(" ")}
             />
             <EditIcon
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 setIsEditModal(true);
               }}
               className={[

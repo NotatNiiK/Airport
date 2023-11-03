@@ -19,9 +19,9 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
   return flights.length > 0 ? (
     <ul className={cl["flights-list"]}>
       {flights.map((flight: IFlight) => (
-        <Link to={`/tickets/${flight.id}/${AuthStore.tokenInfo.id}`}>
-          <FlightItem flight={flight} key={flight.id} />
-        </Link>
+        <FlightItem flight={flight} key={flight.id} />
+        /*   <Link to={`/tickets/${flight.id}/${AuthStore.tokenInfo.id}`}>
+        </Link> */
       ))}
     </ul>
   ) : (
