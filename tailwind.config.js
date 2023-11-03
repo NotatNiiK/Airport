@@ -22,6 +22,9 @@ export default {
       inset: {
         hidden: "100%",
       },
+      translate: {
+        "reverse-half": "-50%",
+      },
     },
   },
   plugins: [],
