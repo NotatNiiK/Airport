@@ -13,13 +13,17 @@ import FlightValidation from "../../../validation/FlightValidation";
 import formatFlightDate from "../../../utils/formatFlightDate";
 
 interface GeneralFlightFormProps {
+  title: string;
   isEdit: boolean;
+  isClearForm: boolean;
   flight?: IFlight;
   closeModal: () => void;
 }
 
 const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
+  title,
   isEdit,
+  isClearForm,
   flight,
   closeModal,
 }) => {
@@ -40,6 +44,10 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
   useEffect(() => {
     if (isEdit) setEditFormValue();
   }, [flight]);
+
+  useEffect(() => {
+    if (!isClearForm && !isEdit) reset();
+  }, [isClearForm]);
 
   function setEditFormValue(): void {
     if (flight) {
@@ -76,7 +84,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
 
   return (
     <form className={cl["general-form"]} onSubmit={handleSubmit(handleForm)}>
-      <h2 className={cl["general-form__title"]}>Create Flight</h2>
+      <h2 className={cl["general-form__title"]}>{title}</h2>
       <section className={cl["general-form__section"]}>
         <FormInput
           {...register("flightNumber", {

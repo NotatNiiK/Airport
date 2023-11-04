@@ -10,7 +10,6 @@ import AuthStore from "../../../store/AuthStore";
 
 const Flights: FC = observer(() => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
-
   const [getFlights, isLoading] = useFetching(async () => {
     await FlightsStore.getFlights();
   });
@@ -44,7 +43,12 @@ const Flights: FC = observer(() => {
         </div>
         <FlightsList flights={FlightsStore.flightsList} isLoading={isLoading} />
         <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
-          <GeneralFlightForm isEdit={false} closeModal={toggleModal} />
+          <GeneralFlightForm
+            title="Create flight"
+            isEdit={false}
+            closeModal={toggleModal}
+            isClearForm={isCreateModalOpen}
+          />
         </Modal>
       </div>
     </div>

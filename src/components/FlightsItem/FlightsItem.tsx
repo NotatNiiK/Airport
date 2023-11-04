@@ -99,9 +99,11 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
       </div>
       <Modal visible={isEditModalOpen} toggleModalActive={toggleEditModal}>
         <GeneralFlightForm
+          title="Edit flight"
           isEdit={true}
           flight={flight}
           closeModal={toggleEditModal}
+          isClearForm={false}
         />
       </Modal>
       <Modal visible={isDeleteModalOpen} toggleModalActive={toggleDeleteModal}>
