@@ -73,11 +73,11 @@ const Registration: FC = () => {
         >
           <fieldset className={cl["auth__section"]}>
             <AuthInput
+              isError={errors.fullName}
               {...register("fullName", {
                 required: true,
                 validate: AuthValidation.fullName,
               })}
-              style={{ boxShadow: errors.fullName ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("fullName")}
               placeholder="Username"
               tabIndex={1}
@@ -85,11 +85,11 @@ const Registration: FC = () => {
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
+              isError={errors.email}
               {...register("email", {
                 required: true,
                 validate: AuthValidation.email,
               })}
-              style={{ boxShadow: errors.email ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("email")}
               placeholder="Email"
               tabIndex={2}
@@ -97,12 +97,12 @@ const Registration: FC = () => {
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
+              isError={errors.password}
               type={passwordType}
               {...register("password", {
                 required: true,
                 validate: AuthValidation.password,
               })}
-              style={{ boxShadow: errors.password ? "0px 0px 7px red" : "" }}
               onBlur={() => clearErrors("password")}
               placeholder="Password"
               tabIndex={3}
@@ -117,13 +117,11 @@ const Registration: FC = () => {
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
+              isError={errors.passportNumber}
               {...register("passportNumber", {
                 required: true,
                 validate: AuthValidation.passportNumber,
               })}
-              style={{
-                boxShadow: errors.passportNumber ? "0px 0px 7px red" : "",
-              }}
               onBlur={() => clearErrors("passportNumber")}
               placeholder="Passport number"
               tabIndex={4}
@@ -132,16 +130,15 @@ const Registration: FC = () => {
           <fieldset className={cl["auth__section"]}>
             <InputMask
               type="text"
-              className={cl["auth__input"]}
+              className={`${cl["auth__input"]} ${
+                errors.contactInfo ? cl["validation-error"] : ""
+              }`}
               mask="+38 (___) ___-__-__"
               replacement={{ _: /\d/ }}
               {...register("contactInfo", {
                 required: true,
                 validate: AuthValidation.myContacts,
               })}
-              style={{
-                boxShadow: errors.contactInfo ? "0px 0px 7px red" : "",
-              }}
               onBlur={() => clearErrors("contactInfo")}
               placeholder="Tel"
               tabIndex={5}

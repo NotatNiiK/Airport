@@ -22,7 +22,8 @@
     @apply text-center font-bold text-white text-6xl mb-10;
   }
   &__input {
-    @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg text-white focus:shadow-auth-input;
+    @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg 
+  border-2 border-custom-green border-solid text-white focus:shadow-auth-input pr-10;
   }
   &__section {
     @apply relative mb-5 last:mb-0;
@@ -43,4 +44,8 @@
   @media all and (max-width: 578px) {
     @apply left-5 bottom-5;
   }
+}
+
+.validation-error {
+  @apply border-red-500;
 }

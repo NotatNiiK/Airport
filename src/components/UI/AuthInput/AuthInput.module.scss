@@ -1,3 +1,8 @@
 .auth-input {
-  @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg text-white focus:shadow-auth-input pr-10;
+  @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg 
+  border-2 border-custom-green border-solid text-white focus:shadow-auth-input pr-10;
+}
+
+.validation-error {
+  @apply border-red-500;
 }
