@@ -1,6 +1,6 @@
 .flights-item {
   @apply flex items-center  text-white bg-custom-green rounded overflow-auto px-4 py-2 cursor-pointer transition-all duration-300
-  border-2 border-solid border-custom-green;
+  border-2 border-solid border-custom-green hover:-translate-y-1.5;
   box-shadow: 3px 3px 3px #093545;
   &__image {
     @apply mr-5;
@@ -8,28 +8,31 @@
       @apply text-6xl;
     }
   }
-  &__departure-location {
-    @apply text-2xl font-bold leading-tight;
-  }
-  &__destination {
-    @apply text-xl underline leading-tight mb-2;
+  &__place {
+    @apply text-2xl font-bold leading-tight mb-2;
   }
   &__time {
-    @apply text-sm;
+    @apply text-sm mb-1;
   }
   &__number {
     @apply mb-3 text-xs;
   }
   &__buttons {
-    @apply py-1 border-t-2 border-dashed border-white;
+    @apply pt-3 flex items-center border-t-2 border-dashed border-white;
+    > * {
+      @apply mr-3;
+    }
   }
   &__button {
-    @apply mr-2;
     &_delete {
       @apply hover:text-red-600;
     }
     &_edit {
       @apply hover:text-indigo-600;
     }
+  }
+  &__buy-ticket {
+    @apply text-base py-1 px-2 rounded border-solid border-2 border-white transition-all 
+    duration-300 hover:text-custom-green hover:bg-white;
   }
 }

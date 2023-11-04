@@ -1,7 +1,7 @@
 .flights-list {
   display: grid;
-  grid-template: 200px / repeat(auto-fit, minmax(250px, 362px));
-  grid-auto-rows: 200px;
+  grid-template: minmax(180px, auto) / repeat(auto-fit, minmax(250px, 362px));
+  grid-auto-rows: minmax(180px, auto);
   gap: 20px;
 }
 

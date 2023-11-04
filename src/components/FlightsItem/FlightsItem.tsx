@@ -10,6 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Modal from "../UI/Modal/Modal";
 import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import { Link } from "react-router-dom";
 
 interface FlightItemProps {
   flight: IFlight;
@@ -39,11 +40,8 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <FlightTakeoffTwoToneIcon />
       </div>
       <div className={cl["flights-item__content"]}>
-        <h3 className={cl["flights-item__departure-location"]}>
-          {flight.departureLocation}
-        </h3>
-        <h3 className={cl["flights-item__destination"]}>
-          from {flight.destination}
+        <h3 className={cl["flights-item__place"]}>
+          {flight.departureLocation} - {flight.destination}
         </h3>
         <p className={cl["flights-item__time"]}>
           {flight.departureTime} - {flight.arrivalTime}
@@ -51,28 +49,42 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__number"]}>
           Flight number: {flight.flightNumber}
         </p>
-        {AuthStore.isAdmin && (
-          <div className={[cl["flights-item__buttons"]].join(" ")}>
-            <DeleteIcon
-              onClick={() => {
-                setIsDeleteModal(true);
-              }}
-              className={[
-                cl["flights-item__button"],
-                cl["flights-item__button_delete"],
-              ].join(" ")}
-            />
-            <EditIcon
-              onClick={() => {
-                setIsEditModal(true);
-              }}
-              className={[
-                cl["flights-item__button"],
-                cl["flights-item__button_edit"],
-              ].join(" ")}
-            />
-          </div>
-        )}
+        <div className={[cl["flights-item__buttons"]].join(" ")}>
+          <Link
+            to={`/tickets/${flight.id}/${AuthStore.tokenInfo.id}`}
+            className={cl["flights-item__buy-ticket"]}
+          >
+            Buy ticket
+          </Link>
+          {AuthStore.isAdmin && (
+            <>
+              <DeleteIcon
+                onClick={() => {
+                  setIsDeleteModal(true);
+                }}
+                sx={{
+                  fontSize: "30px",
+                }}
+                className={[
+                  cl["flights-item__button"],
+                  cl["flights-item__button_delete"],
+                ].join(" ")}
+              />
+              <EditIcon
+                onClick={() => {
+                  setIsEditModal(true);
+                }}
+                sx={{
+                  fontSize: "30px",
+                }}
+                className={[
+                  cl["flights-item__button"],
+                  cl["flights-item__button_edit"],
+                ].join(" ")}
+              />
+            </>
+          )}
+        </div>
       </div>
       <Modal visible={isEditModalOpen} toggleModalActive={toggleEditModal}>
         <GeneralFlightForm
