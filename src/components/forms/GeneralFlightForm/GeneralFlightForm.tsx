@@ -53,7 +53,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
     if (flight) {
       Object.keys(flight).forEach((key) => {
         const flightKey = key as keyof IFlight;
-        console.log(flightKey, flight[flightKey]);
         setValue(flightKey, flight[flightKey]);
       });
     }
