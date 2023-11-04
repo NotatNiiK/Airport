@@ -1,0 +1,33 @@
+.about {
+  @apply min-h-screen bg-custom-green pt-20 pb-5 flex flex-col items-start justify-center;
+  &__container {
+    @apply relative flex items-center;
+    @media all and (max-width: 768px) {
+      @apply flex-col;
+    }
+  }
+  &__content {
+    @apply shrink grow-0 basis-2/4;
+    @media all and (max-width: 768px) {
+      @apply basis-auto mb-5;
+    }
+  }
+  &__image {
+    @apply shrink grow-0 basis-2/4 h-[200px] relative;
+    img {
+      @apply absolute left-0 top-0 w-full h-full object-cover;
+    }
+    @media all and (max-width: 768px) {
+      @apply basis-auto w-full;
+    }
+    @media all and (max-width: 478px) {
+      @apply h-[120px];
+    }
+  }
+  &__title {
+    @apply text-white font-bold text-5xl mb-7;
+  }
+  &__paragraph {
+    @apply text-white mb-2 text-sm;
+  }
+}
