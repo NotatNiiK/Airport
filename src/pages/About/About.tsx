@@ -38,7 +38,7 @@ const About: FC = () => {
               </p>
             </div>
             <div className={cl["about__image"]}>
-              <img src={PlainImage} alt="Plain" />
+              <img src={PlainImage} alt="Plain" draggable={false} />
             </div>
           </div>
         </section>
