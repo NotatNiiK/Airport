@@ -2,9 +2,7 @@ import { FC } from "react";
 import cl from "./FlightsList.module.scss";
 import FlightItem from "../FlightsItem/FlightsItem";
 import { IFlight } from "../../models/flights";
-import { Link } from "react-router-dom";
 import Loader from "../UI/Loader/Loader";
-import AuthStore from "../../store/AuthStore";
 import BlockIcon from "@mui/icons-material/Block";
 
 interface FlightsListProps {
