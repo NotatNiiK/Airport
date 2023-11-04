@@ -4,23 +4,24 @@ import Authorization from "../pages/Auth/Authorization";
 import Tickets from "../pages/Tickets/Tickets";
 import { IRoutes } from "../models/routes";
 
-const routes: IRoutes = [
-  { id: 0, path: "/", component: Home },
+export const publicRoutes: IRoutes = [
   {
-    id: 1,
+    id: 0,
     path: "/login",
     component: Authorization,
   },
   {
-    id: 2,
+    id: 1,
     path: "/signin",
     component: Registration,
   },
+];
+
+export const privateRoutes: IRoutes = [
+  { id: 0, path: "/", component: Home },
   {
-    id: 3,
+    id: 1,
     path: "/tickets/:flightId/:userId",
     component: Tickets,
   },
 ];
-
-export default routes;

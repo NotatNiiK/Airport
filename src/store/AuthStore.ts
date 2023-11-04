@@ -10,13 +10,20 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
+  isAuth = false;
   isAdmin: boolean = true;
 
   tokenInfo: Partial<IToken> = {};
 
+  setIsAuth(auth: boolean): void {
+    this.isAuth = auth;
+  }
+
   decodeToken(token: string) {
     const decodedToken: IToken = jwtDecode<IToken>(token);
     this.tokenInfo = decodedToken;
+    this.setIsAuth(true);
+    localStorage.setItem("token", token);
     localStorage.setItem("tokenInfo", JSON.stringify(this.tokenInfo));
   }
 
@@ -53,6 +60,7 @@ class AuthStore {
   logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("tokenInfo");
+    this.setIsAuth(false);
   }
 }
 

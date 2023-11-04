@@ -54,7 +54,6 @@ const Authorization: FC = () => {
         showAlert(authReponse.response);
         return;
       }
-      setTokenInLocalStorage(authReponse.response);
       reset();
       navigate("/");
     }
