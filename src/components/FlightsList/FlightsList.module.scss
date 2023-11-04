@@ -1,15 +1,12 @@
 .flights-list {
   display: grid;
-  grid-template: 180px / repeat(auto-fit, minmax(250px, 362px));
-  grid-auto-rows: 180px;
+  grid-template: 200px / repeat(auto-fit, minmax(250px, 362px));
+  grid-auto-rows: 200px;
   gap: 20px;
 }
 
 .not-found {
   @apply text-custom-green flex items-center justify-center flex-col;
-  &__icon {
-    @apply text-9xl;
-  }
   &__title {
     @apply text-2xl font-bold text-center py-4  uppercase;
   }

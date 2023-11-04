@@ -25,7 +25,11 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
     </ul>
   ) : (
     <div className={cl["not-found"]}>
-      <BlockIcon className={cl["not-found__icon"]} />
+      <BlockIcon
+        sx={{
+          fontSize: "120px",
+        }}
+      />
       <h2 className={cl["not-found__title"]}>There are no flights!</h2>
     </div>
   );
