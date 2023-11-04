@@ -52,6 +52,7 @@ class AuthStore {
 
   logout(): void {
     localStorage.removeItem("token");
+    localStorage.removeItem("tokenInfo");
   }
 }
 
