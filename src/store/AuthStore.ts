@@ -17,6 +17,7 @@ class AuthStore {
   decodeToken(token: string) {
     const decodedToken: IToken = jwtDecode<IToken>(token);
     this.tokenInfo = decodedToken;
+    localStorage.setItem("tokenInfo", JSON.stringify(this.tokenInfo));
   }
 
   async getAuthRequest(

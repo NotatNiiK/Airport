@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import cl from "./FlightsItem.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import { IFlight } from "../../models/flights";
@@ -11,6 +11,7 @@ import Modal from "../UI/Modal/Modal";
 import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
 import { Link } from "react-router-dom";
+import { IToken } from "../../models/token";
 
 interface FlightItemProps {
   flight: IFlight;
@@ -19,6 +20,7 @@ interface FlightItemProps {
 const FlightItem: FC<FlightItemProps> = ({ flight }) => {
   const [isEditModalOpen, setIsEditModal] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModal] = useState(false);
+  const [userId, setUserId] = useState<number>(0);
 
   function toggleEditModal(): void {
     setIsEditModal(!isEditModalOpen);
@@ -33,6 +35,15 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
   function toggleDeleteModal(): void {
     setIsDeleteModal(!isDeleteModalOpen);
   }
+
+  useEffect(() => {
+    const tokenInfo = localStorage.getItem("tokenInfo");
+
+    if (tokenInfo) {
+      const parsedTokenInfo: IToken = JSON.parse(tokenInfo);
+      setUserId(parsedTokenInfo.id);
+    }
+  }, []);
 
   return (
     <li className={cl["flights-item"]}>
@@ -51,7 +62,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         </p>
         <div className={[cl["flights-item__buttons"]].join(" ")}>
           <Link
-            to={`/tickets/${flight.id}/${AuthStore.tokenInfo.id}`}
+            to={`/tickets/${flight.id}/${userId}`}
             className={cl["flights-item__buy-ticket"]}
           >
             Buy ticket
