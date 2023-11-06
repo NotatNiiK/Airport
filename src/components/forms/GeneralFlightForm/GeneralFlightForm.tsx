@@ -90,7 +90,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           isError={errors.departureLocation}
           {...register("departureLocation", {
             required: true,
-            validate: FlightValidation.required,
           })}
           onBlur={() => clearErrors("departureLocation")}
           placeholder="Departure location"
@@ -102,7 +101,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           isError={errors.destination}
           {...register("destination", {
             required: true,
-            validate: FlightValidation.required,
           })}
           onBlur={() => clearErrors("destination")}
           placeholder="Destination"
@@ -114,7 +112,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           isError={errors.flightNumber}
           {...register("flightNumber", {
             required: true,
-            validate: FlightValidation.required,
           })}
           onBlur={() => clearErrors("flightNumber")}
           placeholder="Flight number"

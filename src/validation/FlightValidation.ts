@@ -1,10 +1,6 @@
 class FlightValidation {
   static departureTimeValue: Date = new Date();
 
-  public static required(inputValue: string): boolean {
-    return inputValue.length > 1 ? true : false;
-  }
-
   public static departureTime(inputValue: string): boolean {
     FlightValidation.departureTimeValue = new Date(inputValue);
     return new Date(inputValue) >= new Date();
