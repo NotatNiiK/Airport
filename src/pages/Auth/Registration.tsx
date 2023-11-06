@@ -76,7 +76,6 @@ const Registration: FC = () => {
               isError={errors.fullName}
               {...register("fullName", {
                 required: true,
-                validate: AuthValidation.fullName,
               })}
               onBlur={() => clearErrors("fullName")}
               placeholder="Username"

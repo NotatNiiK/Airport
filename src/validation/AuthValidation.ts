@@ -1,8 +1,4 @@
 class AuthValidation {
-  public static fullName(inputValue: string): boolean {
-    return inputValue.length > 1 ? true : false;
-  }
-
   public static email(inputValue: string): boolean {
     const emailRegex: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(inputValue);

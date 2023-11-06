@@ -71,7 +71,7 @@ const Authorization: FC = () => {
             <AuthInput
               {...register("email", {
                 required: true,
-                validate: AuthValidation.fullName,
+                validate: AuthValidation.email,
               })}
               isError={errors.email}
               onBlur={() => clearErrors("email")}
