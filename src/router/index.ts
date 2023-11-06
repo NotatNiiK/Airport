@@ -23,7 +23,7 @@ export const privateRoutes: IRoutes = [
   { id: 1, path: "/about", component: About },
   {
     id: 2,
-    path: "/tickets/:flightId/:userId",
+    path: "/tickets/:flightId/:flightNumber/:cost/:userId",
     component: Tickets,
   },
 ];
