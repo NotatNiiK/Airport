@@ -14,6 +14,12 @@ class FlightValidation {
     return new Date(value) > FlightValidation.departureTimeValue;
   }
 
+  public static price(value: number): boolean {
+    const price: string = String(value);
+    const piceRegExp: RegExp = /^[1-9]\d*$/;
+    return piceRegExp.test(price);
+  }
+
   public static isActive(value: string): string {
     return value;
   }

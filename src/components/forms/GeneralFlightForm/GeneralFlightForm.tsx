@@ -60,6 +60,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
 
   const [handleForm, isLoading] = useFetching(
     async (flightData: IFlight): Promise<void> => {
+      flightData.price = +flightData.price;
       flightData.departureTime = formatFlightDate(flightData.departureTime);
       flightData.arrivalTime = formatFlightDate(flightData.arrivalTime);
 
@@ -86,18 +87,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
       <h2 className={cl["general-form__title"]}>{title}</h2>
       <section className={cl["general-form__section"]}>
         <FormInput
-          isError={errors.flightNumber}
-          {...register("flightNumber", {
-            required: true,
-            validate: FlightValidation.required,
-          })}
-          onBlur={() => clearErrors("flightNumber")}
-          placeholder="Flight number"
-          tabIndex={1}
-        />
-      </section>
-      <section className={cl["general-form__section"]}>
-        <FormInput
           isError={errors.departureLocation}
           {...register("departureLocation", {
             required: true,
@@ -105,7 +94,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           })}
           onBlur={() => clearErrors("departureLocation")}
           placeholder="Departure location"
-          tabIndex={2}
+          tabIndex={1}
         />
       </section>
       <section className={cl["general-form__section"]}>
@@ -117,7 +106,31 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           })}
           onBlur={() => clearErrors("destination")}
           placeholder="Destination"
+          tabIndex={2}
+        />
+      </section>
+      <section className={cl["general-form__section"]}>
+        <FormInput
+          isError={errors.flightNumber}
+          {...register("flightNumber", {
+            required: true,
+            validate: FlightValidation.required,
+          })}
+          onBlur={() => clearErrors("flightNumber")}
+          placeholder="Flight number"
           tabIndex={3}
+        />
+      </section>
+      <section className={cl["general-form__section"]}>
+        <FormInput
+          isError={errors.price}
+          {...register("price", {
+            required: true,
+            validate: FlightValidation.price,
+          })}
+          onBlur={() => clearErrors("price")}
+          placeholder="Price"
+          tabIndex={4}
         />
       </section>
       <section className={cl["general-form__section"]}>
@@ -130,7 +143,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           onBlur={() => clearErrors("departureTime")}
           type="datetime-local"
           placeholder="Departure time"
-          tabIndex={4}
+          tabIndex={5}
         />
       </section>
       <section
@@ -148,7 +161,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           onBlur={() => clearErrors("arrivalTime")}
           type="datetime-local"
           placeholder="Arrival time"
-          tabIndex={5}
+          tabIndex={6}
         />
       </section>
       <section
@@ -171,10 +184,11 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           })}
           onBlur={() => clearErrors("flightStatus")}
           size="small"
+          tabIndex={7}
         />
       </section>
       <section className={cl["general-form__section"]}>
-        <FormButton loading={isLoading} tabIndex={7}>
+        <FormButton loading={isLoading} tabIndex={8}>
           Create
         </FormButton>
       </section>
