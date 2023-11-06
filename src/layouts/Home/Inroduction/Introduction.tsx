@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cl from "./Introduction.module.scss";
-import PlainImage from "../../../assets/Pages/Home/Plain.png";
+import PlainImage from "../../../assets/pages/Home/Plain.png";
 
 const Introduction: FC = () => {
   return (
