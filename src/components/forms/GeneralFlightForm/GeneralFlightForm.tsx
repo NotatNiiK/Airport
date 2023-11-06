@@ -180,7 +180,6 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
         <Checkbox
           {...register("flightStatus", {
             required: true,
-            validate: FlightValidation.isActive,
           })}
           onBlur={() => clearErrors("flightStatus")}
           size="small"
