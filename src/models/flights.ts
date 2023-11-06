@@ -9,6 +9,7 @@ interface IFlight {
   departureTime: string;
   arrivalTime: string;
   flightStatus: string;
+  price: number;
 }
 
 export type { IFlightResponse, IFlight };
