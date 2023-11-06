@@ -15,7 +15,10 @@
     @apply text-sm mb-1;
   }
   &__number {
-    @apply mb-3 text-xs;
+    @apply text-xs;
+  }
+  &__price {
+    @apply py-1 text-xl font-semibold mb-1;
   }
   &__buttons {
     @apply pt-3 flex items-center border-t-2 border-dashed border-white;

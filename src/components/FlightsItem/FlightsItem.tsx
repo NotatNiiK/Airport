@@ -60,6 +60,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__number"]}>
           Flight number: {flight.flightNumber}
         </p>
+        <p className={cl["flights-item__price"]}>{flight.price}$</p>
         <div className={[cl["flights-item__buttons"]].join(" ")}>
           <Link
             to={`/tickets/${flight.id}/${userId}`}
