@@ -8,27 +8,23 @@ import { IRoutes } from "../models/routes";
 
 export const publicRoutes: IRoutes = [
   {
-    id: 0,
     path: "/login",
     component: Authorization,
   },
   {
-    id: 1,
     path: "/signin",
     component: Registration,
   },
 ];
 
 export const privateRoutes: IRoutes = [
-  { id: 0, path: "/", component: Home },
-  { id: 1, path: "/about", component: About },
+  { path: "/", component: Home },
+  { path: "/about", component: About },
   {
-    id: 2,
     path: "/tickets/:flightId/:flightNumber/:cost/:userId",
     component: Tickets,
   },
   {
-    id: 3,
     path: "/account/:userId",
     component: Account,
   },

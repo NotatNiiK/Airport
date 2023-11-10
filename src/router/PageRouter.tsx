@@ -6,9 +6,11 @@ import AuthStore from "../store/AuthStore";
 
 const PrivateRoutes: FC = () => (
   <Routes>
-    {privateRoutes.map((route, index) => {
+    {privateRoutes.map((route) => {
       const Component = route.component;
-      return <Route element={<Component />} path={route.path} key={index} />;
+      return (
+        <Route element={<Component />} path={route.path} key={route.path} />
+      );
     })}
     <Route path="*" element={<Navigate to="/" />} />
   </Routes>
@@ -16,9 +18,11 @@ const PrivateRoutes: FC = () => (
 
 const PublicRoutes: FC = () => (
   <Routes>
-    {publicRoutes.map((route, index) => {
+    {publicRoutes.map((route) => {
       const Component = route.component;
-      return <Route element={<Component />} path={route.path} key={index} />;
+      return (
+        <Route element={<Component />} path={route.path} key={route.path} />
+      );
     })}
     <Route path="*" element={<Navigate to="/login" />} />
   </Routes>
