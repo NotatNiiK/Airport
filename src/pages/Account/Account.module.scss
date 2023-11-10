@@ -2,8 +2,7 @@
   @apply min-h-screen relative flex flex-col items-center justify-center py-4 bg-auth-bg-color;
   &::before {
     content: "";
-    background: url(../../assets/pages/decorations/wave.svg) center / cover
-      no-repeat;
+    background: url(../../assets/decorations/wave.svg) center / cover no-repeat;
     @apply absolute left-0 bottom-0 w-full h-36;
   }
   &__container {
