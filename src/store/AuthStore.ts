@@ -9,6 +9,7 @@ import {
   setTokenInfoInLS,
   removeTokenInfoFromLS,
 } from "../utils/tokenInfoInLocalStorage";
+import handleServerError from "../utils/handleServerError";
 
 class AuthStore {
   constructor() {
@@ -51,13 +52,7 @@ class AuthStore {
         response: "Successfully completed",
       };
     } catch (e: unknown) {
-      const error = e as IServerError;
-      console.log(error);
-
-      return {
-        hasError: true,
-        response: error.response?.data?.message || "Unexpected error",
-      };
+      return handleServerError(e);
     }
   }
 
