@@ -9,4 +9,6 @@ interface IFlight {
   price: number;
 }
 
-export type { IFlight };
+type IFlights = IFlight[];
+
+export type { IFlight, IFlights };
