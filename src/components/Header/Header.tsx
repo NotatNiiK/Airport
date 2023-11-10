@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import cl from "./Header.module.scss";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthStore from "../../store/AuthStore";
@@ -76,7 +76,10 @@ const Header: FC = () => {
             ))}
           </ul>
           <div className={cl["nav__buttons"]}>
-            <AccountCircleIcon className={cl["nav__button"]} />
+            <AccountCircleIcon
+              className={cl["nav__button"]}
+              onClick={() => navigate("/account")}
+            />
             <LogoutIcon
               onClick={toggleModalActive}
               className={cl["nav__button"]}
