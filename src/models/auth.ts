@@ -1,5 +1,4 @@
 import { AxiosResponse } from "axios";
-import { ServerResponse } from "./server.response";
 
 interface IRegData {
   fullName: string;
@@ -10,6 +9,7 @@ interface IRegData {
 }
 
 type IAuthData = Omit<IRegData, "fullName" | "passportNumber" | "contactInfo">;
+
 interface IAuthResponse {
   access: string;
 }
