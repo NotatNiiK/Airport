@@ -1,12 +1,12 @@
 import $axios from "axios";
 import type { AxiosResponse } from "axios";
-import { IFlightResponse } from "../models/flights";
 import { ITicket, ITickets } from "../models/ticket";
+import { ISuccess } from "../models/success";
 
 class AuthService {
   public static async createTiket(
     ticket: ITicket
-  ): Promise<AxiosResponse<IFlightResponse>> {
+  ): Promise<AxiosResponse<ISuccess>> {
     return $axios.post("http://localhost:3001/tiket/create", ticket, {
       headers: {
         Authorization:

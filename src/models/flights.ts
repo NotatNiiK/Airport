@@ -1,6 +1,3 @@
-interface IFlightResponse {
-  success: string;
-}
 interface IFlight {
   id?: number;
   flightNumber: string;
@@ -12,4 +9,4 @@ interface IFlight {
   price: number;
 }
 
-export type { IFlightResponse, IFlight };
+export type { IFlight };

@@ -1,6 +1,7 @@
 import $axios from "../http";
 import { AxiosResponse } from "axios";
-import { IFlightResponse, IFlight } from "../models/flights";
+import { IFlight } from "../models/flights";
+import { ISuccess } from "../models/success";
 
 class FlightsService {
   public static async getFlights(): Promise<AxiosResponse<IFlight[]>> {
@@ -9,19 +10,19 @@ class FlightsService {
 
   public static async createFlight(
     flight: IFlight
-  ): Promise<AxiosResponse<IFlightResponse>> {
-    return $axios.post<IFlightResponse>(`flight/create`, flight);
+  ): Promise<AxiosResponse<ISuccess>> {
+    return $axios.post<ISuccess>(`flight/create`, flight);
   }
 
   public static async deleteFlight(
     id: number
-  ): Promise<AxiosResponse<IFlightResponse>> {
+  ): Promise<AxiosResponse<ISuccess>> {
     return $axios.delete("flight/delete", { data: { id } });
   }
 
   public static async updateFlight(
     flight: IFlight
-  ): Promise<AxiosResponse<IFlightResponse>> {
+  ): Promise<AxiosResponse<ISuccess>> {
     return $axios.put("flight/update", flight);
   }
 }
