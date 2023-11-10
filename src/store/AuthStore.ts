@@ -27,9 +27,9 @@ class AuthStore {
     localStorage.setItem("tokenInfo", JSON.stringify(this.tokenInfo));
   }
 
-  async getAuthRequest(
-    data: IAuthData | IRegData,
-    callback: IAuthCallback
+  async getAuthRequest<T extends IRegData | IAuthData>(
+    data: T,
+    callback: IAuthCallback<T>
   ): Promise<ServerResponse> {
     try {
       const {

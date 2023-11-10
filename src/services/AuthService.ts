@@ -11,7 +11,7 @@ class AuthService {
   }
 
   public static async registration(
-    regData: IRegData | IAuthData // !fix
+    regData: IRegData
   ): Promise<AxiosResponse<IAuthResponse>> {
     return AuthService.authRequest<IAuthResponse>("user/logon", regData);
   }
