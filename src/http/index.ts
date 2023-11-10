@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
+import isUserAuth from "../utils/isUserAuth";
 
 const $axios: AxiosInstance = axios.create({
   withCredentials: true,
@@ -7,7 +8,7 @@ const $axios: AxiosInstance = axios.create({
 });
 
 $axios.interceptors.request.use((config) => {
-  const accessToken: string = localStorage.getItem("token") || "";
+  const accessToken: string = isUserAuth();
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
