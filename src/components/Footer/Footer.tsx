@@ -22,7 +22,7 @@ const Footer: FC = () => {
         </ul>
         <ul className={cl["footer__list"]}>
           {socialMedia.map((media) => (
-            <li className={cl["footer__item"]} key={media.id}>
+            <li className={cl["footer__item"]} key={media.path}>
               <a href={media.path} target="_blank">
                 <media.icon className={cl["footer__social-media"]} />
               </a>
