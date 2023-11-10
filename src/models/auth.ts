@@ -14,8 +14,6 @@ interface IAuthResponse {
   access: string;
 }
 
-type IAuthCallback = (
-  authData: IAuthData | IRegData
-) => Promise<AxiosResponse<IAuthResponse>>;
+type IAuthCallback<T> = (authData: T) => Promise<AxiosResponse<IAuthResponse>>;
 
 export type { IRegData, IAuthResponse, IAuthData, IAuthCallback };
