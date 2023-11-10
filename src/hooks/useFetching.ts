@@ -8,7 +8,7 @@ export const useFetching = (
   const fetching = async (...data: any[]): Promise<any> => {
     try {
       setIsLoading(true);
-      await callback(data);
+      await callback(...data);
     } finally {
       setIsLoading(false);
     }
