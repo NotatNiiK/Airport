@@ -1,21 +1,20 @@
 import { FC, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { createPortal } from "react-dom";
+import { useForm } from "react-hook-form";
+import { IAlert } from "../../models/alert";
+import { IAuthData } from "../../models/auth";
+import { usePasswordMask } from "../../hooks/usePasswordMask";
+import { useFetching } from "../../hooks/useFetching";
+import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import Alert from "@mui/material/Alert";
-import { IAlert } from "../../models/alert";
-import { useForm } from "react-hook-form";
-import { IAuthData } from "../../models/auth";
-import AuthValidation from "../../validation/AuthValidation";
-import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
-import { useNavigate, Link } from "react-router-dom";
-import { createPortal } from "react-dom";
 import AuthStore from "../../store/AuthStore";
-import { useFetching } from "../../hooks/useFetching";
+import AuthValidation from "../../validation/AuthValidation";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { usePasswordMask } from "../../hooks/usePasswordMask";
-import ButtonLoader from "../../components/UI/ButtonLoader/ButtonLoader";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
@@ -28,25 +27,8 @@ const Authorization: FC = () => {
     reset,
   } = useForm<IAuthData>();
 
-  const [errorAlert, setErrorAlert] = useState<IAlert>({
-    error: false,
-    message: "",
-  });
-
+  const [errorAlert, showAlert] = useAlert();
   const [isPasswordMask, passwordType, togglePasswordMask] = usePasswordMask();
-
-  function showAlert(message: string): void {
-    setErrorAlert({
-      error: true,
-      message,
-    });
-    setTimeout(() => {
-      setErrorAlert({
-        error: false,
-        message: "",
-      });
-    }, 3000);
-  }
 
   const [performAuthorization, isLoading] = useFetching(
     async (authData: IAuthData): Promise<void> => {
