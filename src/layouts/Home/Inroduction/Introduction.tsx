@@ -4,7 +4,7 @@ import PlainImage from "../../../assets/pages/Home/Plain.png";
 
 const Introduction: FC = () => {
   return (
-    <div className={["home__introduction", cl["introduction"]].join(" ")}>
+    <div className={cl["introduction"]}>
       <div className={cl["introduction__container"]}>
         <div className={cl["introduction__body"]}>
           <div className={cl["introduction__text"]}>
