@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 interface IRoute {
-  id?: number;
   path: string;
   component: FC;
 }

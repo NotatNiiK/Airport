@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cl from "./Footer.module.scss";
-import navLinks from "../../data/navlinks";
+import navLinks from "../../data/navLinks";
 import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import { Link } from "react-router-dom";
 import socialMedia from "../../data/socialMedia";
@@ -13,12 +13,8 @@ const Footer: FC = () => {
         <Logo />
         <ul className={cl["footer__list"]}>
           {navLinks.map((navLink) => (
-            <li className={cl["footer__item"]} key={navLink.id}>
-              <Link
-                to={navLink.text}
-                key={navLink.id}
-                className={cl["footer__link"]}
-              >
+            <li className={cl["footer__item"]} key={navLink.path}>
+              <Link to={navLink.text} className={cl["footer__link"]}>
                 {navLink.text}
               </Link>
             </li>

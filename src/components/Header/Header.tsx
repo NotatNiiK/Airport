@@ -5,7 +5,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AuthStore from "../../store/AuthStore";
 import Modal from "../UI/Modal/Modal";
 import MenuIcon from "@mui/icons-material/Menu";
-import navLinks from "../../data/navlinks";
+import navLinks from "../../data/navLinks";
 import Logo from "../UI/Logo/Logo";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -68,7 +68,7 @@ const Header: FC = () => {
         <nav className={navClasses.join(" ")}>
           <ul className={cl["nav__list"]}>
             {navLinks.map((navLink) => (
-              <li className={cl["nav__item"]} key={navLink.id}>
+              <li className={cl["nav__item"]} key={navLink.path}>
                 <NavLink to={navLink.path} className={setActiveLink}>
                   {navLink.text}
                 </NavLink>
