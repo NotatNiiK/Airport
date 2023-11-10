@@ -29,7 +29,7 @@ export const privateRoutes: IRoutes = [
   },
   {
     id: 3,
-    path: "/account",
+    path: "/account/:userId",
     component: Account,
   },
 ];
