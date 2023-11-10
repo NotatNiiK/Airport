@@ -11,7 +11,7 @@ class TicketStore {
     try {
       const {
         data: { success },
-      } = await TicketService.createTiket(ticket);
+      } = await TicketService.createTicket(ticket);
       return {
         hasError: false,
         response: success,
