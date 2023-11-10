@@ -1,30 +1,36 @@
 import { FC, useState, useEffect } from "react";
+import { useFetching } from "../../../hooks/useFetching";
+import { useModal } from "../../../hooks/useModal";
+import { observer } from "mobx-react-lite";
+import { IAlert } from "../../../models/alert";
 import cl from "./Flights.module.scss";
 import Modal from "../../../components/UI/Modal/Modal";
-import GeneralFlightForm from "../../../components/forms/GeneralFlightForm/GeneralFlightForm";
 import FlightsList from "../../../components/FlightsList/FightsList";
-import { useFetching } from "../../../hooks/useFetching";
+import GeneralFlightForm from "../../../components/forms/GeneralFlightForm/GeneralFlightForm";
 import FlightsStore from "../../../store/FlightsStore";
-import { observer } from "mobx-react-lite";
 import AuthStore from "../../../store/AuthStore";
+import Alert from "@mui/material/Alert";
 
 const Flights: FC = observer(() => {
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
-  const [getFlights, isLoading] = useFetching(async () => {
-    await FlightsStore.getFlights();
+  const [isCreateModalOpen, toggleCreateModal] = useModal();
+  const [errorAlert, setErrorAlert] = useState<IAlert>({
+    error: false,
+    message: "",
   });
 
-  useEffect(() => {
+  const [getFlights, isLoading] = useFetching(async (): Promise<void> => {
+    const response = await FlightsStore.getFlights();
+    if (response.hasError) {
+      setErrorAlert({
+        error: true,
+        message: response.response,
+      });
+    }
+  });
+
+  useEffect((): void => {
     getFlights();
   }, []);
-
-  function toggleModal(): void {
-    setIsCreateModalOpen(!isCreateModalOpen);
-  }
-
-  function openModal(): void {
-    setIsCreateModalOpen(true);
-  }
 
   return (
     <div className={cl["flights"]}>
@@ -35,18 +41,38 @@ const Flights: FC = observer(() => {
             <button
               className={cl["flights__create-btn"]}
               title="Create flight"
-              onClick={openModal}
+              onClick={toggleCreateModal}
             >
               +
             </button>
           )}
         </div>
-        <FlightsList flights={FlightsStore.flightsList} isLoading={isLoading} />
-        <Modal visible={isCreateModalOpen} toggleModalActive={toggleModal}>
+        {errorAlert.error ? (
+          <Alert
+            severity="error"
+            sx={{
+              fontSize: "20px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {errorAlert.message}
+          </Alert>
+        ) : (
+          <FlightsList
+            flights={FlightsStore.flightsList}
+            isLoading={isLoading}
+          />
+        )}
+
+        <Modal
+          visible={isCreateModalOpen}
+          toggleModalActive={toggleCreateModal}
+        >
           <GeneralFlightForm
             title="Create flight"
             isEdit={false}
-            closeModal={toggleModal}
+            closeModal={toggleCreateModal}
             isClearForm={isCreateModalOpen}
           />
         </Modal>
