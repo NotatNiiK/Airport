@@ -1,35 +1,35 @@
 import { makeAutoObservable } from "mobx";
 import { IServerResponse } from "../models/server.response";
+import { ITicket, ITickets } from "../models/ticket";
 import TicketService from "../services/TicketService";
-import { ITicket } from "../models/ticket";
+import handleServerError from "../utils/handleServerError";
 
 class TicketStore {
   constructor() {
     makeAutoObservable(this);
   }
+
   async createTicket(ticket: ITicket): Promise<IServerResponse> {
     try {
       const {
         data: { success },
       } = await TicketService.createTicket(ticket);
+
       return {
         hasError: false,
         response: success,
       };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
+    } catch (e: unknown) {
+      return handleServerError(e);
     }
   }
-  async getTickets(userId: number): Promise<any> {
+
+  async getTickets(userId: number): Promise<ITickets | IServerResponse> {
     try {
       const { data } = await TicketService.getTickets(userId);
       return data;
-    } catch (e: any) {
-      console.log(e);
+    } catch (e: unknown) {
+      return handleServerError(e);
     }
   }
 }
