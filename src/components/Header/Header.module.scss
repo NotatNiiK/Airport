@@ -23,7 +23,7 @@
     @apply bottom-0;
   }
   &__list {
-    @apply flex items-center mr-10;
+    @apply flex items-center mr-5;
     @media all and (max-width: 768px) {
       @apply block;
     }
@@ -40,8 +40,15 @@
       @apply text-3xl;
     }
   }
-  &__logout {
-    @apply cursor-pointer transition-all duration-300 hover:text-white/80;
+
+  &__buttons {
+    @apply flex items-center;
+  }
+  &__button {
+    @apply cursor-pointer transition-all duration-300 hover:text-white/80 ml-3;
+    @media all and (max-width: 768px) {
+      @apply ml-0 mr-2;
+    }
   }
 }
 

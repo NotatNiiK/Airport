@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import navLinks from "../../data/navlinks";
 import Logo from "../UI/Logo/Logo";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -74,10 +75,13 @@ const Header: FC = () => {
               </li>
             ))}
           </ul>
-          <LogoutIcon
-            onClick={toggleModalActive}
-            className={cl["nav__logout"]}
-          />
+          <div className={cl["nav__buttons"]}>
+            <AccountCircleIcon className={cl["nav__button"]} />
+            <LogoutIcon
+              onClick={toggleModalActive}
+              className={cl["nav__button"]}
+            />
+          </div>
         </nav>
         <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
