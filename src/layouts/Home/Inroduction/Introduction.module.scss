@@ -23,7 +23,6 @@
     @apply grow-0 shrink basis-3/5;
   }
   &__title {
-    font-family: "Lexend Deca";
     @apply text-5xl font-bold leading-tight mb-5;
     @media all and (max-width: 950px) {
       @apply text-4xl;
