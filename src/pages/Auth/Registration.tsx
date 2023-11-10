@@ -1,20 +1,19 @@
 import { FC, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
 import { IRegData } from "../../models/auth";
 import { useNavigate, Link } from "react-router-dom";
-import { IAlert } from "../../models/alert";
+import { createPortal } from "react-dom";
+import { useFetching } from "../../hooks/useFetching";
+import { usePasswordMask } from "../../hooks/usePasswordMask";
+import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
 import Alert from "@mui/material/Alert";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthValidation from "../../validation/AuthValidation";
 import getRawPhoneNumber from "../../utils/getRawPhoneNumber";
-import setTokenInLocalStorage from "../../utils/setTokenInLocalStorage";
-import { createPortal } from "react-dom";
 import AuthStore from "../../store/AuthStore";
-import { useFetching } from "../../hooks/useFetching";
-import { usePasswordMask } from "../../hooks/usePasswordMask";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -29,39 +28,21 @@ const Registration: FC = () => {
     reset,
   } = useForm<IRegData>();
 
-  const [errorAlert, setErrorAlert] = useState<IAlert>({
-    error: false,
-    message: "",
-  });
-
+  const [errorAlert, showAlert] = useAlert();
   const [isPasswordMask, passwordType, togglePasswordMask] = usePasswordMask();
 
   const [performRegistration, isLoading] = useFetching(
     async (regData: IRegData): Promise<void> => {
       regData.contactInfo = getRawPhoneNumber(regData.contactInfo);
-      const authReponse = await AuthStore.registration(regData);
-      if (authReponse.hasError) {
-        showAlert(authReponse.response);
+      const regResponse = await AuthStore.registration(regData);
+      if (regResponse.hasError) {
+        showAlert(regResponse.response);
         return;
       }
-      setTokenInLocalStorage(authReponse.response);
       reset();
       navigate("/");
     }
   );
-
-  function showAlert(message: string): void {
-    setErrorAlert({
-      error: true,
-      message,
-    });
-    setTimeout(() => {
-      setErrorAlert({
-        error: false,
-        message: "",
-      });
-    }, 3000);
-  }
 
   return (
     <div className={cl["auth"]}>
@@ -149,7 +130,10 @@ const Registration: FC = () => {
             </AuthButton>
           </fieldset>
           <p className={cl["auth__link"]}>
-            Do you have an account? <Link to="/login">Login</Link>
+            Do you have an account?{" "}
+            <Link to="/login" tabIndex={7}>
+              Login
+            </Link>
           </p>
           {errorAlert.error &&
             createPortal(
