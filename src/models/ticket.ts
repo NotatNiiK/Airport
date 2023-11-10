@@ -1,4 +1,5 @@
 interface ITicket {
+  id?: number;
   classes: string;
   purchaseDate: string;
   cost: string;
