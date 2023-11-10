@@ -31,7 +31,7 @@
   &__link {
     @apply text-white text-center;
     a {
-      @apply underline hover:no-underline;
+      @apply underline hover:no-underline focus:border focus:border-solid focus:border-white focus:rounded-sm;
     }
   }
   &__toggle-password {

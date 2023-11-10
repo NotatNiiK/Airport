@@ -64,12 +64,12 @@ const Authorization: FC = () => {
           </fieldset>
           <fieldset className={cl["auth__section"]}>
             <AuthInput
-              isError={errors.password}
               type={passwordType}
               {...register("password", {
                 required: true,
                 validate: AuthValidation.authPassword,
               })}
+              isError={errors.password}
               onBlur={() => clearErrors("password")}
               placeholder="Password"
               tabIndex={2}
@@ -88,7 +88,10 @@ const Authorization: FC = () => {
             </AuthButton>
           </fieldset>
           <p className={cl["auth__link"]}>
-            Don't have an account? <Link to="/signin">Sign in</Link>
+            Don't have an account?{" "}
+            <Link to="/signin" tabIndex={4}>
+              Sign in
+            </Link>
           </p>
           {errorAlert.error &&
             createPortal(
