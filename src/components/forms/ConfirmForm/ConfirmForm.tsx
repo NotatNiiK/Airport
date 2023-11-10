@@ -1,16 +1,19 @@
 import { FC } from "react";
 import cl from "./ConfirmForm.module.scss";
+import ButtonLoader from "../../UI/ButtonLoader/ButtonLoader";
 
 interface ConfirmFormProps {
   closeModal: () => void;
   performAction: () => any;
   title: string;
+  loading?: boolean;
 }
 
 const ConfirmForm: FC<ConfirmFormProps> = ({
   closeModal,
   performAction,
   title,
+  loading,
 }) => {
   return (
     <div className={cl["confirm-form"]}>
@@ -21,7 +24,7 @@ const ConfirmForm: FC<ConfirmFormProps> = ({
           className={cl["confirm-form__button"]}
           onClick={performAction}
         >
-          Yes
+          {loading ? <ButtonLoader /> : "Yes"}
         </button>
         <button
           type="button"

@@ -26,7 +26,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
     setIsEditModal(!isEditModalOpen);
   }
 
-  const [deleteFlight] = useFetching(async (id: number) => {
+  const [deleteFlight, isLoading] = useFetching(async (id: number) => {
     const r = await FlightsStore.deleteFlight(id);
     console.log(r.response);
     await FlightsStore.getFlights();
@@ -109,6 +109,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
       </Modal>
       <Modal visible={isDeleteModalOpen} toggleModalActive={toggleDeleteModal}>
         <ConfirmForm
+          loading={isLoading}
           closeModal={toggleDeleteModal}
           performAction={() => deleteFlight(flight.id)}
           title="Do you really want to delete this flight?"

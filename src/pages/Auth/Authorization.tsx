@@ -15,6 +15,7 @@ import { useFetching } from "../../hooks/useFetching";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { usePasswordMask } from "../../hooks/usePasswordMask";
+import ButtonLoader from "../../components/UI/ButtonLoader/ButtonLoader";
 
 const Authorization: FC = () => {
   const navigate = useNavigate();
