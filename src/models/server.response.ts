@@ -1,6 +1,14 @@
-interface ServerResponse {
+interface IServerResponse {
   hasError: boolean;
   response: string;
 }
 
-export type { ServerResponse };
+interface IServerError {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}
+
+export type { IServerResponse, IServerError };
