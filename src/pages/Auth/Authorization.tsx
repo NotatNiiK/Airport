@@ -1,8 +1,7 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
-import { IAlert } from "../../models/alert";
 import { IAuthData } from "../../models/auth";
 import { usePasswordMask } from "../../hooks/usePasswordMask";
 import { useFetching } from "../../hooks/useFetching";
