@@ -3,7 +3,7 @@ import cl from "./FlightsItem.module.scss";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import { IFlight } from "../../models/flights";
 import { useFetching } from "../../hooks/useFetching";
-import FlightsStore from "../../store/FlightsStore";
+import FlightsStore from "../../store/FlightStore";
 import AuthStore from "../../store/AuthStore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";

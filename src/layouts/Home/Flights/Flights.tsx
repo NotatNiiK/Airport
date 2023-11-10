@@ -7,7 +7,7 @@ import cl from "./Flights.module.scss";
 import Modal from "../../../components/UI/Modal/Modal";
 import FlightsList from "../../../components/FlightsList/FightsList";
 import GeneralFlightForm from "../../../components/forms/GeneralFlightForm/GeneralFlightForm";
-import FlightsStore from "../../../store/FlightsStore";
+import FlightStore from "../../../store/FlightStore";
 import AuthStore from "../../../store/AuthStore";
 import Alert from "@mui/material/Alert";
 
@@ -19,7 +19,7 @@ const Flights: FC = observer(() => {
   });
 
   const [getFlights, isLoading] = useFetching(async (): Promise<void> => {
-    const response = await FlightsStore.getFlights();
+    const response = await FlightStore.getFlights();
     if (response.hasError) {
       setErrorAlert({
         error: true,
@@ -60,7 +60,7 @@ const Flights: FC = observer(() => {
           </Alert>
         ) : (
           <FlightsList
-            flights={FlightsStore.flightsList}
+            flights={FlightStore.flightsList}
             isLoading={isLoading}
           />
         )}

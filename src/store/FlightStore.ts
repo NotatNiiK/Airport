@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import FlightsService from "../services/FlightsService";
+import FlightService from "../services/FlightService";
 import { IFlight } from "../models/flights";
 
 class AuthStore {
@@ -11,7 +11,7 @@ class AuthStore {
 
   async getFlights() {
     try {
-      const data = await FlightsService.getFlights();
+      const data = await FlightService.getFlights();
       this.flightsList = data.data;
       return {
         hasError: false,
@@ -32,7 +32,7 @@ class AuthStore {
     try {
       const {
         data: { success },
-      } = await FlightsService.createFlight(flight);
+      } = await FlightService.createFlight(flight);
       return {
         hasError: false,
         response: success,
@@ -52,7 +52,7 @@ class AuthStore {
     try {
       const {
         data: { success },
-      } = await FlightsService.deleteFlight(id);
+      } = await FlightService.deleteFlight(id);
       return {
         hasError: false,
         response: success,
@@ -72,7 +72,7 @@ class AuthStore {
     try {
       const {
         data: { success },
-      } = await FlightsService.updateFlight(flight);
+      } = await FlightService.updateFlight(flight);
       return {
         hasError: false,
         response: success,

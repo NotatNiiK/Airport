@@ -8,7 +8,7 @@ import cl from "./GeneralFlightForm.module.scss";
 import FormInput from "../../UI/FormInput/FormInput";
 import FormButton from "../../UI/FormButton/FormButton";
 import Checkbox from "@mui/material/Checkbox";
-import FlightsStore from "../../../store/FlightsStore";
+import FlightsStore from "../../../store/FlightStore";
 import FlightValidation from "../../../validation/FlightValidation";
 import formatFlightDate from "../../../utils/formatFlightDate";
 
