@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { ServerResponse } from "../models/server.response";
+import { IServerResponse } from "../models/server.response";
 import TicketService from "../services/TicketService";
 import { ITicket } from "../models/ticket";
 
@@ -7,7 +7,7 @@ class TicketStore {
   constructor() {
     makeAutoObservable(this);
   }
-  async createTicket(ticket: ITicket): Promise<ServerResponse> {
+  async createTicket(ticket: ITicket): Promise<IServerResponse> {
     try {
       const {
         data: { success },
