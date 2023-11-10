@@ -78,7 +78,7 @@ const Header: FC = () => {
           <div className={cl["nav__buttons"]}>
             <AccountCircleIcon
               className={cl["nav__button"]}
-              onClick={() => navigate("/account")}
+              onClick={() => navigate("/account/1")}
             />
             <LogoutIcon
               onClick={toggleModalActive}

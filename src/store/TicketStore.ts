@@ -24,6 +24,14 @@ class TicketStore {
       };
     }
   }
+  async getTickets(userId: number): Promise<any> {
+    try {
+      const { data } = await TicketService.getTickets(userId);
+      return data;
+    } catch (e: any) {
+      console.log(e);
+    }
+  }
 }
 
 export default new TicketStore();
