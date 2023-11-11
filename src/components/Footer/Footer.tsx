@@ -1,10 +1,9 @@
 import { FC } from "react";
-import cl from "./Footer.module.scss";
-import navLinks from "../../data/navLinks";
-import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 import { Link } from "react-router-dom";
-import socialMedia from "../../data/socialMedia";
+import cl from "./Footer.module.scss";
 import Logo from "../UI/Logo/Logo";
+import navLinks from "../../data/navLinks";
+import socialMedia from "../../data/socialMedia";
 
 const Footer: FC = () => {
   return (
