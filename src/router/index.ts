@@ -25,7 +25,7 @@ export const privateRoutes: IRoutes = [
     component: Tickets,
   },
   {
-    path: "/account/:userId",
+    path: "/account",
     component: Account,
   },
 ];

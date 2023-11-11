@@ -1,9 +1,9 @@
 import { FC } from "react";
-import cl from "./Tickets.module.scss";
 import { useParams } from "react-router-dom";
-import TicketStore from "../../store/TicketStore";
 import { ITicket } from "../../models/ticket";
 import { useForm } from "react-hook-form";
+import cl from "./Tickets.module.scss";
+import TicketStore from "../../store/TicketStore";
 
 const Tickets: FC = () => {
   const { flightId, flightNumber, cost, userId } = useParams();
