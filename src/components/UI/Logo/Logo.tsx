@@ -5,7 +5,7 @@ import LocalAirportIcon from "@mui/icons-material/LocalAirport";
 const Logo: FC = () => {
   return (
     <h2 className={cl["logo"]}>
-      Utravel <LocalAirportIcon />{" "}
+      Utravel <LocalAirportIcon />
     </h2>
   );
 };
