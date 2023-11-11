@@ -17,7 +17,7 @@ const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
 const Header: FC = () => {
   const navigate = useNavigate();
 
-  const [hasHeaderBg, setHasHeaderBg] = useState(false);
+  const [hasHeaderBg, setHasHeaderBg] = useState<boolean>(false);
   const [
     isLogoutModal,
     isBurgerMenuOpen,

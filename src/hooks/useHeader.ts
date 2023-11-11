@@ -12,8 +12,8 @@ export const useHeader = (): [
 ] => {
   const navigate = useNavigate();
 
-  const [isLogoutModal, setIsLogoutModal] = useState(false);
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const [isLogoutModal, setIsLogoutModal] = useState<boolean>(false);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState<boolean>(false);
 
   function toggleModal(): void {
     setIsLogoutModal(!isLogoutModal);
