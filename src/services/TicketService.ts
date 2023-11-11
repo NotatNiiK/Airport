@@ -10,8 +10,10 @@ class AuthService {
     return $axios.post("tiket/create", ticket);
   }
 
-  public static getTickets(userId: number): Promise<AxiosResponse<ITickets>> {
-    return $axios.post("tiket/get/all", userId);
+  public static async getTickets(
+    userId: number
+  ): Promise<AxiosResponse<ITickets>> {
+    return $axios.post("tiket/get/all", { userId });
   }
 }
 
