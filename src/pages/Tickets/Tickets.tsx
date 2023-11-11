@@ -4,12 +4,13 @@ import { ITicket } from "../../models/ticket";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
 import { useFetching } from "../../hooks/useFetching";
+import { IOptions } from "../../models/options";
 import cl from "./Tickets.module.scss";
 import TicketButton from "../../components/UI/TicketButton/TicketButton";
 import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
 import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 import TicketStore from "../../store/TicketStore";
-import { IOptions } from "../../models/options";
+import formatTicketDate from "../../utils/formatTicketDate";
 
 const Tickets: FC = () => {
   const { flightId, flightNumber, cost, userId } = useParams();
@@ -24,7 +25,7 @@ const Tickets: FC = () => {
         cost: cost || "",
         flightId: flightId || "",
         flightStatus: true,
-        purchaseDate: "31.12.2004 15:31",
+        purchaseDate: formatTicketDate(),
       };
       const createResponse = await TicketStore.createTicket(newTicket);
       if (createResponse.hasError) {
