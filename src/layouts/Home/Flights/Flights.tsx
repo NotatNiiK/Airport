@@ -19,11 +19,11 @@ const Flights: FC = observer(() => {
   });
 
   const [getFlights, isLoading] = useFetching(async (): Promise<void> => {
-    const response = await FlightStore.getFlights();
-    if (response?.hasError) {
+    const getResponse = await FlightStore.getFlights();
+    if (getResponse?.hasError) {
       setErrorAlert({
         error: true,
-        message: response.response,
+        message: getResponse.response,
       });
     }
   });
