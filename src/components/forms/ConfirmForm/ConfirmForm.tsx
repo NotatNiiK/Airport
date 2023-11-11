@@ -4,7 +4,7 @@ import ButtonLoader from "../../UI/ButtonLoader/ButtonLoader";
 
 interface ConfirmFormProps {
   closeModal: () => void;
-  performAction: () => any;
+  performAction: () => Promise<void> | void;
   title: string;
   loading?: boolean;
 }
