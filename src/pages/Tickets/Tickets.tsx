@@ -1,34 +1,57 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ITicket } from "../../models/ticket";
 import { useForm } from "react-hook-form";
+import { useAlert } from "../../hooks/useAlert";
+import { useFetching } from "../../hooks/useFetching";
 import cl from "./Tickets.module.scss";
+import TicketButton from "../../components/UI/TicketButton/TicketButton";
+import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 import TicketStore from "../../store/TicketStore";
+import { IOptions } from "../../models/options";
 
 const Tickets: FC = () => {
   const { flightId, flightNumber, cost, userId } = useParams();
+  const [errorAlert, showAlert] = useAlert();
+
+  const [createTicket, isLoading] = useFetching(
+    async (ticket: ITicket): Promise<void> => {
+      const newTicket = {
+        ...ticket,
+        userId: userId || "",
+        flightNumber: flightNumber || "",
+        cost: cost || "",
+        flightId: flightId || "",
+        flightStatus: true,
+        purchaseDate: "31.12.2004 15:31",
+      };
+      const createResponse = await TicketStore.createTicket(newTicket);
+      if (createResponse.hasError) {
+        showAlert(createResponse.response);
+      }
+    }
+  );
+
+  const classOptions: IOptions = [
+    { id: 0, text: "Econom", value: "Econom" },
+    { id: 1, text: "Business", value: "Business" },
+  ];
+
+  const placeOptions: IOptions = [
+    { id: 0, text: "1", value: "1" },
+    { id: 1, text: "2", value: "2" },
+    { id: 3, text: "22", value: "22" },
+    { id: 4, text: "52", value: "52" },
+    { id: 5, text: "67", value: "67" },
+  ];
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
-    reset,
   } = useForm<ITicket>();
-
-  async function createTicket(ticket: ITicket): Promise<void> {
-    const newTicket = {
-      ...ticket,
-      userId: userId || "",
-      flightNumber: flightNumber || "",
-      cost: cost || "",
-      flightId: flightId || "",
-      flightStatus: true,
-      purchaseDate: "31.12.2004 15:31",
-    };
-    const r = await TicketStore.createTicket(newTicket);
-    console.log(r.response);
-  }
 
   return (
     <div className={cl["tickets"]}>
@@ -40,34 +63,45 @@ const Tickets: FC = () => {
         >
           <section className={cl["tickets__section"]}>
             <label htmlFor="class">Select class: </label>
-            <select
-              className={cl["tickets__select"]}
+            <TicketSelect
+              defaultValue="Choose class"
+              options={classOptions}
+              {...(register("classes"),
+              {
+                required: true,
+              })}
+              isError={errors.classes}
+              onBlur={() => clearErrors("classes")}
               id="class"
-              {...register("classes")}
               tabIndex={1}
-            >
-              <option value="Bussines">Bussines</option>
-              <option value="Econom">Econom</option>
-            </select>
+            />
           </section>
           <section className={cl["tickets__section"]}>
-            <label>Select place: </label>
-            <select
-              className={cl["tickets__select"]}
-              {...register("place")}
-              tabIndex={1}
-            >
-              <option value="1">1</option>
-              <option value="32">32</option>
-              <option value="45">45</option>
-              <option value="31">31</option>
-            </select>
+            <label htmlFor="place">Select place: </label>
+            <TicketSelect
+              defaultValue="Choose place"
+              options={placeOptions}
+              {...(register("place"),
+              {
+                required: true,
+              })}
+              isError={errors.place}
+              onBlur={() => clearErrors("place")}
+              id="place"
+              tabIndex={2}
+            />
           </section>
           <section className={cl["tickets__section"]}>
-            <button className={cl["tickets__button"]}>Buy</button>
+            <TicketButton loading={isLoading} tabIndex={3}>
+              Buy
+            </TicketButton>
           </section>
         </form>
+        <Link to="/" className={cl["tickets__link"]}>
+          Go home
+        </Link>
       </div>
+      <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
     </div>
   );
 };

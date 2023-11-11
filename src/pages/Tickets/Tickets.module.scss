@@ -16,16 +16,13 @@
     }
   }
   &__title {
-    @apply text-center text-3xl font-bold;
-  }
-  &__select {
-    @apply w-full text-black py-2 px-4 rounded;
+    @apply text-center text-3xl font-bold mb-5;
   }
   &__section {
     @apply mb-3;
   }
-  &__button {
-    @apply w-full py-2 px-4 bg-white text-custom-green flex items-center justify-center font-bold rounded transition-all
-    duration-300 hover:bg-white/80;
+
+  &__link {
+    @apply underline hover:no-underline;
   }
 }
