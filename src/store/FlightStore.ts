@@ -1,6 +1,8 @@
 import { makeAutoObservable } from "mobx";
+import { IFlight, IFlightCallback } from "../models/flights";
+import { IServerResponse } from "../models/server.response";
 import FlightService from "../services/FlightService";
-import { IFlight } from "../models/flights";
+import handleServerError from "../utils/handleServerError";
 
 class AuthStore {
   constructor() {
@@ -9,81 +11,43 @@ class AuthStore {
 
   flightsList: IFlight[] = [];
 
-  async getFlights() {
+  async getFlights(): Promise<void | IServerResponse> {
     try {
-      const data = await FlightService.getFlights();
-      this.flightsList = data.data;
-      return {
-        hasError: false,
-        response: data.data,
-      };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
+      const { data } = await FlightService.getFlights();
+      this.flightsList = data;
+    } catch (e: unknown) {
+      return handleServerError(e);
     }
   }
 
-  async createFlight(
-    flight: IFlight
-  ): Promise<{ hasError: boolean; response: string }> {
+  async getFlightRequest<T extends IFlight | number>(
+    data: T,
+    callback: IFlightCallback<T>
+  ): Promise<IServerResponse> {
     try {
       const {
         data: { success },
-      } = await FlightService.createFlight(flight);
+      } = await callback(data);
+
       return {
         hasError: false,
         response: success,
       };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
+    } catch (e: unknown) {
+      return handleServerError(e);
     }
   }
 
-  async deleteFlight(
-    id: number
-  ): Promise<{ hasError: boolean; response: string }> {
-    try {
-      const {
-        data: { success },
-      } = await FlightService.deleteFlight(id);
-      return {
-        hasError: false,
-        response: success,
-      };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
-    }
+  async createFlight(flight: IFlight): Promise<IServerResponse> {
+    return this.getFlightRequest(flight, FlightService.createFlight);
   }
 
-  async updateFlight(
-    flight: IFlight
-  ): Promise<{ hasError: boolean; response: string }> {
-    try {
-      const {
-        data: { success },
-      } = await FlightService.updateFlight(flight);
-      return {
-        hasError: false,
-        response: success,
-      };
-    } catch (e: any) {
-      console.log(e);
-      return {
-        hasError: true,
-        response: e?.response?.data?.message || "Unexpected error",
-      };
-    }
+  async deleteFlight(id: number): Promise<IServerResponse> {
+    return this.getFlightRequest(id, FlightService.deleteFlight);
+  }
+
+  async updateFlight(flight: IFlight): Promise<IServerResponse> {
+    return this.getFlightRequest(flight, FlightService.updateFlight);
   }
 }
 
