@@ -3,7 +3,6 @@ import { IAuthData, IRegData, IAuthCallback } from "../models/auth";
 import { jwtDecode } from "jwt-decode";
 import { IServerResponse } from "../models/server.response";
 import { IToken } from "../models/token";
-import { IServerError } from "../models/server.response";
 import AuthService from "../services/AuthService";
 import {
   setTokenInfoInLS,
