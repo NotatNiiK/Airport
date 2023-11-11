@@ -10,7 +10,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FlightsStore from "../../../store/FlightStore";
 import FlightValidation from "../../../validation/FlightValidation";
 import formatFlightDate from "../../../utils/formatFlightDate";
-import ErrorAlert from "../../ErrorAlert/ErrorAlert";
+import Notify from "../../Notify/Notify";
 
 interface GeneralFlightFormProps {
   title: string;
@@ -189,7 +189,11 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           Create
         </FormButton>
       </section>
-      <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
+      <Notify
+        show={errorAlert.show}
+        message={errorAlert.message}
+        type="error"
+      />
     </form>
   );
 };

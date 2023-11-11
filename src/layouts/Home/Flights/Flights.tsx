@@ -14,7 +14,7 @@ import Alert from "@mui/material/Alert";
 const Flights: FC = observer(() => {
   const [isCreateModalOpen, toggleCreateModal] = useModal();
   const [errorAlert, setErrorAlert] = useState<IAlert>({
-    error: false,
+    show: false,
     message: "",
   });
 
@@ -22,7 +22,7 @@ const Flights: FC = observer(() => {
     const getResponse = await FlightStore.getFlights();
     if (getResponse?.hasError) {
       setErrorAlert({
-        error: true,
+        show: true,
         message: getResponse.response,
       });
     }
@@ -47,7 +47,7 @@ const Flights: FC = observer(() => {
             </button>
           )}
         </div>
-        {errorAlert.error ? (
+        {errorAlert.show ? (
           <Alert
             severity="error"
             sx={{

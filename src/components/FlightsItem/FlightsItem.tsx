@@ -8,7 +8,7 @@ import { useAlert } from "../../hooks/useAlert";
 import cl from "./FlightsItem.module.scss";
 import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
-import ErrorAlert from "../ErrorAlert/ErrorAlert";
+import Notify from "../Notify/Notify";
 import Modal from "../UI/Modal/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -117,7 +117,11 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
           title="Do you really want to delete this flight?"
         />
       </Modal>
-      <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
+      <Notify
+        show={errorAlert.show}
+        message={errorAlert.message}
+        type="error"
+      />
     </li>
   );
 };

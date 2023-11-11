@@ -6,7 +6,7 @@ import { usePasswordMask } from "../../hooks/usePasswordMask";
 import { useFetching } from "../../hooks/useFetching";
 import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import Notify from "../../components/Notify/Notify";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthStore from "../../store/AuthStore";
@@ -91,7 +91,11 @@ const Authorization: FC = () => {
               Sign in
             </Link>
           </p>
-          <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
+          <Notify
+            show={errorAlert.show}
+            message={errorAlert.message}
+            type="error"
+          />
         </form>
       </section>
     </div>

@@ -1,5 +1,5 @@
 interface IAlert {
-  error: boolean;
+  show: boolean;
   message: string;
 }
 

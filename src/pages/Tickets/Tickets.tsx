@@ -8,13 +8,14 @@ import { IOptions } from "../../models/options";
 import cl from "./Tickets.module.scss";
 import TicketButton from "../../components/UI/TicketButton/TicketButton";
 import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import Notify from "../../components/Notify/Notify";
 import TicketStore from "../../store/TicketStore";
 import formatTicketDate from "../../utils/formatTicketDate";
 
 const Tickets: FC = () => {
   const { flightId, flightNumber, cost, userId } = useParams();
   const [errorAlert, showAlert] = useAlert();
+  const [successAlert, showSuccessAlert] = useAlert();
 
   const [createTicket, isLoading] = useFetching(
     async (ticket: ITicket): Promise<void> => {
@@ -31,6 +32,7 @@ const Tickets: FC = () => {
       if (createResponse.hasError) {
         showAlert(createResponse.response);
       }
+      showSuccessAlert(createResponse.response);
     }
   );
 
@@ -97,12 +99,21 @@ const Tickets: FC = () => {
               Buy
             </TicketButton>
           </section>
+          <Notify
+            show={errorAlert.show}
+            message={errorAlert.message}
+            type="success"
+          />
         </form>
         <Link to="/" className={cl["tickets__link"]}>
           Go home
         </Link>
       </div>
-      <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
+      <Notify
+        show={errorAlert.show}
+        message={errorAlert.message}
+        type="error"
+      />
     </div>
   );
 };

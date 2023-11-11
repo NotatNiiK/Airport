@@ -3,19 +3,19 @@ import { IAlert } from "../models/alert";
 
 export const useAlert = (): [IAlert, (message: string) => void] => {
   const [errorAlert, setErrorAlert] = useState<IAlert>({
-    error: false,
+    show: false,
     message: "",
   });
 
   function showAlert(message: string): void {
     setErrorAlert({
-      error: true,
+      show: true,
       message,
     });
 
     setTimeout(() => {
       setErrorAlert({
-        error: false,
+        show: false,
         message: "",
       });
     }, 3000);
