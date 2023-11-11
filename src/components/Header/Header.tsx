@@ -1,14 +1,14 @@
 import { FC, useState, useEffect } from "react";
-import { NavLink, useNavigate, Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useHeader } from "../../hooks/useHeader";
 import cl from "./Header.module.scss";
-import LogoutIcon from "@mui/icons-material/Logout";
-import AuthStore from "../../store/AuthStore";
 import Modal from "../UI/Modal/Modal";
-import MenuIcon from "@mui/icons-material/Menu";
-import navLinks from "../../data/navLinks";
-import Logo from "../UI/Logo/Logo";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import Logo from "../UI/Logo/Logo";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import navLinks from "../../data/navLinks";
 
 const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
   return isActive ? `${cl["nav__link"]} ${cl["active-link"]}` : cl["nav__link"];
@@ -18,8 +18,13 @@ const Header: FC = () => {
   const navigate = useNavigate();
 
   const [hasHeaderBg, setHasHeaderBg] = useState(false);
-  const [isLogoutModal, setIsLogoutModal] = useState(false);
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const [
+    isLogoutModal,
+    isBurgerMenuOpen,
+    toggleModal,
+    toggleBurgerMenu,
+    performLogout,
+  ] = useHeader();
 
   const headerClasses: string[] = [
     cl["header"],
@@ -30,23 +35,6 @@ const Header: FC = () => {
     cl["nav"],
     isBurgerMenuOpen ? cl["active"] : "",
   ];
-
-  function toggleModalActive() {
-    setIsLogoutModal(!isLogoutModal);
-    setIsBurgerMenuOpen(false);
-  }
-
-  function toggleBurgerMenu() {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-    document.body.classList.toggle("overflow-hidden");
-  }
-
-  function performLogout(): void {
-    AuthStore.logout();
-    setIsLogoutModal(false);
-    document.body.classList.toggle("overflow-hidden");
-    navigate("/login");
-  }
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -80,17 +68,14 @@ const Header: FC = () => {
               className={cl["nav__button"]}
               onClick={() => navigate("/account/1")}
             />
-            <LogoutIcon
-              onClick={toggleModalActive}
-              className={cl["nav__button"]}
-            />
+            <LogoutIcon onClick={toggleModal} className={cl["nav__button"]} />
           </div>
         </nav>
         <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
-      <Modal open={isLogoutModal} toggleModal={toggleModalActive}>
+      <Modal open={isLogoutModal} toggleModal={toggleModal}>
         <ConfirmForm
-          closeModal={toggleModalActive}
+          closeModal={toggleModal}
           performAction={performLogout}
           title="Do you really want to log out?"
         />
