@@ -1,22 +1,31 @@
 import { FC, useEffect } from "react";
 import cl from "./Account.module.scss";
 import TicketStore from "../../store/TicketStore";
+import AuthStore from "../../store/AuthStore";
+import Header from "../../components/Header/Header";
 
 const Account: FC = () => {
   useEffect(() => {
     const fetching = async () => {
-      const r = await TicketStore.getTickets(1);
-      console.log(r);
+      const userId = AuthStore.tokenInfo.id || 0;
+      console.log(userId);
+      const r = await TicketStore.getTickets(userId);
     };
     fetching();
   }, []);
   return (
-    <div className={cl["account"]}>
-      <div className={cl["account__container"]}>
-        <h1 className={cl["account__title"]}>Hello Anton</h1>
-        <p className={cl["account__email"]}>email: test@gmail.com</p>
-      </div>
-    </div>
+    <>
+      <Header />
+      <main className="main">
+        <div className={cl["account"]}>
+          <div className={cl["account__container"]}>
+            <h1 className={cl["account__title"]}>
+              Welcome, {AuthStore.tokenInfo.username}
+            </h1>
+          </div>
+        </div>
+      </main>
+    </>
   );
 };
 
