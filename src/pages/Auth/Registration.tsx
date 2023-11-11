@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
 import { IRegData } from "../../models/auth";
