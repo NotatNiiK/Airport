@@ -29,11 +29,11 @@ const Tickets: FC = () => {
         purchaseDate: formatTicketDate(),
       };
       console.log(newTicket);
-      /*  const createResponse = await TicketStore.createTicket(newTicket);
+      const createResponse = await TicketStore.createTicket(newTicket);
       if (createResponse.hasError) {
         showAlert(createResponse.response);
       }
-      showSuccessAlert(createResponse.response); */
+      showSuccessAlert(createResponse.response);
     }
   );
 
