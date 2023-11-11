@@ -3,12 +3,11 @@ import { useForm } from "react-hook-form";
 import { InputMask } from "@react-input/mask";
 import { IRegData } from "../../models/auth";
 import { useNavigate, Link } from "react-router-dom";
-import { createPortal } from "react-dom";
 import { useFetching } from "../../hooks/useFetching";
 import { usePasswordMask } from "../../hooks/usePasswordMask";
 import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
-import Alert from "@mui/material/Alert";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthValidation from "../../validation/AuthValidation";
@@ -135,13 +134,7 @@ const Registration: FC = () => {
               Login
             </Link>
           </p>
-          {errorAlert.error &&
-            createPortal(
-              <Alert severity="error" className={cl["alert"]}>
-                {errorAlert.message}
-              </Alert>,
-              document.body
-            )}
+          <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
         </form>
       </section>
     </div>

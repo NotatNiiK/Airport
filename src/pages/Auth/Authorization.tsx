@@ -1,15 +1,14 @@
 import { FC } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { IAuthData } from "../../models/auth";
 import { usePasswordMask } from "../../hooks/usePasswordMask";
 import { useFetching } from "../../hooks/useFetching";
 import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
-import Alert from "@mui/material/Alert";
 import AuthStore from "../../store/AuthStore";
 import AuthValidation from "../../validation/AuthValidation";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -92,13 +91,7 @@ const Authorization: FC = () => {
               Sign in
             </Link>
           </p>
-          {errorAlert.error &&
-            createPortal(
-              <Alert severity="error" className={cl["alert"]}>
-                {errorAlert.message}
-              </Alert>,
-              document.body
-            )}
+          <ErrorAlert isError={errorAlert.error} message={errorAlert.message} />
         </form>
       </section>
     </div>
