@@ -1,4 +1,4 @@
 .ticket-button {
   @apply w-full py-2 px-4 bg-white text-custom-green flex items-center justify-center font-bold rounded transition-all
-    duration-300 hover:bg-white/80;
+    duration-300 hover:bg-white/80  focus:bg-white/80;
 }
