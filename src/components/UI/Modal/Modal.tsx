@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
 import cl from "./Modal.module.scss";
+import toggleBodyLock from "../../../utils/toggleBodyLock";
 
 interface ModalProps {
   open: boolean;
@@ -18,7 +19,7 @@ const Modal: FC<ModalProps> = ({ open, toggleModal, children }) => {
   }
 
   useEffect(() => {
-    document.body.classList.toggle("overflow-hidden", open);
+    toggleBodyLock(open);
   }, [open]);
 
   return (
