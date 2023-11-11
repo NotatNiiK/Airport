@@ -39,3 +39,7 @@
     duration-300 hover:text-custom-green hover:bg-white;
   }
 }
+
+.alert {
+  @apply fixed z-50 bottom-5 left-5;
+}
