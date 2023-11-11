@@ -1,34 +1,30 @@
 import { FC, ReactNode, useEffect } from "react";
-import cl from "./Modal.module.scss";
 import { createPortal } from "react-dom";
+import cl from "./Modal.module.scss";
 
 interface ModalProps {
-  visible: boolean;
-  toggleModalActive: () => void;
+  open: boolean;
+  toggleModal: () => void;
   children: ReactNode;
 }
 
-const Modal: FC<ModalProps> = ({ visible, toggleModalActive, children }) => {
-  const rootClass = [cl["modal"]];
-  const modalClass = [cl["modal__body"]];
+const Modal: FC<ModalProps> = ({ open, toggleModal, children }) => {
+  const rootClass: string[] = [cl["modal"]];
+  const modalClass: string[] = [cl["modal__body"]];
 
-  if (visible) {
+  if (open) {
     rootClass.push(cl["active"]);
     modalClass.push(cl["active"]);
   }
 
   useEffect(() => {
-    document.body.classList.toggle("overflow-hidden");
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("overflow-hidden");
-  }, [visible]);
+    document.body.classList.toggle("overflow-hidden", open);
+  }, [open]);
 
   return (
     <>
       {createPortal(
-        <div className={rootClass.join(" ")} onClick={toggleModalActive}>
+        <div className={rootClass.join(" ")} onClick={toggleModal}>
           <div className={cl["modal__wrapper"]}>
             <div
               className={modalClass.join(" ")}

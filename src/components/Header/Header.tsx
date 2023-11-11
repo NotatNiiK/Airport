@@ -88,7 +88,7 @@ const Header: FC = () => {
         </nav>
         <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
-      <Modal visible={isLogoutModal} toggleModalActive={toggleModalActive}>
+      <Modal open={isLogoutModal} toggleModal={toggleModalActive}>
         <ConfirmForm
           closeModal={toggleModalActive}
           performAction={performLogout}

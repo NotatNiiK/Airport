@@ -65,10 +65,7 @@ const Flights: FC = observer(() => {
           />
         )}
 
-        <Modal
-          visible={isCreateModalOpen}
-          toggleModalActive={toggleCreateModal}
-        >
+        <Modal open={isCreateModalOpen} toggleModal={toggleCreateModal}>
           <GeneralFlightForm
             title="Create flight"
             isEdit={false}
