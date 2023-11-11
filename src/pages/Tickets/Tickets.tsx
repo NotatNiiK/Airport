@@ -28,11 +28,12 @@ const Tickets: FC = () => {
         flightStatus: true,
         purchaseDate: formatTicketDate(),
       };
-      const createResponse = await TicketStore.createTicket(newTicket);
+      console.log(newTicket);
+      /*  const createResponse = await TicketStore.createTicket(newTicket);
       if (createResponse.hasError) {
         showAlert(createResponse.response);
       }
-      showSuccessAlert(createResponse.response);
+      showSuccessAlert(createResponse.response); */
     }
   );
 
@@ -47,6 +48,7 @@ const Tickets: FC = () => {
     { id: 3, text: "22", value: "22" },
     { id: 4, text: "52", value: "52" },
     { id: 5, text: "67", value: "67" },
+    { id: 5, text: "99", value: "99" },
   ];
 
   const {
@@ -69,10 +71,7 @@ const Tickets: FC = () => {
             <TicketSelect
               defaultValue="Choose class"
               options={classOptions}
-              {...(register("classes"),
-              {
-                required: true,
-              })}
+              {...register("classes", { required: true })}
               isError={errors.classes}
               onBlur={() => clearErrors("classes")}
               id="class"
@@ -84,8 +83,7 @@ const Tickets: FC = () => {
             <TicketSelect
               defaultValue="Choose place"
               options={placeOptions}
-              {...(register("place"),
-              {
+              {...register("place", {
                 required: true,
               })}
               isError={errors.place}
@@ -100,8 +98,8 @@ const Tickets: FC = () => {
             </TicketButton>
           </section>
           <Notify
-            show={errorAlert.show}
-            message={errorAlert.message}
+            show={successAlert.show}
+            message={successAlert.message}
             type="success"
           />
         </form>
