@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IFlight, IFlightCallback } from "../models/flights";
+import { IFlight, IFlights, IFlightCallback } from "../models/flights";
 import { IServerResponse } from "../models/server.response";
 import FlightService from "../services/FlightService";
 import handleServerError from "../utils/handleServerError";
@@ -9,12 +9,16 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
-  flightsList: IFlight[] = [];
+  flightsList: IFlights = [];
+
+  setFlightsList(flights: IFlights): void {
+    this.flightsList = flights;
+  }
 
   async getFlights(): Promise<void | IServerResponse> {
     try {
       const { data } = await FlightService.getFlights();
-      this.flightsList = data;
+      this.setFlightsList(data);
     } catch (e: unknown) {
       return handleServerError(e);
     }
