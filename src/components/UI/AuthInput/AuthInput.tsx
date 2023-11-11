@@ -1,23 +1,19 @@
 import { FC, InputHTMLAttributes, forwardRef, Ref } from "react";
-import cl from "./AuthInput.module.scss";
 import { FieldError } from "react-hook-form";
+import cl from "./AuthInput.module.scss";
 
 interface AuthInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  isError: FieldError | undefined;
+  isError?: FieldError;
 }
 
 const AuthInput: FC<AuthInputProps> = forwardRef(
   ({ isError, ...props }, ref: Ref<HTMLInputElement>) => {
-    return (
-      <input
-        type="text"
-        className={`${cl["auth-input"]} ${
-          isError ? cl["validation-error"] : ""
-        }`}
-        ref={ref}
-        {...props}
-      />
-    );
+    const inputClasses: string = [
+      cl["auth-input"],
+      `${isError ? cl["validation-error"] : ""}`,
+    ].join(" ");
+
+    return <input className={inputClasses} ref={ref} {...props} />;
   }
 );
 
