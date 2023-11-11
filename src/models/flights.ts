@@ -1,3 +1,6 @@
+import { AxiosResponse } from "axios";
+import { ISuccess } from "./success";
+
 interface IFlight {
   id?: number;
   flightNumber: string;
@@ -11,4 +14,6 @@ interface IFlight {
 
 type IFlights = IFlight[];
 
-export type { IFlight, IFlights };
+type IFlightCallback<T> = (flightData: T) => Promise<AxiosResponse<ISuccess>>;
+
+export type { IFlight, IFlights, IFlightCallback };
