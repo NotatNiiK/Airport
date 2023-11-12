@@ -4,6 +4,7 @@ import Authorization from "../pages/Auth/Authorization";
 import Tickets from "../pages/Tickets/Tickets";
 import About from "../pages/About/About";
 import Account from "../pages/Account/Account";
+import Baggage from "../pages/Baggage/Baggage";
 import { IRoutes } from "../models/routes";
 
 export const publicRoutes: IRoutes = [
@@ -30,6 +31,6 @@ export const privateRoutes: IRoutes = [
   },
   {
     path: "/baggage/:ticketId",
-    component: Account,
+    component: Baggage,
   },
 ];
