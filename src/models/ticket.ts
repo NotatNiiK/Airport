@@ -1,5 +1,4 @@
-interface ITicket {
-  id?: number;
+export interface ITicket {
   arrivalTime: string;
   departureLocation: string;
   destination: string;
@@ -8,11 +7,10 @@ interface ITicket {
   cost: string;
   place: string;
   flightStatus: boolean;
-  flightNumber?: string;
   flightId: string;
   userId: string;
+  flightNumber?: string;
+  id?: number;
 }
 
-type ITickets = ITicket[];
-
-export type { ITicket, ITickets };
+export type ITickets = ITicket[];

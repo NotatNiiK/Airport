@@ -1,4 +1,4 @@
-interface IFlight {
+export interface IFlight {
   id?: number;
   flightNumber: string;
   departureLocation: string;
@@ -9,6 +9,4 @@ interface IFlight {
   price: number;
 }
 
-type IFlights = IFlight[];
-
-export type { IFlight, IFlights };
+export type IFlights = IFlight[];

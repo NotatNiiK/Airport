@@ -1,4 +1,4 @@
-interface IBaggage {
+export interface IBaggage {
   id?: number;
   width: string;
   height: string;
@@ -7,6 +7,4 @@ interface IBaggage {
   tiketId: string;
 }
 
-type IBaggages = IBaggage[];
-
-export type { IBaggage, IBaggages };
+export type IBaggages = IBaggage[];

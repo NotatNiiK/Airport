@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-interface IRegData {
+export interface IRegData {
   fullName: string;
   email: string;
   password: string;
@@ -8,12 +8,15 @@ interface IRegData {
   contactInfo: string;
 }
 
-type IAuthData = Omit<IRegData, "fullName" | "passportNumber" | "contactInfo">;
+export type IAuthData = Omit<
+  IRegData,
+  "fullName" | "passportNumber" | "contactInfo"
+>;
 
-interface IAuthResponse {
+export interface IAuthResponse {
   access: string;
 }
 
-type IAuthCallback<T> = (authData: T) => Promise<AxiosResponse<IAuthResponse>>;
-
-export type { IRegData, IAuthResponse, IAuthData, IAuthCallback };
+export type IAuthCallback<T> = (
+  authData: T
+) => Promise<AxiosResponse<IAuthResponse>>;

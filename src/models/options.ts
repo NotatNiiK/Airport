@@ -1,9 +1,7 @@
-interface IOption {
+export interface IOption {
   id: number;
   text: string;
   value: string;
 }
 
-type IOptions = IOption[];
-
-export type { IOptions };
+export type IOptions = IOption[];
