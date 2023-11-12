@@ -14,4 +14,8 @@
   &__label {
     @apply leading-tight text-sm;
   }
+
+  &__price {
+    @apply text-indigo-600 text-lg;
+  }
 }

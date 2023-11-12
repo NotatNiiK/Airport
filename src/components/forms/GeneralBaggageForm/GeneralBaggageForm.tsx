@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, ChangeEvent } from "react";
+import { FC, useState, useEffect, useMemo, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import { IBaggage } from "../../../models/baggage";
 import { useForm } from "react-hook-form";
@@ -27,13 +27,22 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
   baggage,
   closeModal,
 }) => {
-  const { ticketId } = useParams();
+  const { tiketId } = useParams();
 
   const [width, setWidth] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
 
-  const [baggagePrice] = useCalcBaggagePrice(width, height, weight);
+  const [baggagePrice, resetBaggagePrice] = useCalcBaggagePrice(
+    width,
+    height,
+    weight
+  );
+
+  const baggagePriceDisplay = useMemo((): string => {
+    if (baggagePrice === 0) return "0$";
+    return baggagePrice ? baggagePrice + "$" : "Uncorrect data!";
+  }, [baggagePrice]);
 
   const {
     register,
@@ -45,6 +54,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
   } = useForm<IBaggage>();
 
   const [errorAlert, showAlert] = useAlert();
+  const [successAlert, showSuccessAlert] = useAlert();
 
   useEffect((): void => {
     if (isEdit) setEditFormValue();
@@ -70,21 +80,31 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
       if (isEdit) {
         apiResponse = await BaggageStore.updateBaggage(baggageData);
       } else {
-        apiResponse = await BaggageStore.createBaggage(baggageData);
+        if (tiketId) {
+          const baggage = {
+            ...baggageData,
+            tiketId,
+            cost: String(baggagePrice),
+          };
+          apiResponse = await BaggageStore.createBaggage(baggage);
+        }
       }
 
-      if (apiResponse.hasError) {
+      if (apiResponse?.hasError) {
         showAlert(apiResponse.response);
         return;
       }
 
-      if (ticketId) {
-        const numTicketId = +ticketId;
+      showSuccessAlert(apiResponse?.response || "Success");
+
+      /* if (tiketId) {
+        const numTicketId = +tiketId;
         await BaggageStore.getBaggageById(numTicketId);
-      }
+      } */
 
       if (!isEdit) {
         reset();
+        resetBaggagePrice();
       }
 
       closeModal();
@@ -143,7 +163,9 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         />
       </section>
       <section className={cl["general-form__section"]}>
-        <p>Price: {baggagePrice}$</p>
+        <p className={cl["general-form__price"]}>
+          Price: {baggagePriceDisplay}
+        </p>
       </section>
       <section className={cl["general-form__section"]}>
         <FormButton loading={isLoading} tabIndex={8}>
@@ -154,6 +176,11 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         show={errorAlert.show}
         message={errorAlert.message}
         type="error"
+      />
+      <Notify
+        show={successAlert.show}
+        message={successAlert.message}
+        type="success"
       />
     </form>
   );
