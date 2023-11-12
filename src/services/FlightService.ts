@@ -14,16 +14,16 @@ class FlightsService {
     return $axios.post(`flight/create`, flight);
   }
 
-  public static async deleteFlight(
-    id: number
-  ): Promise<AxiosResponse<ISuccess>> {
-    return $axios.delete("flight/delete", { data: { id } });
-  }
-
   public static async updateFlight(
     flight: IFlight
   ): Promise<AxiosResponse<ISuccess>> {
     return $axios.put("flight/update", flight);
+  }
+
+  public static async deleteFlight(
+    id: number
+  ): Promise<AxiosResponse<ISuccess>> {
+    return $axios.delete("flight/delete", { data: { id } });
   }
 }
 
