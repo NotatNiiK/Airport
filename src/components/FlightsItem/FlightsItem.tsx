@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IFlight } from "../../models/flights";
+import { IFlight } from "../../models/flight";
 import { IToken } from "../../models/token";
 import { useFetching } from "../../hooks/useFetching";
 import { useModal } from "../../hooks/useModal";

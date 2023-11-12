@@ -1,4 +1,4 @@
-import { IFlight } from "../models/flights";
+import { IFlight } from "../models/flight";
 
 function gotoTicketPage(flight: IFlight, userId: number): string {
   return `tickets/${flight.id}/

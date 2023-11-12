@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useFetching } from "../../../hooks/useFetching";
 import { useAlert } from "../../../hooks/useAlert";
-import { IFlight } from "../../../models/flights";
+import { IFlight } from "../../../models/flight";
 import { useForm } from "react-hook-form";
 import cl from "./GeneralFlightForm.module.scss";
 import FormInput from "../../UI/FormInput/FormInput";

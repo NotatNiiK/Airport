@@ -1,6 +1,6 @@
 import $axios from "../http";
 import { AxiosResponse } from "axios";
-import { IFlight, IFlights } from "../models/flights";
+import { IFlight, IFlights } from "../models/flight";
 import { ISuccess } from "../models/success";
 
 class FlightsService {

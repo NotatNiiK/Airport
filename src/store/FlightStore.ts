@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IFlight, IFlights } from "../models/flights";
+import { IFlight, IFlights } from "../models/flight";
 import { IReqCallback } from "../models/req.callback";
 import { IServerResponse } from "../models/server.response";
 import FlightService from "../services/FlightService";

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IFlights } from "../../models/flights";
+import { IFlights } from "../../models/flight";
 import cl from "./FlightsList.module.scss";
 import FlightItem from "../FlightsItem/FlightsItem";
 import Loader from "../UI/Loader/Loader";
