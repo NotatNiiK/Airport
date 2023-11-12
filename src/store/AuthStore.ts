@@ -5,9 +5,9 @@ import { IServerResponse } from "../models/server.response";
 import { IToken } from "../models/token";
 import AuthService from "../services/AuthService";
 import {
-  setTokenInfoInLS,
-  removeTokenInfoFromLS,
-} from "../utils/tokenInfoInLocalStorage";
+  setTokenInfoInStorage,
+  removeTokenInfoFromStorage,
+} from "../utils/authTokenStorage";
 import handleServerError from "../utils/handleServerError";
 
 class AuthStore {
@@ -31,7 +31,7 @@ class AuthStore {
   decodeToken(token: string) {
     const decodedToken: IToken = jwtDecode<IToken>(token);
     this.setTokenInfo(decodedToken);
-    setTokenInfoInLS(token, this.tokenInfo);
+    setTokenInfoInStorage(token, this.tokenInfo);
   }
 
   async getAuthRequest<T extends IRegData | IAuthData>(
@@ -65,7 +65,7 @@ class AuthStore {
 
   logout(): void {
     this.setIsAuth(false);
-    removeTokenInfoFromLS();
+    removeTokenInfoFromStorage();
   }
 }
 

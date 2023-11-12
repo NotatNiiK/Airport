@@ -4,7 +4,7 @@ import { publicRoutes, privateRoutes } from ".";
 import { observer } from "mobx-react-lite";
 import AuthStore from "../store/AuthStore";
 import { IToken } from "../models/token";
-import isUserAuth from "../utils/isUserAuth";
+import { isUserAuth } from "../utils/authTokenStorage";
 
 const PrivateRoutes: FC = () => (
   <Routes>

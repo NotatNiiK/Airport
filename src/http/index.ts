@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosInstance } from "axios";
-import isUserAuth from "../utils/isUserAuth";
+import { isUserAuth } from "../utils/authTokenStorage";
 
 const $axios: AxiosInstance = axios.create({
   withCredentials: true,
