@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 
-export const useCalcBaggagePrice = (
-  width: number,
-  height: number,
-  weight: number
-): [number, () => void] => {
+interface IPriceDeps {
+  width: number;
+  height: number;
+  weight: number;
+}
+
+export const useCalculatePrice = ({
+  width,
+  height,
+  weight,
+}: IPriceDeps): [number, () => void] => {
   const [baggagePrice, setBaggagePrice] = useState<number>(0);
   const [pricePerKilo] = useState<number>(2);
   const [pricePerCentimeter] = useState<number>(0.1);

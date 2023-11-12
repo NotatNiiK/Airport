@@ -10,7 +10,7 @@ import FormButton from "../../UI/FormButton/FormButton";
 import cl from "./GeneralBaggageForm.module.scss";
 import Notify from "../../Notify/Notify";
 import BaggageValidation from "../../../validation/BaggageValidation";
-import { useCalcBaggagePrice } from "../../../hooks/useCalcBaggagePrice";
+import { useCalculatePrice } from "../../../hooks/useCalculatePrice";
 
 interface GeneralBaggageFormProps {
   title: string;
@@ -33,11 +33,11 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
 
-  const [baggagePrice, resetBaggagePrice] = useCalcBaggagePrice(
+  const [baggagePrice, resetBaggagePrice] = useCalculatePrice({
     width,
     height,
-    weight
-  );
+    weight,
+  });
 
   const baggagePriceDisplay = useMemo((): string => {
     if (baggagePrice === 0) return "0$";
