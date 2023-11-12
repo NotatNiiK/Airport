@@ -1,12 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { AxiosResponse } from "axios";
 import { IBaggage, IBaggages } from "../models/baggage";
-import { ISuccess } from "../models/success";
+import { IReqCallback } from "../models/req.callback";
 import { IServerResponse } from "../models/server.response";
-import handleServerError from "../utils/handleServerError";
 import BaggageService from "../services/BaggageService";
-
-type IBaggageCallback<T> = (data: T) => Promise<AxiosResponse<ISuccess>>;
+import handleServerError from "../utils/handleServerError";
 
 class TicketStore {
   constructor() {
@@ -21,7 +18,7 @@ class TicketStore {
 
   async getBaggageRequest<T extends IBaggage | number>(
     reqData: T,
-    callback: IBaggageCallback<T>
+    callback: IReqCallback<T>
   ): Promise<IServerResponse> {
     try {
       const {
