@@ -19,7 +19,7 @@ const Modal: FC<ModalProps> = ({ open, toggleModal, children }) => {
   }
 
   useEffect(() => {
-    toggleBodyLock(open);
+    toggleBodyLock();
   }, [open]);
 
   return (

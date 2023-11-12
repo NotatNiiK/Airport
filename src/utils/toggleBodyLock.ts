@@ -1,5 +1,5 @@
-function toggleBodyLock(condition?: boolean): void {
-  document.body.classList.toggle("overflow-hidden", condition);
+function toggleBodyLock(): void {
+  document.body.classList.toggle("overflow-hidden");
 }
 
 export default toggleBodyLock;
