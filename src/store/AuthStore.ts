@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx";
 import { IAuthData, IRegData, IAuthCallback } from "../models/auth";
-import { jwtDecode } from "jwt-decode";
 import { IServerResponse } from "../models/server.response";
 import { IToken } from "../models/token";
-import AuthService from "../services/AuthService";
+import { jwtDecode } from "jwt-decode";
 import {
   setTokenInfoInStorage,
   removeTokenInfoFromStorage,
   setTokenInStorage,
 } from "../utils/authTokenStorage";
+import AuthService from "../services/AuthService";
 import handleServerError from "../utils/handleServerError";
 
 class AuthStore {
