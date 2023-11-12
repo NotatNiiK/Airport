@@ -4,11 +4,7 @@ export function setTokenInStorage(token: string): void {
   localStorage.setItem("token", token);
 }
 
-export function setTokenInfoInStorage(
-  token: string,
-  tokenInfo: Partial<IToken>
-): void {
-  localStorage.setItem("token", token);
+export function setTokenInfoInStorage(tokenInfo: Partial<IToken>): void {
   localStorage.setItem("tokenInfo", JSON.stringify(tokenInfo));
 }
 

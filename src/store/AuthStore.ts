@@ -7,6 +7,7 @@ import AuthService from "../services/AuthService";
 import {
   setTokenInfoInStorage,
   removeTokenInfoFromStorage,
+  setTokenInStorage,
 } from "../utils/authTokenStorage";
 import handleServerError from "../utils/handleServerError";
 
@@ -31,7 +32,8 @@ class AuthStore {
   decodeToken(token: string) {
     const decodedToken: IToken = jwtDecode<IToken>(token);
     this.setTokenInfo(decodedToken);
-    setTokenInfoInStorage(token, this.tokenInfo);
+    setTokenInfoInStorage(this.tokenInfo);
+    setTokenInStorage(token);
   }
 
   async getAuthRequest<T extends IRegData | IAuthData>(
