@@ -1,0 +1,5 @@
+.baggage-list {
+  @apply grid gap-5;
+  grid-template: minmax(180px, auto) / repeat(auto-fit, minmax(180px, 220px));
+  grid-auto-rows: minmax(180px, auto);
+}
