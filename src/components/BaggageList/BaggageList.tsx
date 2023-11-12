@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IBaggages } from "../../models/baggage";
-import cl from "./FlightsList.module.scss";
+import cl from "./BaggageList.module.scss";
 import BaggageItem from "../BaggageItem/BaggageItem";
 import Loader from "../UI/Loader/Loader";
 import NotFound from "../UI/NotFound/NotFound";
