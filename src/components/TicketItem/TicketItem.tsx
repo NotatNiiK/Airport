@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ITicket } from "../../models/ticket";
 import cl from "./TicketItem.module.scss";
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
+import LuggageIcon from "@mui/icons-material/Luggage";
 
 interface TicketItemProps {
   ticket: ITicket;
@@ -27,7 +28,11 @@ const TicketItem: FC<TicketItemProps> = ({ ticket }) => {
             className={cl["ticket-item__add-baggage"]}
             title="Add baggage"
           >
-            +
+            <LuggageIcon
+              sx={{
+                fontSize: "18px",
+              }}
+            />
           </button>
         </div>
       </div>
