@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import { observer } from "mobx-react-lite";
 import cl from "./Baggage.module.scss";
 import Header from "../../components/Header/Header";
 import Modal from "../../components/UI/Modal/Modal";
@@ -9,7 +10,7 @@ import BaggageList from "../../components/BaggageList/BaggageList";
 import { useFetching } from "../../hooks/useFetching";
 import BaggageStore from "../../store/BaggageStore";
 
-const Baggage: FC = () => {
+const Baggage: FC = observer(() => {
   const { tiketId } = useParams();
   const [isCreateModalOpen, toggleCreateModal] = useModal();
 
@@ -52,6 +53,6 @@ const Baggage: FC = () => {
       </div>
     </>
   );
-};
+});
 
 export default Baggage;
