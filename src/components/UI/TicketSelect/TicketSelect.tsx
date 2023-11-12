@@ -1,6 +1,6 @@
 import { FC, SelectHTMLAttributes, forwardRef, Ref } from "react";
 import { FieldError } from "react-hook-form";
-import { IOptions } from "../../../models/options";
+import { IOptions } from "../../../models/option";
 import cl from "./TicketSelect.module.scss";
 
 interface TicketSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {

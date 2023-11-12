@@ -4,7 +4,7 @@ import { ITicket } from "../../models/ticket";
 import { useForm } from "react-hook-form";
 import { useAlert } from "../../hooks/useAlert";
 import { useFetching } from "../../hooks/useFetching";
-import { IOptions } from "../../models/options";
+import { IOptions } from "../../models/option";
 import cl from "./Tickets.module.scss";
 import TicketButton from "../../components/UI/TicketButton/TicketButton";
 import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
