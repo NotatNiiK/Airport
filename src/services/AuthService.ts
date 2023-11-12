@@ -5,9 +5,9 @@ import { IRegData, IAuthResponse, IAuthData } from "../models/auth";
 class AuthService {
   private static async authRequest(
     url: string,
-    data: IRegData | IAuthData
+    reqData: IRegData | IAuthData
   ): Promise<AxiosResponse<IAuthResponse>> {
-    return axios.post(`${process.env.REACT_APP_SERVER_URL}${url}`, data);
+    return axios.post(`${process.env.REACT_APP_SERVER_URL}${url}`, reqData);
   }
 
   public static async registration(
