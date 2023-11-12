@@ -1,0 +1,24 @@
+.baggage {
+  @apply relative min-h-screen text-white pt-28 pb-5 bg-custom-green;
+  &::before {
+    content: "";
+    background: url(../../assets/decorations/wave.svg) center / cover no-repeat;
+    @apply absolute left-0 bottom-0 w-full h-36;
+  }
+
+  &__container {
+    @apply relative;
+  }
+
+  &__panel {
+    @apply flex items-center justify-between;
+  }
+  &__title {
+    @apply text-2xl font-bold;
+  }
+
+  &__button {
+    @apply border-2 border-solid border-white bg-white text-custom-green text-lg rounded py-1 px-2
+    transition-all duration-300 hover:bg-white/70 focus:bg-white/70;
+  }
+}
