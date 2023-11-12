@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+type IAnyAsyncFunction = (...args: any[]) => Promise<any>;
+
 export const useFetching = (
-  callback: (...args: any[]) => Promise<any>
-): [(...data: any[]) => Promise<any>, boolean] => {
+  callback: IAnyAsyncFunction
+): [IAnyAsyncFunction, boolean] => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetching = async (...data: any[]): Promise<any> => {
