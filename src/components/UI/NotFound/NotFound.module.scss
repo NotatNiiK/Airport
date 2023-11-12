@@ -1,0 +1,6 @@
+.not-found {
+  @apply flex items-center justify-center flex-col;
+  &__title {
+    @apply text-2xl font-bold text-center py-4 uppercase;
+  }
+}
