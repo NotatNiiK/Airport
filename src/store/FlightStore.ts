@@ -17,13 +17,13 @@ class AuthStore {
   }
 
   public async getFlightRequest<T extends IFlight | number>(
-    data: T,
+    reqData: T,
     callback: IReqCallback<T>
   ): Promise<IServerResponse> {
     try {
       const {
         data: { success },
-      } = await callback(data);
+      } = await callback(reqData);
 
       return {
         hasError: false,
