@@ -1,7 +1,7 @@
 import { FC } from "react";
 import cl from "./About.module.scss";
 import Header from "../../components/Header/Header";
-import PlainImage from "../../assets/pages/About/Plain.png";
+import PlainImage from "../../assets/images/pages/About/Plain.png";
 
 const About: FC = () => {
   return (
