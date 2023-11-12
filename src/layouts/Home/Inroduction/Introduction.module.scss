@@ -41,7 +41,7 @@
     }
   }
   &__image {
-    @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px];
+    @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px] flex items-center justify-center;
     img {
       @apply absolute left-0 top-0 w-full h-full object-cover;
     }
