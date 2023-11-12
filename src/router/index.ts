@@ -30,7 +30,7 @@ export const privateRoutes: IRoutes = [
     component: Account,
   },
   {
-    path: "/baggage/:ticketId",
+    path: "/baggage/:tiketId",
     component: Baggage,
   },
 ];
