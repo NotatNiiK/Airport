@@ -3,10 +3,3 @@
   grid-template: minmax(180px, auto) / repeat(auto-fit, minmax(250px, 362px));
   grid-auto-rows: minmax(180px, auto);
 }
-
-.not-found {
-  @apply text-custom-green flex items-center justify-center flex-col;
-  &__title {
-    @apply text-2xl font-bold text-center py-4  uppercase;
-  }
-}

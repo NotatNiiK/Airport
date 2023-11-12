@@ -3,7 +3,7 @@ import { IFlights } from "../../models/flights";
 import cl from "./FlightsList.module.scss";
 import FlightItem from "../FlightsItem/FlightsItem";
 import Loader from "../UI/Loader/Loader";
-import BlockIcon from "@mui/icons-material/Block";
+import NotFound from "../UI/NotFound/NotFound";
 
 interface FlightsListProps {
   flights: IFlights;
@@ -22,14 +22,7 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
       ))}
     </ul>
   ) : (
-    <div className={cl["not-found"]}>
-      <BlockIcon
-        sx={{
-          fontSize: "120px",
-        }}
-      />
-      <h2 className={cl["not-found__title"]}>There are no flights!</h2>
-    </div>
+    <NotFound colorClass="text-custom-green">There are no flights!</NotFound>
   );
 };
 
