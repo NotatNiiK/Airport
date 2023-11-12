@@ -4,7 +4,7 @@ export const useCalcBaggagePrice = (
   width: number,
   height: number,
   weight: number
-): [number] => {
+): [number, () => void] => {
   const [baggagePrice, setBaggagePrice] = useState<number>(0);
   const [pricePerKilo] = useState<number>(2);
   const [pricePerCentimeter] = useState<number>(0.1);
@@ -19,5 +19,9 @@ export const useCalcBaggagePrice = (
     setBaggagePrice(currentBaggagePrice);
   }, [width, height, weight]);
 
-  return [baggagePrice];
+  function resetPrice(): void {
+    setBaggagePrice(0);
+  }
+
+  return [baggagePrice, resetPrice];
 };
