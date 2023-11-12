@@ -118,7 +118,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         <FormInput
           {...register("width", {
             required: true,
-            validate: BaggageValidation.number,
+            validate: BaggageValidation.dimensions,
           })}
           isError={errors.width}
           onBlur={() => clearErrors("width")}
@@ -134,7 +134,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         <FormInput
           {...register("height", {
             required: true,
-            validate: BaggageValidation.number,
+            validate: BaggageValidation.dimensions,
           })}
           isError={errors.height}
           onBlur={() => clearErrors("height")}
@@ -150,7 +150,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         <FormInput
           {...register("weight", {
             required: true,
-            validate: BaggageValidation.number,
+            validate: BaggageValidation.dimensions,
           })}
           isError={errors.weight}
           onBlur={() => clearErrors("weight")}

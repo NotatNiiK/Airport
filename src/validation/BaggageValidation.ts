@@ -1,5 +1,5 @@
 class BaggageValidation {
-  public static number(inputValue: string): boolean {
+  public static dimensions(inputValue: string): boolean {
     const numberInputValue: number = +inputValue;
     return !isNaN(numberInputValue) && numberInputValue > 0;
   }
