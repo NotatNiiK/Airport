@@ -18,7 +18,7 @@ const Tickets: FC = () => {
     flightNumber,
     cost,
     userId,
-    departureLocation,
+    depatureLocation,
     destination,
     arrivalTime,
   } = useParams();
@@ -34,7 +34,7 @@ const Tickets: FC = () => {
         cost: cost || "",
         flightId: flightId || "",
         flightStatus: true,
-        departureLocation: departureLocation || "",
+        depatureLocation: depatureLocation || "",
         destination: destination || "",
         arrivalTime: arrivalTime || "",
         purchaseDate: formatTicketDate(),
