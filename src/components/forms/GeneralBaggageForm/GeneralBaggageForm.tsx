@@ -97,10 +97,10 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
 
       showSuccessAlert(apiResponse?.response || "Success");
 
-      /* if (tiketId) {
+      if (tiketId) {
         const numTicketId = +tiketId;
         await BaggageStore.getBaggageById(numTicketId);
-      } */
+      }
 
       if (!isEdit) {
         reset();
