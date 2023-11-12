@@ -1,5 +1,5 @@
 .about {
-  @apply min-h-screen bg-custom-green pt-20 pb-5 flex flex-col items-start justify-center;
+  @apply min-h-screen bg-dark-green pt-20 pb-5 flex flex-col items-start justify-center;
   &__container {
     @apply relative flex items-center;
     @media all and (max-width: 768px) {

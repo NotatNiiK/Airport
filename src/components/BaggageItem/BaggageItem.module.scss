@@ -1,5 +1,5 @@
 .baggage-item {
-  @apply bg-white text-custom-green rounded p-2;
+  @apply bg-white text-dark-green rounded p-2;
   &__cost {
     @apply text-lg font-bold mb-2;
   }
@@ -10,7 +10,7 @@
     @apply relative text-sm pl-2;
     &::before {
       content: "";
-      @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-custom-green;
+      @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-dark-green;
     }
   }
 }

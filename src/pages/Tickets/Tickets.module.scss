@@ -1,5 +1,5 @@
 .tickets {
-  @apply relative min-h-screen text-white flex flex-col items-center justify-center py-4 bg-custom-green;
+  @apply relative min-h-screen text-white flex flex-col items-center justify-center py-4 bg-dark-green;
   &::before {
     content: "";
     background: url(../../assets/decorations/wave.svg) center / cover no-repeat;

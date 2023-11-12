@@ -1,6 +1,6 @@
 .auth {
   font-family: "Lexend Deca";
-  @apply min-h-screen relative flex flex-col items-center justify-center py-4 bg-auth-bg-color;
+  @apply min-h-screen relative flex flex-col items-center justify-center py-4 bg-dark-green;
   &::before {
     content: "";
     background: url(../../assets/decorations/wave.svg) center / cover no-repeat;
@@ -22,8 +22,8 @@
     @apply text-center font-bold text-white text-6xl mb-10;
   }
   &__input {
-    @apply w-full py-3 px-4 transition-all duration-300 bg-auth-input-color rounded-lg 
-  border-2 border-custom-green border-solid text-white focus:shadow-auth-input pr-10;
+    @apply w-full py-3 px-4 transition-all duration-300 bg-light-dark-green rounded-lg 
+  border-2 border-dark-green border-solid text-white focus:shadow-opacity-white pr-10;
   }
   &__section {
     @apply relative mb-5 last:mb-0;
@@ -35,7 +35,7 @@
     }
   }
   &__toggle-password {
-    @apply absolute right-3 top-1/2 text-white translate-y-reverse-half;
+    @apply absolute right-3 top-1/2 text-white -translate-y-2/4;
   }
 }
 

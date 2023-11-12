@@ -1,5 +1,5 @@
 .account {
-  @apply min-h-screen relative pt-28 pb-4 bg-auth-bg-color;
+  @apply min-h-screen relative pt-28 pb-4 bg-dark-green;
   &::before {
     content: "";
     background: url(../../assets/decorations/wave.svg) center / cover no-repeat;

@@ -1,6 +1,6 @@
 .ticket-item {
   @apply rounded-lg border-2 border-solid border-white p-3 cursor-pointer flex items-center transition-all
-    duration-300 text-custom-green bg-white hover:bg-white/90 relative overflow-hidden;
+    duration-300 text-dark-green bg-white hover:bg-white/90 relative overflow-hidden;
   &__direction {
     @apply text-xl font-bold;
   }
@@ -21,7 +21,7 @@
   }
 
   &__baggage {
-    @apply absolute -right-3 -top-3 w-12 h-12 rounded-full bg-custom-green transition-all duration-300 hover:bg-custom-green/90;
+    @apply absolute -right-3 -top-3 w-12 h-12 rounded-full bg-dark-green transition-all duration-300 hover:bg-dark-green/90;
   }
   &__add-baggage {
     @apply text-white text-lg absolute -left-1 top-0.5 w-full h-full;
@@ -33,7 +33,7 @@
     @apply text-sm relative pl-3;
     &::before {
       content: "";
-      @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-custom-green;
+      @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-dark-green;
     }
   }
 }

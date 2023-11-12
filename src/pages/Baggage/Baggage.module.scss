@@ -1,5 +1,5 @@
 .baggage {
-  @apply relative min-h-screen text-white pt-28 pb-5 bg-custom-green;
+  @apply relative min-h-screen text-white pt-28 pb-5 bg-dark-green;
   &::before {
     content: "";
     background: url(../../assets/decorations/wave.svg) center / cover no-repeat;
@@ -18,7 +18,7 @@
   }
 
   &__button {
-    @apply border-2 border-solid border-white bg-white text-custom-green text-lg rounded py-1 px-2
+    @apply border-2 border-solid border-white bg-white text-dark-green text-lg rounded py-1 px-2
     transition-all duration-300 hover:bg-white/70 focus:bg-white/70;
   }
 }

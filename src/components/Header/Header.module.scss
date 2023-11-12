@@ -16,11 +16,11 @@
 .nav {
   @apply flex items-center;
   @media all and (max-width: 768px) {
-    @apply block fixed left-0 bottom-hidden overflow-x-hidden overflow-y-auto h-full w-full bg-indigo-600
+    @apply block fixed left-0 -top-full overflow-x-hidden overflow-y-auto h-full w-full bg-indigo-600
     py-10 px-14 transition-all duration-300;
   }
   &.active {
-    @apply bottom-0;
+    @apply top-0;
   }
   &__list {
     @apply flex items-center mr-5;
