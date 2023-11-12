@@ -1,13 +1,13 @@
 class AuthValidation {
   public static email(inputValue: string): boolean {
-    const emailRegex: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(inputValue);
+    const emailRegExp: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegExp.test(inputValue);
   }
 
   public static password(inputValue: string): boolean {
-    const passwordRegex: RegExp =
+    const passwordRegExp: RegExp =
       /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,50}/;
-    return passwordRegex.test(inputValue);
+    return passwordRegExp.test(inputValue);
   }
 
   public static authPassword(inputValue: string): boolean {
@@ -20,8 +20,8 @@ class AuthValidation {
   }
 
   public static myContacts(inputValue: string): boolean {
-    const phoneNumberRegex: RegExp = /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
-    return phoneNumberRegex.test(inputValue);
+    const myContactsRegExp: RegExp = /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+    return myContactsRegExp.test(inputValue);
   }
 }
 
