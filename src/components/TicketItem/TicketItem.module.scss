@@ -1,0 +1,32 @@
+.ticket-item {
+  @apply rounded-lg p-3 cursor-pointer flex items-center transition-all
+    duration-300 text-custom-green bg-white;
+  &__direction {
+    @apply text-xl font-bold;
+  }
+  &__content {
+    @apply flex-auto;
+  }
+  &__image {
+    @apply grow-0 shrink-0 basis-1/4 flex items-center justify-center;
+    svg {
+      @apply text-5xl;
+    }
+  }
+  &__time {
+    @apply text-sm mb-1;
+  }
+  &__info {
+    @apply text-sm mb-0.5 last:mb-0;
+  }
+}
+
+.info-list {
+  &__item {
+    @apply text-sm relative pl-3;
+    &::before {
+      content: "";
+      @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-custom-green;
+    }
+  }
+}
