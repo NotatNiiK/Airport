@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-
-interface IPriceDeps {
-  width: number;
-  height: number;
-  weight: number;
-}
+import { IPriceDeps } from "../models/price.deps";
 
 export const useCalculatePrice = ({
   width,

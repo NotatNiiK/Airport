@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-type IAnyAsyncFunction = (...args: any[]) => Promise<any>;
+import { IAnyAsyncFunction } from "../models/any.function";
 
 export const useFetching = (
   callback: IAnyAsyncFunction
