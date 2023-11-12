@@ -10,13 +10,13 @@ class TicketStore {
     makeAutoObservable(this);
   }
 
-  baggages: IBaggages = [];
+  public baggages: IBaggages = [];
 
-  setBaggages(baggageList: IBaggages): void {
+  public setBaggages(baggageList: IBaggages): void {
     this.baggages = baggageList;
   }
 
-  async getBaggageRequest<T extends IBaggage | number>(
+  public async getBaggageRequest<T extends IBaggage | number>(
     reqData: T,
     callback: IReqCallback<T>
   ): Promise<IServerResponse> {
@@ -34,7 +34,9 @@ class TicketStore {
     }
   }
 
-  async getBaggageById(ticketId: number): Promise<void | IServerResponse> {
+  public async getBaggageById(
+    ticketId: number
+  ): Promise<void | IServerResponse> {
     try {
       const { data } = await BaggageService.getBaggageById(ticketId);
       this.setBaggages(data);
@@ -43,15 +45,15 @@ class TicketStore {
     }
   }
 
-  async createBaggage(baggage: IBaggage): Promise<IServerResponse> {
+  public async createBaggage(baggage: IBaggage): Promise<IServerResponse> {
     return this.getBaggageRequest(baggage, BaggageService.createBaggage);
   }
 
-  async updateBaggage(baggage: IBaggage): Promise<IServerResponse> {
+  public async updateBaggage(baggage: IBaggage): Promise<IServerResponse> {
     return this.getBaggageRequest(baggage, BaggageService.updateBaggage);
   }
 
-  async deleteBaggage(id: number): Promise<IServerResponse> {
+  public async deleteBaggage(id: number): Promise<IServerResponse> {
     return this.getBaggageRequest(id, BaggageService.deleteBaggage);
   }
 }

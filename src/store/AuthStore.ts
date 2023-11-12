@@ -16,27 +16,27 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
-  isAuth: boolean = false;
-  isAdmin: boolean = true;
+  public isAuth: boolean = false;
+  public isAdmin: boolean = true;
 
-  tokenInfo: Partial<IToken> = {};
+  public tokenInfo: Partial<IToken> = {};
 
-  setIsAuth(auth: boolean): void {
+  public setIsAuth(auth: boolean): void {
     this.isAuth = auth;
   }
 
-  setTokenInfo(tokenDetails: IToken): void {
+  public setTokenInfo(tokenDetails: IToken): void {
     this.tokenInfo = tokenDetails;
   }
 
-  decodeToken(token: string) {
+  public decodeToken(token: string) {
     const decodedToken: IToken = jwtDecode<IToken>(token);
     this.setTokenInfo(decodedToken);
     setTokenInfoInStorage(this.tokenInfo);
     setTokenInStorage(token);
   }
 
-  async getAuthRequest<T extends IRegData | IAuthData>(
+  public async getAuthRequest<T extends IRegData | IAuthData>(
     reqData: T,
     callback: IAuthCallback<T>
   ): Promise<IServerResponse> {
@@ -57,15 +57,15 @@ class AuthStore {
     }
   }
 
-  async authorization(authData: IAuthData): Promise<IServerResponse> {
+  public async authorization(authData: IAuthData): Promise<IServerResponse> {
     return this.getAuthRequest(authData, AuthService.authorization);
   }
 
-  async registration(regData: IRegData): Promise<IServerResponse> {
+  public async registration(regData: IRegData): Promise<IServerResponse> {
     return this.getAuthRequest(regData, AuthService.registration);
   }
 
-  logout(): void {
+  public logout(): void {
     this.setIsAuth(false);
     removeTokenInfoFromStorage();
   }

@@ -9,13 +9,13 @@ class TicketStore {
     makeAutoObservable(this);
   }
 
-  ticketsList: ITickets = [];
+  public ticketsList: ITickets = [];
 
-  setTicketsList(tickets: ITickets): void {
+  public setTicketsList(tickets: ITickets): void {
     this.ticketsList = tickets;
   }
 
-  async createTicket(ticket: ITicket): Promise<IServerResponse> {
+  public async createTicket(ticket: ITicket): Promise<IServerResponse> {
     try {
       const {
         data: { success },
@@ -30,7 +30,7 @@ class TicketStore {
     }
   }
 
-  async getTickets(userId: number): Promise<void | IServerResponse> {
+  public async getTickets(userId: number): Promise<void | IServerResponse> {
     try {
       const { data } = await TicketService.getTickets(userId);
       this.setTicketsList(data);

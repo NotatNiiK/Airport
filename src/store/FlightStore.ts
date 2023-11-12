@@ -10,13 +10,13 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
-  flightsList: IFlights = [];
+  public flightsList: IFlights = [];
 
-  setFlightsList(flights: IFlights): void {
+  public setFlightsList(flights: IFlights): void {
     this.flightsList = flights;
   }
 
-  async getFlightRequest<T extends IFlight | number>(
+  public async getFlightRequest<T extends IFlight | number>(
     data: T,
     callback: IReqCallback<T>
   ): Promise<IServerResponse> {
@@ -34,7 +34,7 @@ class AuthStore {
     }
   }
 
-  async getFlights(): Promise<void | IServerResponse> {
+  public async getFlights(): Promise<void | IServerResponse> {
     try {
       const { data } = await FlightService.getFlights();
       this.setFlightsList(data);
@@ -43,15 +43,15 @@ class AuthStore {
     }
   }
 
-  async createFlight(flight: IFlight): Promise<IServerResponse> {
+  public async createFlight(flight: IFlight): Promise<IServerResponse> {
     return this.getFlightRequest(flight, FlightService.createFlight);
   }
 
-  async deleteFlight(id: number): Promise<IServerResponse> {
+  public async deleteFlight(id: number): Promise<IServerResponse> {
     return this.getFlightRequest(id, FlightService.deleteFlight);
   }
 
-  async updateFlight(flight: IFlight): Promise<IServerResponse> {
+  public async updateFlight(flight: IFlight): Promise<IServerResponse> {
     return this.getFlightRequest(flight, FlightService.updateFlight);
   }
 }
