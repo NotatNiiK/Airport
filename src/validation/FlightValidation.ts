@@ -11,9 +11,9 @@ class FlightValidation {
   }
 
   public static price(inputValue: number): boolean {
-    const stringPrice: string = String(inputValue);
+    const priceStringify: string = String(inputValue);
     const priceRegExp: RegExp = /^[1-9]\d*$/;
-    return priceRegExp.test(stringPrice);
+    return priceRegExp.test(priceStringify);
   }
 }
 
