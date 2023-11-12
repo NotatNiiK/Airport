@@ -15,10 +15,9 @@ import formatTicketDate from "../../utils/formatTicketDate";
 const Tickets: FC = () => {
   const {
     flightId,
-    flightNumber,
     cost,
     userId,
-    depatureLocation,
+    departureLocation,
     destination,
     arrivalTime,
   } = useParams();
@@ -29,15 +28,14 @@ const Tickets: FC = () => {
     async (ticket: ITicket): Promise<void> => {
       const newTicket = {
         ...ticket,
-        userId: userId || "",
-        flightNumber: flightNumber || "",
-        cost: cost || "",
-        flightId: flightId || "",
-        flightStatus: true,
-        depatureLocation: depatureLocation || "",
+        purchaseDate: formatTicketDate(),
+        departureLocation: departureLocation || "",
         destination: destination || "",
         arrivalTime: arrivalTime || "",
-        purchaseDate: formatTicketDate(),
+        cost: cost || "",
+        flightStatus: true,
+        flightId: flightId || "",
+        userId: userId || "",
       };
       console.log(newTicket);
       const createResponse = await TicketStore.createTicket(newTicket);

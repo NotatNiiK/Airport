@@ -13,7 +13,7 @@ const TicketItem: FC<TicketItemProps> = ({ ticket }) => {
     <li className={cl["ticket-item"]} key={ticket.id}>
       <div className={cl["ticket-item__content"]}>
         <h2 className={cl["ticket-item__direction"]}>
-          {ticket.depatureLocation} - {ticket.destination}
+          {ticket.departureLocation} - {ticket.destination}
         </h2>
         <p className={cl["ticket-item__time"]}>
           Arrival at: {ticket.arrivalTime}
