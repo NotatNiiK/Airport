@@ -21,11 +21,15 @@ export const privateRoutes: IRoutes = [
   { path: "/", component: Home },
   { path: "/about", component: About },
   {
-    path: "/tickets/:flightId/:flightNumber/:cost/:userId/:depatureLocation/:destination/:arrivalTime",
+    path: "/tickets/:flightId/:flightNumber/:cost/:userId/:departureLocation/:destination/:arrivalTime",
     component: Tickets,
   },
   {
     path: "/account",
+    component: Account,
+  },
+  {
+    path: "/baggage/:ticketId",
     component: Account,
   },
 ];
