@@ -1,5 +1,8 @@
 interface ITicket {
   id?: number;
+  arrivalTime: string;
+  depatureLocation: string;
+  destination: string;
   classes: string;
   purchaseDate: string;
   cost: string;
