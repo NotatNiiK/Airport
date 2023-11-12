@@ -7,7 +7,7 @@ class BaggageService {
   static async getBaggageById(
     tiketId: number
   ): Promise<AxiosResponse<IBaggages>> {
-    return $axios.post("get/by/tiket-id", { tiketId });
+    return $axios.post("baggage/get/by/tiket-id", { tiketId });
   }
 
   static async createBaggage(
