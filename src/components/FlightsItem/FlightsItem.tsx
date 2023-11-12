@@ -15,7 +15,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import AuthStore from "../../store/AuthStore";
 import FlightsStore from "../../store/FlightStore";
-import goToTicketPage from "../../utils/goToTicketPage";
+import gotoTicketPage from "../../utils/gotoTicketPage";
 
 interface FlightItemProps {
   flight: IFlight;
@@ -75,7 +75,7 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
         <p className={cl["flights-item__price"]}>{flight.price}$</p>
         <div className={cl["flights-item__buttons"]}>
           <Link
-            to={goToTicketPage(flight, userId)}
+            to={gotoTicketPage(flight, userId)}
             className={cl["flights-item__buy-ticket"]}
           >
             Buy ticket
