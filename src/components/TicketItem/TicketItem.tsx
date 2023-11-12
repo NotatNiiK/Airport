@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ITicket } from "../../models/ticket";
+import { useNavigate } from "react-router-dom";
 import cl from "./TicketItem.module.scss";
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 import LuggageIcon from "@mui/icons-material/Luggage";
@@ -9,6 +10,8 @@ interface TicketItemProps {
 }
 
 const TicketItem: FC<TicketItemProps> = ({ ticket }) => {
+  const navigate = useNavigate();
+
   return (
     <li className={cl["ticket-item"]} key={ticket.id}>
       <div className={cl["ticket-item__content"]}>
@@ -25,6 +28,7 @@ const TicketItem: FC<TicketItemProps> = ({ ticket }) => {
         </ul>
         <div className={cl["ticket-item__baggage"]}>
           <button
+            onClick={() => navigate(`/baggage/${ticket.id}`)}
             className={cl["ticket-item__add-baggage"]}
             title="Add baggage"
           >
