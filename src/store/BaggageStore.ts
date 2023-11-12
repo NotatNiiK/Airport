@@ -13,6 +13,12 @@ class TicketStore {
     makeAutoObservable(this);
   }
 
+  baggages: IBaggages = [];
+
+  setBaggages(baggageList: IBaggages): void {
+    this.baggages = baggageList;
+  }
+
   async getBaggageRequest<T extends IBaggage | number>(
     reqData: T,
     callback: IBaggageCallback<T>
@@ -34,7 +40,7 @@ class TicketStore {
   async getBaggageById(ticketId: number): Promise<void | IServerResponse> {
     try {
       const { data } = await BaggageService.getBaggageById(ticketId);
-      console.log(data);
+      this.setBaggages(data);
     } catch (e: unknown) {
       return handleServerError(e);
     }
