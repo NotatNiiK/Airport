@@ -9,7 +9,7 @@ import FormButton from "../../UI/FormButton/FormButton";
 import Checkbox from "@mui/material/Checkbox";
 import FlightsStore from "../../../store/FlightStore";
 import FlightValidation from "../../../validation/FlightValidation";
-import formatFlightDate from "../../../utils/formatFlightDate";
+import splitDate from "../../../utils/splitDate";
 import Notify from "../../Notify/Notify";
 
 interface GeneralFlightFormProps {
@@ -58,8 +58,8 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
   const [handleForm, isLoading] = useFetching(
     async (flightData: IFlight): Promise<void> => {
       flightData.price = +flightData.price;
-      flightData.departureTime = formatFlightDate(flightData.departureTime);
-      flightData.arrivalTime = formatFlightDate(flightData.arrivalTime);
+      flightData.departureTime = splitDate(flightData.departureTime);
+      flightData.arrivalTime = splitDate(flightData.arrivalTime);
 
       let apiResponse;
 
