@@ -13,7 +13,15 @@ import TicketStore from "../../store/TicketStore";
 import formatTicketDate from "../../utils/formatTicketDate";
 
 const Tickets: FC = () => {
-  const { flightId, flightNumber, cost, userId } = useParams();
+  const {
+    flightId,
+    flightNumber,
+    cost,
+    userId,
+    departureLocation,
+    destination,
+    arrivalTime,
+  } = useParams();
   const [errorAlert, showAlert] = useAlert();
   const [successAlert, showSuccessAlert] = useAlert();
 
@@ -26,6 +34,9 @@ const Tickets: FC = () => {
         cost: cost || "",
         flightId: flightId || "",
         flightStatus: true,
+        departureLocation: departureLocation || "",
+        destination: destination || "",
+        arrivalTime: arrivalTime || "",
         purchaseDate: formatTicketDate(),
       };
       console.log(newTicket);
