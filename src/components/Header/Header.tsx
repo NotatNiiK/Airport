@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useHeader } from "../../hooks/useHeader";
 import cl from "./Header.module.scss";
-import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import ConfirmForm from "../Forms/ConfirmForm/ConfirmForm";
 import Modal from "../UI/Modal/Modal";
 import Logo from "../UI/Logo/Logo";
 import LogoutIcon from "@mui/icons-material/Logout";

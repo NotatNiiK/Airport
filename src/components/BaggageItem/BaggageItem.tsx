@@ -6,8 +6,8 @@ import EditNoteIcon from "@mui/icons-material/EditNote";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Modal from "../UI/Modal/Modal";
 import { useModal } from "../../hooks/useModal";
-import GeneralBaggageForm from "../forms/GeneralBaggageForm/GeneralBaggageForm";
-import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import GeneralBaggageForm from "../Forms/GeneralBaggageForm/GeneralBaggageForm";
+import ConfirmForm from "../Forms/ConfirmForm/ConfirmForm";
 import { useFetching } from "../../hooks/useFetching";
 import BaggageStore from "../../store/BaggageStore";
 
