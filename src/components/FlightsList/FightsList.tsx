@@ -22,7 +22,7 @@ const FlightsList: FC<FlightsListProps> = ({ flights, isLoading }) => {
       ))}
     </ul>
   ) : (
-    <NotFound colorClass="text-custom-green">There are no flights!</NotFound>
+    <NotFound colorClass="text-dark-green">There are no flights!</NotFound>
   );
 };
 
