@@ -1,31 +1,31 @@
 import { FC, useState, useEffect, useMemo, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
-import { IBaggage } from "../../../models/baggage";
 import { useForm } from "react-hook-form";
-import { useFetching } from "../../../hooks/useFetching";
 import { useAlert } from "../../../hooks/useAlert";
+import { useFetching } from "../../../hooks/useFetching";
+import { useCalculatePrice } from "../../../hooks/useCalculatePrice";
+import { IBaggage } from "../../../models/baggage";
 import cl from "./GeneralForm.module.scss";
-import BaggageStore from "../../../store/BaggageStore";
+import Notify from "../../UI/Notify/Notify";
 import FormInput from "../../UI/FormInput/FormInput";
 import FormButton from "../../UI/FormButton/FormButton";
-import Notify from "../../UI/Notify/Notify";
+import BaggageStore from "../../../store/BaggageStore";
 import BaggageValidation from "../../../validation/BaggageValidation";
-import { useCalculatePrice } from "../../../hooks/useCalculatePrice";
 
 interface GeneralBaggageFormProps {
   title: string;
-  isEdit: boolean;
   isClearForm: boolean;
-  baggage?: IBaggage;
   closeModal: () => void;
+  isEdit?: boolean;
+  baggage?: IBaggage;
 }
 
 const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
   title,
-  isEdit,
   isClearForm,
-  baggage,
   closeModal,
+  isEdit,
+  baggage,
 }) => {
   const { tiketId } = useParams();
 
@@ -33,7 +33,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
 
-  const [baggagePrice, resetBaggagePrice] = useCalculatePrice({
+  const [baggagePrice, setPrice] = useCalculatePrice({
     width,
     height,
     weight,
@@ -53,8 +53,15 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
     setValue,
   } = useForm<IBaggage>();
 
-  const [errorAlert, showAlert] = useAlert();
+  const [errorAlert, showErrorAlert] = useAlert();
   const [successAlert, showSuccessAlert] = useAlert();
+
+  useEffect((): void => {
+    if (baggage?.cost) {
+      const baggageCost: number = +baggage.cost;
+      setPrice(baggageCost);
+    }
+  }, []);
 
   useEffect((): void => {
     if (isEdit) setEditFormValue();
@@ -81,7 +88,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
         apiResponse = await BaggageStore.updateBaggage(baggageData);
       } else {
         if (tiketId) {
-          const baggage = {
+          const baggage: IBaggage = {
             ...baggageData,
             tiketId,
             cost: String(baggagePrice),
@@ -91,11 +98,13 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
       }
 
       if (apiResponse?.hasError) {
-        showAlert(apiResponse.response);
+        showErrorAlert(apiResponse.response);
         return;
       }
 
-      showSuccessAlert(apiResponse?.response || "Success");
+      if (apiResponse?.response) {
+        showSuccessAlert(apiResponse?.response);
+      }
 
       if (tiketId) {
         const numTicketId = +tiketId;
@@ -104,12 +113,20 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
 
       if (!isEdit) {
         reset();
-        resetBaggagePrice();
       }
 
+      setPrice(0);
       closeModal();
     }
   );
+
+  const handleInput = (
+    e: ChangeEvent<HTMLInputElement>,
+    setValueFunction: (value: number) => void
+  ) => {
+    const numberValue = +e.target.value;
+    setValueFunction(numberValue);
+  };
 
   return (
     <form className={cl["general-form"]} onSubmit={handleSubmit(handleForm)}>
@@ -122,12 +139,11 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
           })}
           isError={errors.width}
           onBlur={() => clearErrors("width")}
+          onInput={(e: ChangeEvent<HTMLInputElement>) =>
+            handleInput(e, setWidth)
+          }
           placeholder="Width, m"
           tabIndex={1}
-          onInput={(e: ChangeEvent<HTMLInputElement>) => {
-            const numberValue = +e.target.value;
-            setWidth(numberValue);
-          }}
         />
       </section>
       <section className={cl["general-form__section"]}>
@@ -138,12 +154,11 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
           })}
           isError={errors.height}
           onBlur={() => clearErrors("height")}
+          onInput={(e: ChangeEvent<HTMLInputElement>) =>
+            handleInput(e, setHeight)
+          }
           placeholder="Height, cm"
           tabIndex={2}
-          onInput={(e: ChangeEvent<HTMLInputElement>) => {
-            const numberValue = +e.target.value;
-            setHeight(numberValue);
-          }}
         />
       </section>
       <section className={cl["general-form__section"]}>
@@ -154,12 +169,11 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
           })}
           isError={errors.weight}
           onBlur={() => clearErrors("weight")}
+          onInput={(e: ChangeEvent<HTMLInputElement>) =>
+            handleInput(e, setWeight)
+          }
           placeholder="Weight"
           tabIndex={3}
-          onInput={(e: ChangeEvent<HTMLInputElement>) => {
-            const numberValue = +e.target.value;
-            setWeight(numberValue);
-          }}
         />
       </section>
       <section className={cl["general-form__section"]}>

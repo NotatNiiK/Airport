@@ -1,21 +1,25 @@
 .general-form {
   &__title {
-    @apply text-center text-2xl font-bold text-indigo-600 pb-4;
+    @apply pb-4 text-2xl font-bold text-center text-indigo-600;
   }
+
   &__section {
     @apply mb-4 last:mb-0;
+
     &_margin-zero {
       @apply mb-0;
     }
+
     &_checkbox {
-      @apply mb-0 flex items-center justify-end;
+      @apply flex items-center justify-end mb-0;
     }
   }
+
   &__label {
-    @apply leading-tight text-sm;
+    @apply text-sm leading-tight;
   }
 
   &__price {
-    @apply text-indigo-600 text-lg;
+    @apply text-lg text-indigo-600;
   }
 }
