@@ -1,22 +1,27 @@
 .flights {
   @apply bg-white;
+
   &__container {
     @apply py-10;
   }
+
   &__panel {
-    @apply flex items-center justify-between mb-5;
+    @apply flex items-center justify-between mb-4;
   }
-  &__create-btn {
-    @apply w-10 h-10 rounded-full bg-dark-green text-white
-     flex items-center justify-center transition-all duration-300 hover:bg-dark-green/90;
-    @media all and (max-width: 370px) {
+
+  &__create-flight {
+    @apply flex items-center justify-center w-9 h-9 rounded-full 
+    bg-dark-green text-white transition-all duration-300 hover:bg-dark-green/90;
+
+    @media all and (max-width: 23.125em) {
       @apply w-8 h-8;
     }
   }
+
   &__title {
-    font-family: "Lexend Deca";
     @apply text-3xl font-bold text-dark-green leading-tight;
-    @media all and (max-width: 370px) {
+
+    @media all and (max-width: 23.125em) {
       @apply text-2xl;
     }
   }

@@ -38,7 +38,7 @@ const Flights: FC = observer(() => {
           <h2 className={cl["flights__title"]}>Available flights:</h2>
           <button
             onClick={toggleCreateModal}
-            className={cl["flights__create-btn"]}
+            className={cl["flights__create-flight"]}
             title="Create flight"
           >
             +
