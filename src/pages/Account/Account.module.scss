@@ -1,18 +1,21 @@
 .account {
-  @apply min-h-screen relative pt-28 pb-4 bg-dark-green;
+  @apply relative min-h-screen pt-28 pb-4 bg-dark-green;
+
   &::before {
+    @apply absolute left-0 bottom-0 w-full h-36;
     content: "";
     background: url(../../assets/images/decorations/wave.svg) center / cover
       no-repeat;
-    @apply absolute left-0 bottom-0 w-full h-36;
   }
+
   &__container {
     @apply self-stretch max-w-2xl w-full;
   }
 
   &__title {
-    @apply text-4xl text-white;
+    @apply text-4xl text-white mb-5;
   }
+
   &__email {
     @apply text-2xl;
   }
