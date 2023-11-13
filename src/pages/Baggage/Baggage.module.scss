@@ -1,10 +1,11 @@
 .baggage {
-  @apply relative min-h-screen text-white pt-28 pb-5 bg-dark-green;
+  @apply relative min-h-screen pt-20 pb-5 text-white bg-dark-green;
+
   &::before {
+    @apply absolute left-0 bottom-0 w-full h-36;
     content: "";
     background: url(../../assets/images/decorations/wave.svg) center / cover
       no-repeat;
-    @apply absolute left-0 bottom-0 w-full h-36;
   }
 
   &__container {
@@ -12,14 +13,19 @@
   }
 
   &__panel {
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between flex-wrap mb-5;
+
+    @media all and (max-width: 26.875em) {
+      @apply mb-3;
+    }
   }
+
   &__title {
-    @apply text-2xl font-bold;
+    @apply text-2xl font-bold mr-2 mb-1;
   }
 
   &__button {
-    @apply border-2 border-solid border-white bg-white text-dark-green text-lg rounded py-1 px-2
+    @apply py-1 px-2 mb-1 rounded border-2 border-solid border-white bg-white text-dark-green text-lg  
     transition-all duration-300 hover:bg-white/70 focus:bg-white/70;
   }
 }
