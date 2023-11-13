@@ -10,7 +10,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FlightsStore from "../../../store/FlightStore";
 import FlightValidation from "../../../validation/FlightValidation";
 import splitDate from "../../../utils/splitDate";
-import Notify from "../../Notify/Notify";
+import Notify from "../../UI/Notify/Notify";
 
 interface GeneralFlightFormProps {
   title: string;

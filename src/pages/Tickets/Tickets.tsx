@@ -8,7 +8,7 @@ import { classOptions, placeOptions } from "../../data/options";
 import cl from "./Tickets.module.scss";
 import TicketButton from "../../components/UI/TicketButton/TicketButton";
 import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
-import Notify from "../../components/Notify/Notify";
+import Notify from "../../components/UI/Notify/Notify";
 import TicketStore from "../../store/TicketStore";
 import formatTicketDate from "../../utils/formatTicketDate";
 

@@ -7,7 +7,7 @@ import { useAlert } from "../../hooks/useAlert";
 import { IRegData } from "../../models/auth";
 import { InputMask } from "@react-input/mask";
 import cl from "./Auth.module.scss";
-import Notify from "../../components/Notify/Notify";
+import Notify from "../../components/UI/Notify/Notify";
 import AuthInput from "../../components/UI/AuthInput/AuthInput";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";
 import VisibilityIcon from "@mui/icons-material/Visibility";

@@ -8,7 +8,7 @@ import BaggageStore from "../../../store/BaggageStore";
 import FormInput from "../../UI/FormInput/FormInput";
 import FormButton from "../../UI/FormButton/FormButton";
 import cl from "./GeneralBaggageForm.module.scss";
-import Notify from "../../Notify/Notify";
+import Notify from "../../UI/Notify/Notify";
 import BaggageValidation from "../../../validation/BaggageValidation";
 import { useCalculatePrice } from "../../../hooks/useCalculatePrice";
 

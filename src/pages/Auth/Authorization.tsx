@@ -6,7 +6,7 @@ import { useFetching } from "../../hooks/useFetching";
 import { IAuthData } from "../../models/auth";
 import { useAlert } from "../../hooks/useAlert";
 import cl from "./Auth.module.scss";
-import Notify from "../../components/Notify/Notify";
+import Notify from "../../components/UI/Notify/Notify";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import AuthButton from "../../components/UI/AuthButton/AuthButton";

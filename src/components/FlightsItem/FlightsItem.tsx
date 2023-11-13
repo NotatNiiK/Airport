@@ -8,7 +8,7 @@ import { useAlert } from "../../hooks/useAlert";
 import cl from "./FlightsItem.module.scss";
 import GeneralFlightForm from "../forms/GeneralFlightForm/GeneralFlightForm";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
-import Notify from "../Notify/Notify";
+import Notify from "../UI/Notify/Notify";
 import Modal from "../UI/Modal/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
