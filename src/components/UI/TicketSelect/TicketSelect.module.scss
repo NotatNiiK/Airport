@@ -1,5 +1,5 @@
 .ticket-select {
-  @apply w-full text-black py-2 px-4 rounded border-2 border-solid border-white transition-all duration-300 focus:bg-white/80;
+  @apply w-full py-2 px-4 rounded border-2 border-solid border-white text-black transition-all duration-300 focus:bg-white/80;
 }
 
 .validation-error {
