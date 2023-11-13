@@ -1,49 +1,62 @@
 .introduction {
-  @apply min-h-screen bg-dark-green relative flex flex-col py-20 items-center justify-center;
+  @apply min-h-screen relative flex flex-col items-center justify-center bg-dark-green py-20;
 
-  @media all and (max-width: 950px) {
-    @apply pt-20 pb-5;
-  }
   &::before {
     @apply absolute bottom-0 left-0 w-full h-36;
     content: "";
     background: url(../../../assets/images/decorations/wave-home.svg) center /
       cover no-repeat;
   }
-  &__container {
-    @apply pt-2;
+
+  @media all and (max-width: 59.375em) {
+    @apply pt-20 pb-5;
   }
+
+  &__container {
+    @apply relative;
+  }
+
   &__body {
     @apply relative z-10 flex items-center text-white;
-    @media all and (max-width: 950px) {
-      @apply flex-col pt-5;
+
+    @media all and (max-width: 59.375em) {
+      @apply flex-col;
     }
   }
-  &__text {
+
+  &__content {
     @apply grow-0 shrink basis-3/5;
   }
+
   &__title {
     @apply text-5xl font-bold leading-tight mb-5;
-    @media all and (max-width: 950px) {
+
+    @media all and (max-width: 59.375em) {
       @apply text-4xl;
     }
   }
+
   &__sub-title {
-    @apply font-semibold text-3xl opacity-95 leading-tight mb-3;
-    @media all and (max-width: 950px) {
+    @apply text-3xl font-semibold leading-tight opacity-95 mb-3;
+
+    @media all and (max-width: 59.375em) {
       @apply text-2xl;
     }
   }
+
   &__description {
     @apply text-lg leading-tight opacity-90;
-    @media all and (max-width: 950px) {
+
+    @media all and (max-width: 59.375em) {
       @apply text-base;
     }
   }
+
   &__image {
-    @apply grow-0 shrink basis-2/5 w-full relative min-h-[300px] flex items-center justify-center;
+    @apply grow-0 shrink basis-2/5 flex items-center justify-center w-full max-h-[18.75rem];
+
     img {
-      @apply absolute left-0 top-0 w-full h-full object-cover;
+      @apply max-w-full;
     }
   }
 }

@@ -8,7 +8,7 @@ const Introduction: FC = () => {
     <div className={cl["introduction"]}>
       <div className={cl["introduction__container"]}>
         <div className={cl["introduction__body"]}>
-          <div className={cl["introduction__text"]}>
+          <div className={cl["introduction__content"]}>
             <h1 className={cl["introduction__title"]}>
               Welcome to Utravel: Your Gateway to the Skies!
             </h1>
