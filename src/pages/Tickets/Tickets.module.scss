@@ -1,29 +1,38 @@
 .tickets {
-  @apply relative min-h-screen text-white flex flex-col items-center justify-center py-4 bg-dark-green;
+  @apply relative flex flex-col items-center justify-center min-h-screen py-4 text-white bg-dark-green;
+
   &::before {
+    @apply absolute left-0 bottom-0 w-full h-36;
     content: "";
     background: url(../../assets/images/decorations/wave.svg) center / cover
       no-repeat;
-    @apply absolute left-0 bottom-0 w-full h-36;
   }
 
   &__body {
-    @apply self-stretch min-w-[500px]  m-auto relative z-20;
-    @media all and (max-width: 530px) {
-      @apply min-w-[400px] p-6;
+    @apply relative z-20 self-stretch min-w-[31.25rem] m-auto;
+
+    @media all and (max-width: 33.125em) {
+      @apply min-w-[25rem] p-6;
     }
-    @media all and (max-width: 430px) {
-      @apply min-w-[300px] p-4;
+
+    @media all and (max-width: 26.875rem) {
+      @apply min-w-[18.75rem] p-4;
     }
   }
+
   &__title {
-    @apply text-center text-3xl font-bold mb-5;
+    @apply text-3xl font-bold text-center mb-5;
   }
+
   &__section {
-    @apply mb-3;
+    @apply mb-3 last:mb-0;
+  }
+
+  &__links {
+    @apply flex items-center pt-3 pb-1;
   }
 
   &__link {
-    @apply underline hover:no-underline;
+    @apply mr-3 last:mr-0 underline hover:no-underline;
   }
 }

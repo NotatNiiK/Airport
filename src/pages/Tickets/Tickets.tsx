@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ITicket } from "../../models/ticket";
 import { useForm } from "react-hook-form";
-import { useAlert } from "../../hooks/useAlert";
 import { useFetching } from "../../hooks/useFetching";
-import { IOptions } from "../../models/option";
+import { ITicket } from "../../models/ticket";
+import { useAlert } from "../../hooks/useAlert";
+import { classOptions, placeOptions } from "../../data/options";
 import cl from "./Tickets.module.scss";
 import TicketButton from "../../components/UI/TicketButton/TicketButton";
 import TicketSelect from "../../components/UI/TicketSelect/TicketSelect";
@@ -21,44 +21,6 @@ const Tickets: FC = () => {
     destination,
     arrivalTime,
   } = useParams();
-  const [errorAlert, showAlert] = useAlert();
-  const [successAlert, showSuccessAlert] = useAlert();
-
-  const [createTicket, isLoading] = useFetching(
-    async (ticket: ITicket): Promise<void> => {
-      const newTicket = {
-        ...ticket,
-        purchaseDate: formatTicketDate(),
-        departureLocation: departureLocation || "",
-        destination: destination || "",
-        arrivalTime: arrivalTime || "",
-        cost: cost || "",
-        flightStatus: true,
-        flightId: flightId || "",
-        userId: userId || "",
-      };
-      console.log(newTicket);
-      const createResponse = await TicketStore.createTicket(newTicket);
-      if (createResponse.hasError) {
-        showAlert(createResponse.response);
-      }
-      showSuccessAlert(createResponse.response);
-    }
-  );
-
-  const classOptions: IOptions = [
-    { id: 0, text: "Econom", value: "Econom" },
-    { id: 1, text: "Business", value: "Business" },
-  ];
-
-  const placeOptions: IOptions = [
-    { id: 0, text: "1", value: "1" },
-    { id: 1, text: "2", value: "2" },
-    { id: 3, text: "22", value: "22" },
-    { id: 4, text: "52", value: "52" },
-    { id: 5, text: "67", value: "67" },
-    { id: 5, text: "99", value: "99" },
-  ];
 
   const {
     register,
@@ -66,6 +28,34 @@ const Tickets: FC = () => {
     formState: { errors },
     clearErrors,
   } = useForm<ITicket>();
+
+  const [errorAlert, showErrorAlert] = useAlert();
+  const [successAlert, showSuccessAlert] = useAlert();
+
+  const [createTicket, isLoading] = useFetching(
+    async (ticket: ITicket): Promise<void> => {
+      const newTicket: ITicket = {
+        ...ticket,
+        departureLocation: departureLocation || "",
+        destination: destination || "",
+        arrivalTime: arrivalTime || "",
+        cost: cost || "",
+        flightId: flightId || "",
+        userId: userId || "",
+        flightStatus: true,
+        purchaseDate: formatTicketDate(),
+      };
+
+      const createTicketResponse = await TicketStore.createTicket(newTicket);
+
+      if (createTicketResponse.hasError) {
+        showErrorAlert(createTicketResponse.response);
+        return;
+      }
+
+      showSuccessAlert(createTicketResponse.response);
+    }
+  );
 
   return (
     <div className={cl["tickets"]}>
@@ -76,10 +66,10 @@ const Tickets: FC = () => {
           onSubmit={handleSubmit(createTicket)}
         >
           <section className={cl["tickets__section"]}>
-            <label htmlFor="class">Select class: </label>
+            <label htmlFor="class">Select class:</label>
             <TicketSelect
-              defaultValue="Choose class"
               options={classOptions}
+              defaultValue="Choose class"
               {...register("classes", { required: true })}
               isError={errors.classes}
               onBlur={() => clearErrors("classes")}
@@ -88,13 +78,11 @@ const Tickets: FC = () => {
             />
           </section>
           <section className={cl["tickets__section"]}>
-            <label htmlFor="place">Select place: </label>
+            <label htmlFor="place">Select place:</label>
             <TicketSelect
-              defaultValue="Choose place"
               options={placeOptions}
-              {...register("place", {
-                required: true,
-              })}
+              defaultValue="Choose place"
+              {...register("place", { required: true })}
               isError={errors.place}
               onBlur={() => clearErrors("place")}
               id="place"
@@ -106,20 +94,25 @@ const Tickets: FC = () => {
               Buy
             </TicketButton>
           </section>
-          <Notify
-            show={successAlert.show}
-            message={successAlert.message}
-            type="success"
-          />
         </form>
-        <Link to="/" className={cl["tickets__link"]}>
-          Go home
-        </Link>
+        <div className={cl["tickets__links"]}>
+          <Link to="/" className={cl["tickets__link"]}>
+            Go home
+          </Link>
+          <Link to="/account" className={cl["tickets__link"]}>
+            Show tickets
+          </Link>
+        </div>
       </div>
       <Notify
         show={errorAlert.show}
         message={errorAlert.message}
         type="error"
+      />
+      <Notify
+        show={successAlert.show}
+        message={successAlert.message}
+        type="success"
       />
     </div>
   );
