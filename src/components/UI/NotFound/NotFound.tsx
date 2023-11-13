@@ -12,11 +12,7 @@ const NotFound: FC<NotFoundProps> = ({ children, colorClass }) => {
 
   return (
     <div className={rootClasses}>
-      <BlockIcon
-        sx={{
-          fontSize: "120px",
-        }}
-      />
+      <BlockIcon sx={{ fontSize: "120px" }} />
       <h2 className={cl["not-found__title"]}>{children}</h2>
     </div>
   );
