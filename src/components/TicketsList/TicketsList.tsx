@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { ITickets } from "../../models/ticket";
 import cl from "./TicketsList.module.scss";
-import NotFound from "../UI/NotFound/NotFound";
 import TicketItem from "../TicketItem/TicketItem";
+import NotFound from "../UI/NotFound/NotFound";
 import Loader from "../UI/Loader/Loader";
 
 interface TicketsListProps {
@@ -22,7 +22,9 @@ const TicketsList: FC<TicketsListProps> = ({ ticketsList, loading }) => {
       ))}
     </ul>
   ) : (
-    <NotFound colorClass="text-white">There are no tickets</NotFound>
+    <NotFound colorClass="text-white">
+      There are currently no purchased tickets
+    </NotFound>
   );
 };
 
