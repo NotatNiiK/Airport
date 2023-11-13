@@ -1,49 +1,60 @@
 .auth {
-  font-family: "Lexend Deca";
-  @apply min-h-screen relative flex flex-col items-center justify-center py-4 bg-dark-green;
+  @apply relative flex flex-col items-center justify-center min-h-screen py-4 bg-dark-green;
+
   &::before {
+    @apply absolute left-0 bottom-0 w-full h-36;
     content: "";
     background: url(../../assets/images/decorations/wave.svg) center / cover
       no-repeat;
-    @apply absolute left-0 bottom-0 w-full h-36;
   }
-  @media all and (max-width: 430px) {
-    @apply min-w-[300px];
+
+  @media all and (max-width: 26.875em) {
+    @apply min-w-[18.75rem];
   }
+
   &__body {
-    @apply self-stretch min-w-[500px] text-center m-auto relative z-20;
-    @media all and (max-width: 530px) {
-      @apply min-w-[400px] p-6;
+    @apply relative z-20 self-stretch min-w-[31.25rem] m-auto text-center;
+
+    @media all and (max-width: 33.125em) {
+      @apply min-w-[25rem] p-6;
     }
-    @media all and (max-width: 430px) {
-      @apply min-w-[300px] p-4;
+
+    @media all and (max-width: 26.875em) {
+      @apply min-w-[18.75rem] p-4;
     }
   }
+
   &__title {
-    @apply text-center font-bold text-white text-6xl mb-10;
+    @apply text-6xl font-bold text-center text-white mb-10;
   }
+
+  &__form {
+    @apply relative;
+  }
+
   &__input {
-    @apply w-full py-3 px-4 transition-all duration-300 bg-light-dark-green rounded-lg 
-  border-2 border-dark-green border-solid text-white focus:shadow-opacity-white pr-10;
+    @apply w-full py-3 px-4 pr-10 rounded-lg border-2 border-solid border-dark-green 
+    bg-light-dark-green text-white transition-all duration-300 focus:shadow-opacity-white;
   }
+
   &__section {
     @apply relative mb-5 last:mb-0;
   }
+
   &__link {
-    @apply text-white text-center;
+    @apply text-center text-white;
+
+    span {
+      @apply inline-block mr-2;
+    }
+
     a {
-      @apply underline hover:no-underline focus:border focus:border-solid focus:border-white focus:rounded-sm;
+      @apply underline hover:no-underline focus:rounded-sm focus:border focus:border-solid focus:border-white;
     }
   }
+
   &__toggle-password {
     @apply absolute right-3 top-1/2 text-white -translate-y-2/4;
-  }
-}
-
-.alert {
-  @apply absolute z-50 left-10 bottom-10;
-  @media all and (max-width: 578px) {
-    @apply left-5 bottom-5;
   }
 }
 
