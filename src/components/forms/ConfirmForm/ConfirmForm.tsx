@@ -3,16 +3,16 @@ import cl from "./ConfirmForm.module.scss";
 import ButtonLoader from "../../UI/ButtonLoader/ButtonLoader";
 
 interface ConfirmFormProps {
+  title: string;
   closeModal: () => void;
   performAction: () => Promise<void> | void;
-  title: string;
   loading?: boolean;
 }
 
 const ConfirmForm: FC<ConfirmFormProps> = ({
+  title,
   closeModal,
   performAction,
-  title,
   loading,
 }) => {
   return (

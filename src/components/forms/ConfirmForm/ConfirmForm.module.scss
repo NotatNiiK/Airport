@@ -1,12 +1,16 @@
 .confirm-form {
-  @apply py-1 h-full flex flex-col items-center text-black;
+  @apply flex flex-col items-center h-full py-1 text-black;
+
   &__title {
-    @apply text-center text-2xl;
+    @apply text-2xl text-center;
   }
+
   &__buttons {
     @apply flex items-center pt-5;
   }
+
   &__button {
-    @apply mx-2 py-1 px-3 rounded border-2 border-black border-solid min-w-[100px] transition-all duration-300 hover:bg-gray-200;
+    @apply min-w-[6.25rem] py-1 px-3 mx-2 rounded border-2 border-solid border-black 
+    transition-all duration-300 hover:bg-gray-200;
   }
 }
