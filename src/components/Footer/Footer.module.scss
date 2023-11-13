@@ -4,7 +4,7 @@
   &__container {
     @apply flex items-center justify-between;
 
-    @media all and (max-width: 478px) {
+    @media all and (max-width: 29.875em) {
       @apply flex-col;
     }
 
