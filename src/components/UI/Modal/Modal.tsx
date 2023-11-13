@@ -1,15 +1,15 @@
-import { FC, ReactNode, useEffect } from "react";
+import { FC, useEffect, ReactNode } from "react";
 import { createPortal } from "react-dom";
 import cl from "./Modal.module.scss";
 import toggleBodyLock from "../../../utils/toggleBodyLock";
 
 interface ModalProps {
   open: boolean;
-  toggleModal: () => void;
   children: ReactNode;
+  toggleModal: () => void;
 }
 
-const Modal: FC<ModalProps> = ({ open, toggleModal, children }) => {
+const Modal: FC<ModalProps> = ({ open, children, toggleModal }) => {
   const rootClass: string[] = [cl["modal"]];
   const modalClass: string[] = [cl["modal__body"]];
 
