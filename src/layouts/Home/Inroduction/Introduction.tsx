@@ -1,12 +1,9 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import cl from "./Introduction.module.scss";
+import ImageLoading from "../../../components/ImageLoading/ImageLoading";
 import PlainImage from "../../../assets/images/pages/Home/Plain.png";
-import Loader from "../../../components/UI/Loader/Loader";
 
 const Introduction: FC = () => {
-  const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
-  const imageClasses: string = [isImageLoading ? "hidden" : "block"].join(" ");
-
   return (
     <div className={cl["introduction"]}>
       <div className={cl["introduction__container"]}>
@@ -26,14 +23,7 @@ const Introduction: FC = () => {
             </p>
           </div>
           <div className={cl["introduction__image"]}>
-            {!isImageLoading && <Loader />}
-            <img
-              src={PlainImage}
-              alt="Plain"
-              className={imageClasses}
-              draggable={false}
-              onLoad={() => setIsImageLoading(false)}
-            />
+            <ImageLoading image={PlainImage} />
           </div>
         </div>
       </div>
