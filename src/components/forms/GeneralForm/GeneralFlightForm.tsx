@@ -6,26 +6,26 @@ import { useForm } from "react-hook-form";
 import cl from "./GeneralForm.module.scss";
 import FormInput from "../../UI/FormInput/FormInput";
 import FormButton from "../../UI/FormButton/FormButton";
+import Notify from "../../UI/Notify/Notify";
 import Checkbox from "@mui/material/Checkbox";
 import FlightsStore from "../../../store/FlightStore";
 import FlightValidation from "../../../validation/FlightValidation";
 import splitDate from "../../../utils/splitDate";
-import Notify from "../../UI/Notify/Notify";
 
 interface GeneralFlightFormProps {
   title: string;
-  isEdit: boolean;
-  isClearForm: boolean;
-  flight?: IFlight;
   closeModal: () => void;
+  isEdit?: boolean;
+  isClearForm?: boolean;
+  flight?: IFlight;
 }
 
 const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
   title,
+  closeModal,
   isEdit,
   isClearForm,
   flight,
-  closeModal,
 }) => {
   const {
     register,
@@ -36,7 +36,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
     setValue,
   } = useForm<IFlight>();
 
-  const [errorAlert, showAlert] = useAlert();
+  const [errorAlert, showErrorAlert] = useAlert();
 
   useEffect((): void => {
     if (isEdit) setEditFormValue();
@@ -70,7 +70,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
       }
 
       if (apiResponse.hasError) {
-        showAlert(apiResponse.response);
+        showErrorAlert(apiResponse.response);
         return;
       }
 
@@ -86,7 +86,17 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
 
   const checkBoxErrorClasses: string = [
     cl["general-form__label"],
-    `${errors.flightStatus ? "text-red-600" : ""}`,
+    errors.flightStatus ? "text-red-600" : "",
+  ].join(" ");
+
+  const fifthSectionClasses: string = [
+    cl["general-form__section"],
+    cl["general-form__section_margin-zero"],
+  ].join(" ");
+
+  const checkboxSectionClasses: string = [
+    cl["general-form__section"],
+    cl["general-form__section_checkbox"],
   ].join(" ");
 
   return (
@@ -150,12 +160,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           tabIndex={5}
         />
       </section>
-      <section
-        className={[
-          cl["general-form__section"],
-          cl["general-form__section_not-mb"],
-        ].join(" ")}
-      >
+      <section className={fifthSectionClasses}>
         <FormInput
           {...register("arrivalTime", {
             required: true,
@@ -168,12 +173,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
           tabIndex={6}
         />
       </section>
-      <section
-        className={[
-          cl["general-form__section"],
-          cl["general-form__section_checkbox"],
-        ].join(" ")}
-      >
+      <section className={checkboxSectionClasses}>
         <span className={checkBoxErrorClasses}>Is flight status active?</span>
         <Checkbox
           {...register("flightStatus", {
