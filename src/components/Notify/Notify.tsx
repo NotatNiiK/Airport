@@ -14,7 +14,11 @@ const Notify: FC<NotifyProps> = ({ show, message, type }) => {
     <>
       {show &&
         createPortal(
-          <Alert severity={type} className={cl["notify"]}>
+          <Alert
+            severity={type}
+            className={cl["notify"]}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
             {message}
           </Alert>,
           document.body
