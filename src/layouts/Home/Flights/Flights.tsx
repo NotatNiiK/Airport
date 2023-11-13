@@ -6,7 +6,7 @@ import { IAlert } from "../../../models/alert";
 import cl from "./Flights.module.scss";
 import Modal from "../../../components/UI/Modal/Modal";
 import FlightsList from "../../../components/FlightsList/FightsList";
-import GeneralFlightForm from "../../../components/Forms/GeneralFlightForm/GeneralFlightForm";
+import GeneralFlightForm from "../../../components/Forms/GeneralForm/GeneralFlightForm";
 import FlightStore from "../../../store/FlightStore";
 import Alert from "@mui/material/Alert";
 

@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import Modal from "../../components/UI/Modal/Modal";
 import { useParams } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
-import GeneralBaggageForm from "../../components/Forms/GeneralBaggageForm/GeneralBaggageForm";
+import GeneralBaggageForm from "../../components/Forms/GeneralForm/GeneralBaggageForm";
 import BaggageList from "../../components/BaggageList/BaggageList";
 import { useFetching } from "../../hooks/useFetching";
 import BaggageStore from "../../store/BaggageStore";

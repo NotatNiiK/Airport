@@ -6,7 +6,7 @@ import { useFetching } from "../../hooks/useFetching";
 import { useModal } from "../../hooks/useModal";
 import { useAlert } from "../../hooks/useAlert";
 import cl from "./FlightsItem.module.scss";
-import GeneralFlightForm from "../Forms/GeneralFlightForm/GeneralFlightForm";
+import GeneralFlightForm from "../Forms/GeneralForm/GeneralFlightForm";
 import ConfirmForm from "../Forms/ConfirmForm/ConfirmForm";
 import Notify from "../UI/Notify/Notify";
 import Modal from "../UI/Modal/Modal";
