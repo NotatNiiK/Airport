@@ -10,7 +10,7 @@ const AuthInput: FC<AuthInputProps> = forwardRef(
   ({ isError, ...props }, ref: Ref<HTMLInputElement>) => {
     const inputClasses: string = [
       cl["auth-input"],
-      `${isError ? cl["validation-error"] : ""}`,
+      isError ? cl["validation-error"] : "",
     ].join(" ");
 
     return <input className={inputClasses} ref={ref} {...props} />;

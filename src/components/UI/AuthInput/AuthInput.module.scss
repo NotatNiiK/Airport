@@ -1,6 +1,6 @@
 .auth-input {
-  @apply w-full py-3 px-4 transition-all duration-300 bg-light-dark-green rounded-lg 
-  border-2 border-dark-green border-solid text-white focus:shadow-opacity-white pr-10;
+  @apply w-full py-3 px-4 pr-10 rounded-lg bg-light-dark-green text-white border-2 border-solid border-dark-green
+  transition-all duration-300 focus:shadow-opacity-white;
 }
 
 .validation-error {
