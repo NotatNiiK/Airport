@@ -1,16 +1,32 @@
 .baggage-item {
-  @apply bg-white text-dark-green rounded p-2;
-  &__cost {
-    @apply text-lg font-bold mb-2;
+  @apply p-4 rounded bg-white text-dark-green;
+
+  &__title {
+    @apply py-1 border-b border-dashed border-dark-green text-xl font-bold text-center;
   }
+
+  &__cost {
+    @apply text-lg font-bold my-2;
+  }
+
+  &__content {
+    @apply flex items-end justify-between;
+  }
+
   &__list {
     @apply block;
   }
+
   &__list-item {
-    @apply relative text-sm pl-2;
+    @apply relative pl-2 text-sm;
+
     &::before {
-      content: "";
       @apply absolute left-0 top-2 w-1 h-1 rounded-full bg-dark-green;
+      content: "";
     }
+  }
+
+  &__button {
+    @apply transition-all duration-300 hover:text-dark-green/90;
   }
 }
