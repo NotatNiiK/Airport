@@ -1,13 +1,15 @@
 .header {
-  font-family: "Lexend Deca";
   @apply fixed left-0 top-0 z-50 w-full py-3 text-white transition-all duration-200;
+
   &__container {
     @apply flex items-center justify-between;
   }
+
   &__burger {
-    display: none !important;
     @apply cursor-pointer relative z-40 text-3xl;
-    @media all and (max-width: 768px) {
+    display: none !important;
+
+    @media all and (max-width: 48em) {
       display: inline-block !important;
     }
   }
@@ -15,28 +17,36 @@
 
 .nav {
   @apply flex items-center;
-  @media all and (max-width: 768px) {
-    @apply block fixed left-0 -top-full overflow-x-hidden overflow-y-auto h-full w-full bg-indigo-600
-    py-10 px-14 transition-all duration-300;
+
+  @media all and (max-width: 48em) {
+    @apply fixed left-0 -top-full block h-full w-full py-10 px-14 bg-indigo-600 
+    overflow-x-hidden overflow-y-auto transition-all duration-300;
   }
+
   &.active {
     @apply top-0;
   }
+
   &__list {
     @apply flex items-center mr-5;
-    @media all and (max-width: 768px) {
+
+    @media all and (max-width: 48em) {
       @apply block;
     }
   }
+
   &__item {
     @apply ml-3;
-    @media all and (max-width: 768px) {
+
+    @media all and (max-width: 48em) {
       @apply ml-0 mb-10;
     }
   }
+
   &__link {
     @apply text-lg transition-all duration-300 hover:text-white/80;
-    @media all and (max-width: 768px) {
+
+    @media all and (max-width: 48em) {
       @apply text-3xl;
     }
   }
@@ -44,9 +54,11 @@
   &__buttons {
     @apply flex items-center;
   }
+
   &__button {
     @apply cursor-pointer transition-all duration-300 hover:text-white/80 ml-3;
-    @media all and (max-width: 768px) {
+
+    @media all and (max-width: 48em) {
       @apply ml-0 mr-2;
     }
   }
@@ -54,17 +66,4 @@
 
 .active-link {
   @apply underline;
-}
-
-.logout {
-  @apply py-1 h-full flex flex-col items-center text-black;
-  &__title {
-    @apply text-center text-2xl;
-  }
-  &__buttons {
-    @apply flex items-center pt-5;
-  }
-  &__button {
-    @apply mx-2 py-1 px-3 rounded border-2 border-black border-solid min-w-[100px] transition-all duration-300 hover:bg-gray-200;
-  }
 }

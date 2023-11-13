@@ -2,8 +2,8 @@ import { FC, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useHeader } from "../../hooks/useHeader";
 import cl from "./Header.module.scss";
-import Modal from "../UI/Modal/Modal";
 import ConfirmForm from "../forms/ConfirmForm/ConfirmForm";
+import Modal from "../UI/Modal/Modal";
 import Logo from "../UI/Logo/Logo";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,24 +17,25 @@ const setActiveLink = ({ isActive }: { isActive: boolean }): string => {
 const Header: FC = () => {
   const navigate = useNavigate();
 
-  const [hasHeaderBg, setHasHeaderBg] = useState<boolean>(false);
   const [
     isLogoutModal,
     isBurgerMenuOpen,
-    toggleModal,
+    toggleLogoutModal,
     toggleBurgerMenu,
     performLogout,
   ] = useHeader();
 
-  const headerClasses: string[] = [
+  const [hasHeaderBg, setHasHeaderBg] = useState<boolean>(false);
+
+  const headerClasses: string = [
     cl["header"],
     hasHeaderBg ? "bg-indigo-600" : "",
-  ];
+  ].join(" ");
 
-  const navClasses: string[] = [
+  const navClasses: string = [
     cl["nav"],
     isBurgerMenuOpen ? cl["active"] : "",
-  ];
+  ].join(" ");
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -50,10 +51,10 @@ const Header: FC = () => {
   }, []);
 
   return (
-    <header className={headerClasses.join(" ")}>
+    <header className={headerClasses}>
       <div className={cl["header__container"]}>
         <Logo />
-        <nav className={navClasses.join(" ")}>
+        <nav className={navClasses}>
           <ul className={cl["nav__list"]}>
             {navLinks.map((navLink) => (
               <li className={cl["nav__item"]} key={navLink.path}>
@@ -65,17 +66,20 @@ const Header: FC = () => {
           </ul>
           <div className={cl["nav__buttons"]}>
             <AccountCircleIcon
-              className={cl["nav__button"]}
               onClick={() => navigate("/account")}
+              className={cl["nav__button"]}
             />
-            <LogoutIcon onClick={toggleModal} className={cl["nav__button"]} />
+            <LogoutIcon
+              onClick={toggleLogoutModal}
+              className={cl["nav__button"]}
+            />
           </div>
         </nav>
         <MenuIcon className={cl["header__burger"]} onClick={toggleBurgerMenu} />
       </div>
-      <Modal open={isLogoutModal} toggleModal={toggleModal}>
+      <Modal open={isLogoutModal} toggleModal={toggleLogoutModal}>
         <ConfirmForm
-          closeModal={toggleModal}
+          closeModal={toggleLogoutModal}
           performAction={performLogout}
           title="Do you really want to log out?"
         />
