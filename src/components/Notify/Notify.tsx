@@ -17,7 +17,11 @@ const Notify: FC<NotifyProps> = ({ show, message, type }) => {
           <Alert
             severity={type}
             className={cl["notify"]}
-            sx={{ display: "flex", alignItems: "center" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              maxWidth: "270px",
+            }}
           >
             {message}
           </Alert>,
