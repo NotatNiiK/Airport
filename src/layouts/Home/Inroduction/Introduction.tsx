@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cl from "./Introduction.module.scss";
-import ImageLoading from "../../../components/ImageLoading/ImageLoading";
+import ImageLoading from "../../../components/UI/ImageLoading/ImageLoading";
 import PlainImage from "../../../assets/images/pages/Home/Plain.png";
 
 const Introduction: FC = () => {

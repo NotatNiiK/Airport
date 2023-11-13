@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import Loader from "../UI/Loader/Loader";
+import Loader from "../Loader/Loader";
 
 interface ImageLoadingProps {
   image: string;
