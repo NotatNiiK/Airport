@@ -1,10 +1,10 @@
-import { FC, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
+import { observer } from "mobx-react-lite";
 import { Navigate, Routes, Route } from "react-router-dom";
 import { publicRoutes, privateRoutes } from ".";
-import { observer } from "mobx-react-lite";
-import AuthStore from "../store/AuthStore";
 import { IToken } from "../models/token";
 import { isUserAuth } from "../utils/authTokenStorage";
+import AuthStore from "../store/AuthStore";
 
 const PrivateRoutes: FC = () => (
   <Routes>
@@ -31,6 +31,8 @@ const PublicRoutes: FC = () => (
 );
 
 const PageRouter: FC = observer(() => {
+  const [initialRender, setInitialRender] = useState(true);
+
   useEffect((): void => {
     if (isUserAuth()) AuthStore.setIsAuth(true);
 
@@ -39,7 +41,13 @@ const PageRouter: FC = observer(() => {
       const parsedTokenInfo: IToken = JSON.parse(tokenInfo);
       AuthStore.setTokenInfo(parsedTokenInfo);
     }
+
+    setInitialRender(false);
   }, []);
+
+  if (initialRender) {
+    return null;
+  }
 
   return AuthStore.isAuth ? <PrivateRoutes /> : <PublicRoutes />;
 });
