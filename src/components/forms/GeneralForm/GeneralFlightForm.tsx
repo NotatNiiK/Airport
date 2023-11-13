@@ -14,9 +14,9 @@ import splitDate from "../../../utils/splitDate";
 
 interface GeneralFlightFormProps {
   title: string;
+  isClearForm: boolean;
   closeModal: () => void;
   isEdit?: boolean;
-  isClearForm?: boolean;
   flight?: IFlight;
 }
 
