@@ -100,7 +100,6 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
       <Modal open={isEditModalOpen} toggleModal={toggleEditModal}>
         <GeneralFlightForm
           title="Edit flight"
-          btnText="Edit"
           flight={flight}
           closeModal={toggleEditModal}
           isClearForm={false}
