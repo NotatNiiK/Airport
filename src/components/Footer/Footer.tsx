@@ -11,10 +11,10 @@ const Footer: FC = () => {
       <section className={cl["footer__container"]}>
         <Logo />
         <ul className={cl["footer__list"]}>
-          {navLinks.map((navLink) => (
-            <li className={cl["footer__item"]} key={navLink.path}>
-              <Link to={navLink.text} className={cl["footer__link"]}>
-                {navLink.text}
+          {navLinks.map(({ path, text }) => (
+            <li className={cl["footer__item"]} key={path}>
+              <Link to={path} className={cl["footer__link"]}>
+                {text}
               </Link>
             </li>
           ))}

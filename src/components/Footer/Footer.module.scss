@@ -1,23 +1,30 @@
 .footer {
   @apply py-2 bg-indigo-600 text-white;
+
   &__container {
     @apply flex items-center justify-between;
+
     @media all and (max-width: 478px) {
       @apply flex-col;
     }
+
     > * {
       @apply py-1;
     }
   }
+
   &__list {
     @apply flex items-center;
   }
+
   &__item {
     @apply ml-3;
   }
+
   &__link {
     @apply hover:underline;
   }
+
   &__social-media {
     @apply transition-all duration-300 hover:text-white/80 hover:scale-105;
   }
