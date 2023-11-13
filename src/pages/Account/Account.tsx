@@ -1,12 +1,12 @@
 import { FC, useState, useEffect } from "react";
 import { useFetching } from "../../hooks/useFetching";
 import { IAlert } from "../../models/alert";
+import { Alert } from "@mui/material";
 import cl from "./Account.module.scss";
 import Header from "../../components/Header/Header";
 import TicketsList from "../../components/TicketsList/TicketsList";
 import TicketStore from "../../store/TicketStore";
 import AuthStore from "../../store/AuthStore";
-import { Alert } from "@mui/material";
 
 const Account: FC = () => {
   const [errorAlert, setErrorAlert] = useState<IAlert>({
