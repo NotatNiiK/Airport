@@ -183,7 +183,7 @@ const GeneralBaggageForm: FC<GeneralBaggageFormProps> = ({
       </section>
       <section className={cl["general-form__section"]}>
         <FormButton loading={isLoading} tabIndex={8}>
-          Create
+          {isEdit ? "Edit" : "Create"}
         </FormButton>
       </section>
       <Notify
