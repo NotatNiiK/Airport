@@ -1,5 +1,5 @@
 .button-loader {
-  @apply w-6 h-6 border-4 border-solid border-white border-b-transparent rounded-full inline-block box-border;
+  @apply inline-block w-6 h-6 rounded-full border-4 border-solid border-white border-b-transparent;
   animation: rotation 1s linear infinite;
 }
 
