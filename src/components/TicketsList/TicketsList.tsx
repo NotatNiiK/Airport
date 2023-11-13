@@ -7,11 +7,11 @@ import Loader from "../UI/Loader/Loader";
 
 interface TicketsListProps {
   ticketsList: ITickets;
-  loading: boolean;
+  isLoading: boolean;
 }
 
-const TicketsList: FC<TicketsListProps> = ({ ticketsList, loading }) => {
-  if (loading) {
+const TicketsList: FC<TicketsListProps> = ({ ticketsList, isLoading }) => {
+  if (isLoading) {
     return <Loader />;
   }
 
