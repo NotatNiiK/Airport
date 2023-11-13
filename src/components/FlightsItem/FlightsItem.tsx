@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IFlight } from "../../models/flight";
-import { IToken } from "../../models/token";
 import { useFetching } from "../../hooks/useFetching";
 import { useModal } from "../../hooks/useModal";
 import { useAlert } from "../../hooks/useAlert";
+import { IFlight } from "../../models/flight";
+import { IToken } from "../../models/token";
 import cl from "./FlightsItem.module.scss";
 import GeneralFlightForm from "../Forms/GeneralForm/GeneralFlightForm";
 import ConfirmForm from "../Forms/ConfirmForm/ConfirmForm";
@@ -13,7 +13,6 @@ import Modal from "../UI/Modal/Modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
-import AuthStore from "../../store/AuthStore";
 import FlightsStore from "../../store/FlightStore";
 import gotoTicketPage from "../../utils/gotoTicketPage";
 
@@ -24,8 +23,30 @@ interface FlightItemProps {
 const FlightItem: FC<FlightItemProps> = ({ flight }) => {
   const [isEditModalOpen, toggleEditModal] = useModal();
   const [isDeleteModalOpen, toggleDeleteModal] = useModal();
-  const [errorAlert, showAlert] = useAlert();
+  const [errorAlert, showErrorAlert] = useAlert();
   const [userId, setUserId] = useState<number>(0);
+
+  useEffect((): void => {
+    const tokenInfo = localStorage.getItem("tokenInfo");
+
+    if (tokenInfo) {
+      const parsedTokenInfo: IToken = JSON.parse(tokenInfo);
+      setUserId(parsedTokenInfo.id);
+    }
+  }, []);
+
+  const [deleteFlight, isLoading] = useFetching(
+    async (id: number): Promise<void> => {
+      const deleteFlightResponse = await FlightsStore.deleteFlight(id);
+
+      if (deleteFlightResponse.hasError) {
+        showErrorAlert(deleteFlightResponse.response);
+        return;
+      }
+
+      await FlightsStore.getFlights();
+    }
+  );
 
   const deleteIconClasses: string = [
     cl["flights-item__button"],
@@ -37,35 +58,15 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
     cl["flights-item__button_edit"],
   ].join(" ");
 
-  const [deleteFlight, isLoading] = useFetching(
-    async (id: number): Promise<void> => {
-      const deleteResponse = await FlightsStore.deleteFlight(id);
-      if (deleteResponse.hasError) {
-        showAlert(deleteResponse.response);
-        return;
-      }
-      await FlightsStore.getFlights();
-    }
-  );
-
-  useEffect((): void => {
-    const tokenInfo = localStorage.getItem("tokenInfo");
-
-    if (tokenInfo) {
-      const parsedTokenInfo: IToken = JSON.parse(tokenInfo);
-      setUserId(parsedTokenInfo.id);
-    }
-  }, []);
-
   return (
     <li className={cl["flights-item"]}>
       <div className={cl["flights-item__image"]}>
         <FlightTakeoffTwoToneIcon />
       </div>
       <div className={cl["flights-item__content"]}>
-        <h3 className={cl["flights-item__place"]}>
+        <h2 className={cl["flights-item__place"]}>
           {flight.departureLocation} - {flight.destination}
-        </h3>
+        </h2>
         <p className={cl["flights-item__time"]}>
           {flight.departureTime} - {flight.arrivalTime}
         </p>
@@ -80,33 +81,30 @@ const FlightItem: FC<FlightItemProps> = ({ flight }) => {
           >
             Buy ticket
           </Link>
-          {AuthStore.isAdmin && (
-            <>
-              <DeleteIcon
-                onClick={toggleDeleteModal}
-                className={deleteIconClasses}
-                sx={{
-                  fontSize: "30px",
-                }}
-              />
-              <EditIcon
-                onClick={toggleEditModal}
-                className={editIconClasses}
-                sx={{
-                  fontSize: "30px",
-                }}
-              />
-            </>
-          )}
+          <DeleteIcon
+            onClick={toggleDeleteModal}
+            className={deleteIconClasses}
+            sx={{
+              fontSize: "28px",
+            }}
+          />
+          <EditIcon
+            onClick={toggleEditModal}
+            className={editIconClasses}
+            sx={{
+              fontSize: "28px",
+            }}
+          />
         </div>
       </div>
       <Modal open={isEditModalOpen} toggleModal={toggleEditModal}>
         <GeneralFlightForm
           title="Edit flight"
-          isEdit={true}
+          btnText="Edit"
           flight={flight}
           closeModal={toggleEditModal}
           isClearForm={false}
+          isEdit
         />
       </Modal>
       <Modal open={isDeleteModalOpen} toggleModal={toggleDeleteModal}>
