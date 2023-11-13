@@ -14,6 +14,7 @@ import splitDate from "../../../utils/splitDate";
 
 interface GeneralFlightFormProps {
   title: string;
+  btnText: string;
   isClearForm: boolean;
   closeModal: () => void;
   isEdit?: boolean;
@@ -22,6 +23,7 @@ interface GeneralFlightFormProps {
 
 const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
   title,
+  btnText,
   closeModal,
   isEdit,
   isClearForm,
@@ -186,7 +188,7 @@ const GeneralFlightForm: FC<GeneralFlightFormProps> = ({
       </section>
       <section className={cl["general-form__section"]}>
         <FormButton loading={isLoading} tabIndex={8}>
-          Create
+          {btnText}
         </FormButton>
       </section>
       <Notify
