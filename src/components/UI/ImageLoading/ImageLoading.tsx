@@ -7,7 +7,6 @@ interface ImageLoadingProps {
 
 const ImageLoading: FC<ImageLoadingProps> = ({ image }) => {
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
-  const imageClasses: string = [isImageLoading ? "hidden" : "block"].join(" ");
 
   useEffect((): void => {
     setIsImageLoading(false);
@@ -18,12 +17,7 @@ const ImageLoading: FC<ImageLoadingProps> = ({ image }) => {
       {isImageLoading ? (
         <Loader />
       ) : (
-        <img
-          src={image}
-          alt="Plain"
-          className={imageClasses}
-          draggable={false}
-        />
+        <img src={image} alt="Plain" draggable={false} />
       )}
     </>
   );
