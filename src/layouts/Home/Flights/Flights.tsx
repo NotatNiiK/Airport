@@ -1,14 +1,13 @@
 import { FC, useState, useEffect } from "react";
+import { observer } from "mobx-react-lite";
 import { useFetching } from "../../../hooks/useFetching";
 import { useModal } from "../../../hooks/useModal";
-import { observer } from "mobx-react-lite";
 import { IAlert } from "../../../models/alert";
 import cl from "./Flights.module.scss";
 import Modal from "../../../components/UI/Modal/Modal";
 import FlightsList from "../../../components/FlightsList/FightsList";
 import GeneralFlightForm from "../../../components/forms/GeneralFlightForm/GeneralFlightForm";
 import FlightStore from "../../../store/FlightStore";
-import AuthStore from "../../../store/AuthStore";
 import Alert from "@mui/material/Alert";
 
 const Flights: FC = observer(() => {
@@ -19,11 +18,11 @@ const Flights: FC = observer(() => {
   });
 
   const [getFlights, isLoading] = useFetching(async (): Promise<void> => {
-    const getResponse = await FlightStore.getFlights();
-    if (getResponse?.hasError) {
+    const getFlightsResponse = await FlightStore.getFlights();
+    if (getFlightsResponse?.hasError) {
       setErrorAlert({
         show: true,
-        message: getResponse.response,
+        message: getFlightsResponse.response,
       });
     }
   });
@@ -34,18 +33,16 @@ const Flights: FC = observer(() => {
 
   return (
     <div className={cl["flights"]}>
-      <div className={cl["flights__container"]}>
+      <section className={cl["flights__container"]}>
         <div className={cl["flights__panel"]}>
           <h2 className={cl["flights__title"]}>Available flights:</h2>
-          {AuthStore.isAdmin && (
-            <button
-              className={cl["flights__create-btn"]}
-              title="Create flight"
-              onClick={toggleCreateModal}
-            >
-              +
-            </button>
-          )}
+          <button
+            onClick={toggleCreateModal}
+            className={cl["flights__create-btn"]}
+            title="Create flight"
+          >
+            +
+          </button>
         </div>
         {errorAlert.show ? (
           <Alert
@@ -73,7 +70,7 @@ const Flights: FC = observer(() => {
             isClearForm={isCreateModalOpen}
           />
         </Modal>
-      </div>
+      </section>
     </div>
   );
 });
